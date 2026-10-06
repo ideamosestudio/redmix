@@ -1,62 +1,99 @@
 ---
+import '@fontsource/roboto/300.css';
 import '../styles.css';
+
+const base = import.meta.env.BASE_URL;
 ---
 
-<header class="site-header">
-  <a class="brand" href="#inicio" aria-label="REDMIX, inicio">
-    <span class="brand__mark" aria-hidden="true">
-      <i></i><i></i><i></i><i></i><i></i>
-    </span>
-    <span>REDMIX</span>
+<header class="nav-shell">
+  <a class="nav-logo" href="#inicio" aria-label="REDMIX Hormigonera, inicio">
+    <img src={`${base}/images/redmix-logo.png`} alt="REDMIX Hormigonera" />
   </a>
-  <span class="header-note">HORMIGONERA</span>
-  <a class="header-link" href="#contacto">CONTACTO <span aria-hidden="true">↗</span></a>
+
+  <nav class="nav-links" aria-label="Navegación principal">
+    <a href="#quienes-somos"><span>01</span>Quiénes somos</a>
+    <a href="#servicios"><span>02</span>Servicios</a>
+    <a href="#contactanos"><span>03</span>Contactanos</a>
+  </nav>
+
+  <div class="nav-status" aria-hidden="true"><i></i><span>PLANTA ACTIVA</span></div>
 </header>
 
 <main>
   <section class="hero" id="inicio" aria-labelledby="hero-title">
-    <div class="hero__sticky">
-      <canvas class="hero__canvas" aria-hidden="true"></canvas>
-      <div class="hero__noise" aria-hidden="true"></div>
+    <div class="hero-sticky">
+      <div class="concrete-field" aria-hidden="true"></div>
+      <div class="technical-grid" aria-hidden="true"></div>
+      <div class="ambient-glow" aria-hidden="true"></div>
+      <div class="scanline" aria-hidden="true"></div>
 
-      <div class="hero__eyebrow" aria-hidden="true">
-        <span>01</span>
-        <span>INDUSTRIA / CONSTRUCCIÓN</span>
+      <svg class="blueprint blueprint--top" viewBox="0 0 600 90" aria-hidden="true">
+        <path d="M1 75H195M405 75H599M200 75H400M200 68V82M400 68V82" />
+        <path class="blueprint__dash" d="M220 32H380" />
+        <circle cx="300" cy="32" r="10" /><path d="M290 32H310M300 22V42" />
+      </svg>
+
+      <div class="measure measure--left" aria-hidden="true"><span>± 0.000</span><i></i><span>EJE A.01</span></div>
+      <div class="measure measure--right" aria-hidden="true"><span>COTA 06.40</span><i></i><span>RMX / 01</span></div>
+
+      <div class="hero-copy" data-copy>
+        <p class="eyebrow"><span></span>INGENIERÍA EN HORMIGÓN ARMADO</p>
+        <h1 id="hero-title">
+          <span>HORMIGÓN</span>
+          <span class="title-outline">QUE TOMA</span>
+          <span>FORMA.</span>
+        </h1>
+        <div class="hero-intro">
+          <span class="intro-index">01—03</span>
+          <p>Soluciones estructurales de alto rendimiento para obras que exigen precisión, resistencia y escala.</p>
+        </div>
+        <div class="hero-actions">
+          <a class="technical-cta technical-cta--solid" href="#servicios">
+            <span>EXPLORAR SERVICIOS</span>
+            <i class="tick tick--a"></i><i class="tick tick--b"></i><i class="tick tick--c"></i><i class="tick tick--d"></i>
+          </a>
+          <a class="technical-cta" href="#quienes-somos">
+            <span>CONOCER REDMIX</span>
+            <i class="tick tick--a"></i><i class="tick tick--b"></i><i class="tick tick--c"></i><i class="tick tick--d"></i>
+          </a>
+        </div>
       </div>
 
-      <div class="hero__intro" data-hero-intro>
-        <p class="overline">HORMIGÓN · TECNOLOGÍA · PRECISIÓN</p>
-        <h1 id="hero-title">REDMIX <span>HORMIGONERA</span></h1>
-        <p>Soluciones para la construcción</p>
+      <div class="hero-object" data-object-wrap>
+        <div class="object-glow" aria-hidden="true"></div>
+        <canvas class="hero-canvas" aria-hidden="true"></canvas>
+        <div class="object-crosshair" aria-hidden="true"><i></i><i></i></div>
+        <div class="object-tag object-tag--top" aria-hidden="true"><span>MÓDULO ESTRUCTURAL</span><b>RMX—05</b></div>
+        <div class="object-tag object-tag--bottom" aria-hidden="true"><span>CAPACIDAD</span><b>360° / 120 M³</b></div>
       </div>
 
-      <div class="hero__statement" data-hero-statement>
-        <p class="overline">NUESTRA FORMA DE HACER</p>
-        <h2>SOLUCIONES QUE<br />CONSTRUYEN <em>FUTURO</em></h2>
-        <p class="statement-copy">
-          Desarrollamos soluciones de hormigón con precisión, capacidad y una mirada puesta en lo que viene.
-        </p>
-        <a class="cta" href="#contacto">
-          <span>CONOCER SOLUCIONES</span>
-          <span class="cta__icon" aria-hidden="true">↗</span>
-        </a>
-      </div>
-
-      <div class="scroll-cue" aria-hidden="true">
-        <span>SCROLL PARA EXPLORAR</span>
-        <span class="scroll-cue__line"><i data-progress></i></span>
+      <div class="hero-foot" aria-hidden="true">
+        <div><span>RESISTENCIA</span><b>H—60</b></div>
+        <div><span>CONTROL</span><b>ISO 9001</b></div>
+        <div><span>TECNOLOGÍA</span><b>REDMIX</b></div>
+        <p>DESLIZÁ PARA EXPLORAR <i data-progress></i></p>
       </div>
     </div>
   </section>
 
-  <section class="after-hero" id="contacto" aria-label="Fin del hero">
-    <div>
-      <p class="overline">CONTENIDO EN DESARROLLO</p>
-      <h2>EL HERO<br />TERMINA ACÁ.</h2>
-    </div>
-    <p>
-      Esta sección temporal permite comprobar la salida natural del canvas sticky antes de avanzar con el resto del sitio.
-    </p>
+  <section class="content-panel" id="quienes-somos">
+    <p class="section-code">01 / QUIÉNES SOMOS</p>
+    <h2>LA ESTRUCTURA<br />DETRÁS DE <em>CADA OBRA.</em></h2>
+    <p>Esta sección será desarrollada en la próxima etapa. Define el lenguaje visual para el resto del sitio.</p>
+  </section>
+
+  <section class="content-panel content-panel--dark" id="servicios">
+    <p class="section-code">02 / SERVICIOS</p>
+    <h2>PRECISIÓN<br />EN <em>ESCALA.</em></h2>
+  </section>
+
+  <section class="contact-panel" id="contactanos">
+    <p class="section-code">03 / CONTACTANOS</p>
+    <h2>CONSTRUYAMOS<br />LO QUE SIGUE.</h2>
+    <a class="technical-cta technical-cta--light" href="mailto:contacto@redmix.com.ar">
+      <span>INICIAR CONVERSACIÓN</span>
+      <i class="tick tick--a"></i><i class="tick tick--b"></i><i class="tick tick--c"></i><i class="tick tick--d"></i>
+    </a>
   </section>
 </main>
 
