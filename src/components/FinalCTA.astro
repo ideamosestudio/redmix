@@ -1,11 +1,15 @@
 ---
 import WhatsAppCTA from './WhatsAppCTA.astro';
+import ContactForm from './ContactForm.astro';
 interface Props { title?: string; text?: string; label?: string; message?: string; }
 const { title = 'PEDÍ TU PRESUPUESTO', text = 'Contanos qué necesitás para tu obra y contactate directamente con REDMIX.', label = 'PEDIR PRESUPUESTO POR WHATSAPP', message } = Astro.props;
 ---
 <section class="final-cta" data-reveal>
-  <p class="section-code">CONTACTO DIRECTO</p>
-  <h2>{title}</h2>
-  <p>{text}</p>
-  <WhatsAppCTA {label} {message} />
+  <div class="final-cta__copy">
+    <p class="section-code">CONTACTO DIRECTO</p>
+    <h2>{title}</h2>
+    <p>{text}</p>
+    <WhatsAppCTA {label} {message} />
+  </div>
+  <ContactForm idPrefix="final" compact />
 </section>

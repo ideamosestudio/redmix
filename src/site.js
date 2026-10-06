@@ -13,7 +13,11 @@ function updateNavbar() {
 }
 
 updateNavbar();
-window.addEventListener('scroll', updateNavbar, { passive: true });
+let navbarFrame = 0;
+window.addEventListener('scroll', () => {
+  if (navbarFrame) return;
+  navbarFrame = requestAnimationFrame(() => { updateNavbar(); navbarFrame = 0; });
+}, { passive: true });
 
 menuToggle?.addEventListener('click', () => {
   const open = menuToggle.getAttribute('aria-expanded') !== 'true';
@@ -33,10 +37,14 @@ if (!reducedMotion) {
     const isImage = element.matches('[data-image-reveal]');
     const horizontal = element.matches('.image-reveal--horizontal');
     const flow = element.matches('.image-reveal--flow');
-    const initialClip = horizontal ? 'inset(0 100% 0 0)' : flow ? 'inset(0 0 0 100%)' : isImage ? 'inset(0 0 100% 0)' : 'inset(0 0 12% 0)';
+    const initialClip = horizontal ? 'inset(0 100% 0 0)' : flow ? 'inset(0 0 0 100%)' : 'inset(0 0 100% 0)';
     gsap.fromTo(element,
-      { autoAlpha: 0, x: horizontal ? 42 : flow ? -30 : 0, y: isImage && !horizontal && !flow ? 36 : 24, clipPath: initialClip },
-      { autoAlpha: 1, x: 0, y: 0, clipPath: 'inset(0 0 0% 0)', duration: isImage ? 1.25 : .85, ease: 'power3.out', scrollTrigger: { trigger: element, start: 'top 88%', once: true } },
+      isImage
+        ? { autoAlpha: 1, x: horizontal ? 38 : flow ? -28 : 0, clipPath: initialClip }
+        : { autoAlpha: 0, y: 12 },
+      isImage
+        ? { autoAlpha: 1, x: 0, clipPath: 'inset(0 0 0% 0)', duration: 1.15, ease: 'power3.out', scrollTrigger: { trigger: element, start: 'top 92%', once: true } }
+        : { autoAlpha: 1, y: 0, duration: .72, ease: 'power3.out', scrollTrigger: { trigger: element, start: 'top 91%', once: true } },
     );
   });
 
@@ -48,22 +56,43 @@ if (!reducedMotion) {
   document.querySelectorAll('[data-image-reveal] picture img').forEach((image) => {
     gsap.fromTo(image, { yPercent: -3, scale: 1.045 }, { yPercent: 3, scale: 1, ease: 'none', scrollTrigger: { trigger: image, start: 'top bottom', end: 'bottom top', scrub: .8 } });
   });
+
+  const hero = document.querySelector('.hero-sticky');
+  if (hero) {
+    const timeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    timeline
+      .from('.measure, .object-tag, .hero-foot', { autoAlpha: 0, duration: .35, stagger: .04 }, .08)
+      .from('.blueprint path, .blueprint circle', { strokeDasharray: 260, strokeDashoffset: 260, duration: .6 }, .12)
+      .from('.hero .eyebrow', { y: 8, duration: .35 }, .22)
+      .from('.hero h1 > span', { y: 16, duration: .62, stagger: .08 }, .3)
+      .from('.hero-intro', { y: 8, duration: .42 }, .62)
+      .from('.hero-actions, .hero-mobile-action', { y: 8, duration: .42 }, .74);
+  }
+
+  if (window.matchMedia('(pointer:fine)').matches) {
+    document.querySelectorAll('.service-card__image').forEach((frame) => {
+      const image = frame.querySelector('img');
+      frame.addEventListener('pointermove', (event) => {
+        const rect = frame.getBoundingClientRect();
+        gsap.to(image, { x: ((event.clientX - rect.left) / rect.width - .5) * 4, y: ((event.clientY - rect.top) / rect.height - .5) * 4, duration: .45, ease: 'power2.out' });
+      });
+      frame.addEventListener('pointerleave', () => gsap.to(image, { x: 0, y: 0, duration: .5, ease: 'power2.out' }));
+    });
+  }
 }
 
-document.querySelectorAll('[data-whatsapp-form]').forEach((form) => {
+document.querySelectorAll('[data-email-form]').forEach((form) => {
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     if (!form.reportValidity()) return;
     const data = new FormData(form);
     const clean = (value) => String(value ?? '').replace(/[<>]/g, '').trim();
-    const message = [
-      'Hola Redmix, quisiera realizar una consulta.',
-      '',
+    const body = [
+      'Hola REDMIX, quisiera realizar una consulta desde el sitio web.', '',
       `Nombre: ${clean(data.get('name'))}`,
-      `Email: ${clean(data.get('email'))}`,
       `Teléfono: ${clean(data.get('phone'))}`,
       `Mensaje: ${clean(data.get('message'))}`,
     ].join('\n');
-    window.open(`https://wa.me/5491138245680?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+    window.location.href = `mailto:info@redmixhormigonera.com.ar?subject=${encodeURIComponent('Consulta desde el sitio REDMIX')}&body=${encodeURIComponent(body)}`;
   });
 });

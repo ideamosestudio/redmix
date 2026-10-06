@@ -1,9 +1,12 @@
 ---
-interface Props { name: string; index: string; }
-const { name, index } = Astro.props;
+import { Picture } from 'astro:assets';
+interface Props { name: string; index: string; code: string; image: ImageMetadata; imageAlt: string; }
+const { name, index, code, image, imageAlt } = Astro.props;
 ---
 <article class="product-card" data-card>
-  <span>{index}</span>
-  <div class="product-card__sample" aria-hidden="true"></div>
+  <Picture src={image} formats={['avif']} fallbackFormat="webp" widths={[320, 520, 760]} sizes="(max-width: 720px) 50vw, 20vw" alt={imageAlt} loading="lazy" />
+  <span class="product-card__index">{index}</span>
+  <span class="product-card__code">{code}</span>
+  <i class="product-card__cross" aria-hidden="true"></i>
   <h3>{name}</h3>
 </article>
