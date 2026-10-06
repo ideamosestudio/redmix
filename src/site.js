@@ -33,6 +33,7 @@ window.addEventListener('scroll', () => {
 menuToggle?.addEventListener('click', () => {
   const open = menuToggle.getAttribute('aria-expanded') !== 'true';
   menuToggle.setAttribute('aria-expanded', String(open));
+  menuToggle.setAttribute('aria-label', open ? 'Cerrar navegación' : 'Abrir navegación');
   menu?.classList.toggle('is-open', open);
   document.body.classList.toggle('menu-open', open);
 });
@@ -42,6 +43,15 @@ menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () 
   menu.classList.remove('is-open');
   document.body.classList.remove('menu-open');
 }));
+
+window.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape' || menuToggle?.getAttribute('aria-expanded') !== 'true') return;
+  menuToggle.setAttribute('aria-expanded', 'false');
+  menuToggle.setAttribute('aria-label', 'Abrir navegación');
+  menu?.classList.remove('is-open');
+  document.body.classList.remove('menu-open');
+  menuToggle.focus();
+});
 
 if (!reducedMotion) {
   document.querySelectorAll('[data-reveal]').forEach((element) => {
@@ -65,6 +75,13 @@ if (!reducedMotion) {
 
   document.querySelectorAll('[data-image-reveal] picture img').forEach((image) => {
     gsap.fromTo(image, { yPercent: -3, scale: 1.045 }, { yPercent: 3, scale: 1, ease: 'none', scrollTrigger: { trigger: image, start: 'top bottom', end: 'bottom top', scrub: .8 } });
+  });
+
+  document.querySelectorAll('.service-card__image img, .product-card picture img').forEach((image, index) => {
+    gsap.fromTo(image,
+      { scale: 1.045, xPercent: index % 2 ? 1.2 : -1.2 },
+      { scale: 1, xPercent: 0, duration: 1.05, ease: 'power3.out', scrollTrigger: { trigger: image, start: 'top 94%', once: true } },
+    );
   });
 
   const hero = document.querySelector('.hero-sticky');
