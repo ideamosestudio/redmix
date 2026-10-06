@@ -43,14 +43,14 @@ function createConcreteTexture() {
 }
 
 const concreteTexture = createConcreteTexture();
-const materialSettings = { map: concreteTexture, roughness: 0.34, metalness: 0.16, clearcoat: 0.56, clearcoatRoughness: 0.26, transparent: true, opacity: 0.84, depthWrite: false };
+const materialSettings = { map: concreteTexture, roughness: 0.31, metalness: 0.12, clearcoat: 0.62, clearcoatRoughness: 0.24, transparent: false, opacity: 1, depthWrite: true };
 const materials = [
   new THREE.MeshPhysicalMaterial({ color: 0xa80708, ...materialSettings }),
   new THREE.MeshPhysicalMaterial({ color: 0xff3f2d, ...materialSettings }),
-  new THREE.MeshPhysicalMaterial({ color: 0x5a0204, ...materialSettings, opacity: 0.77 }),
-  new THREE.MeshPhysicalMaterial({ color: 0x240102, ...materialSettings, opacity: 0.72 }),
+  new THREE.MeshPhysicalMaterial({ color: 0x6f0305, ...materialSettings }),
+  new THREE.MeshPhysicalMaterial({ color: 0x320102, ...materialSettings }),
 ];
-const edgeMaterial = new THREE.LineBasicMaterial({ color: 0xff6d5e, transparent: true, opacity: 0.2, depthWrite: false });
+const edgeMaterial = new THREE.LineBasicMaterial({ color: 0xff786b, transparent: true, opacity: 0.28, depthWrite: true });
 
 function createBar(width, height, depth) {
   const cap = width * 0.52;
@@ -89,19 +89,20 @@ function createBar(width, height, depth) {
 const logo = new THREE.Group();
 scene.add(logo);
 const heights = [3.8, 5.05, 6.35, 5.05, 3.8];
-const expandedX = [-2.36, -1.18, 0, 1.18, 2.36];
-const compressedX = [-1.65, -.82, 0, .82, 1.65];
+const expandedX = [-3.04, -1.52, 0, 1.52, 3.04];
+const compressedX = [-2.16, -1.08, 0, 1.08, 2.16];
 const bars = heights.map((height, index) => {
   const mesh = createBar(1.42, height, 1.18);
   mesh.position.set(compressedX[index], 0, Math.abs(index - 2) * -0.13);
   mesh.renderOrder = index; logo.add(mesh); return mesh;
 });
-logo.rotation.set(THREE.MathUtils.degToRad(-4), THREE.MathUtils.degToRad(-10), 0);
+logo.rotation.set(THREE.MathUtils.degToRad(-5), THREE.MathUtils.degToRad(-12), 0);
 logo.scale.setScalar(mobile ? .74 : .9);
 
-scene.add(new THREE.HemisphereLight(0x66100d, 0x080304, 0.72));
-const key = new THREE.DirectionalLight(0xffe2d8, 2.3); key.position.set(3.8, 5.5, 7); scene.add(key);
-const redLight = new THREE.PointLight(0xff1f12, 11, 15, 2); redLight.position.set(-3, -1, 5); scene.add(redLight);
+scene.add(new THREE.HemisphereLight(0x8a1711, 0x080304, 0.92));
+const key = new THREE.DirectionalLight(0xffe2d8, 3.1); key.position.set(3.8, 5.5, 7); scene.add(key);
+const fill = new THREE.DirectionalLight(0xff4a36, 1.45); fill.position.set(-4, -1.5, 5); scene.add(fill);
+const redLight = new THREE.PointLight(0xff1f12, 9, 15, 2); redLight.position.set(-3, -1, 5); scene.add(redLight);
 const rim = new THREE.DirectionalLight(0xff3a28, 3.8); rim.position.set(-5, 2, -4); scene.add(rim);
 
 let visible = true; let pointerX = 0; let pointerY = 0; let scrollProgress = 0;
@@ -111,12 +112,17 @@ function render() { renderer.render(scene, camera); }
 function animate() {
   if (!visible || reducedMotion) return;
   const elapsed = clock.getElapsedTime();
-  const targetY = THREE.MathUtils.degToRad(-10 + pointerX * 3.5 + scrollProgress * 14);
-  const targetX = THREE.MathUtils.degToRad(-4 - pointerY * 2.2 - scrollProgress * 2);
+  const targetY = THREE.MathUtils.degToRad(-12 + pointerX * 5 + scrollProgress * 25);
+  const targetX = THREE.MathUtils.degToRad(-5 - pointerY * 3 - scrollProgress * 3);
   logo.rotation.y += (targetY - logo.rotation.y) * .045;
   logo.rotation.x += (targetX - logo.rotation.x) * .045;
-  logo.position.y = Math.sin(elapsed * .72) * .055;
-  redLight.intensity = 10.5 + Math.sin(elapsed * .9) * 1.5;
+  logo.position.y = Math.sin(elapsed * .72) * .075;
+  bars.forEach((bar, index) => {
+    bar.position.y = Math.sin(elapsed * .9 + index * .65) * .035;
+    bar.rotation.z = Math.sin(elapsed * .55 + index * .8) * .006 * (index - 2);
+  });
+  redLight.position.x = -2.4 + Math.sin(elapsed * .7) * 2.1;
+  redLight.intensity = 9 + Math.sin(elapsed * .9) * 2.2;
   render(); requestAnimationFrame(animate);
 }
 
@@ -127,9 +133,10 @@ window.addEventListener('pointermove', (event) => { pointerX = (event.clientX / 
 if (!reducedMotion) {
   gsap.timeline({ scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom bottom', scrub: .7, onUpdate: ({ progress }) => { scrollProgress = progress; progressLine.style.backgroundPosition = `${100 - progress * 100}% 0`; } } })
     .to(heroCopy, { opacity: .78, ease: 'none', duration: 1 }, 0)
-    .to(camera.position, { z: mobile ? 15.5 : 14.2, ease: 'none', duration: 1 }, 0);
+    .to(camera.position, { z: mobile ? 15.1 : 13.5, ease: 'none', duration: 1 }, 0);
   bars.forEach((bar, index) => {
     gsap.to(bar.position, { x: expandedX[index], z: (index - 2) * .14, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom bottom', scrub: .7 } });
+    gsap.to(bar.rotation, { y: (index - 2) * .055, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom bottom', scrub: .7 } });
   });
 } else {
   bars.forEach((bar, index) => { bar.position.x = expandedX[index]; });
