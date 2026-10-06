@@ -43,14 +43,14 @@ function createConcreteTexture() {
 }
 
 const concreteTexture = createConcreteTexture();
-const materialSettings = { map: concreteTexture, roughness: 0.31, metalness: 0.12, clearcoat: 0.62, clearcoatRoughness: 0.24, transparent: false, opacity: 1, depthWrite: true };
+const materialSettings = { map: concreteTexture, roughness: 0.31, metalness: 0.12, clearcoat: 0.62, clearcoatRoughness: 0.24, transparent: false, opacity: 1, depthWrite: true, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 };
 const materials = [
   new THREE.MeshPhysicalMaterial({ color: 0xa80708, ...materialSettings }),
   new THREE.MeshPhysicalMaterial({ color: 0xff3f2d, ...materialSettings }),
   new THREE.MeshPhysicalMaterial({ color: 0x8e090b, ...materialSettings }),
   new THREE.MeshPhysicalMaterial({ color: 0x620607, ...materialSettings }),
 ];
-const edgeMaterial = new THREE.LineBasicMaterial({ color: 0xff786b, transparent: true, opacity: 0.28, depthWrite: true });
+const edgeMaterial = new THREE.LineBasicMaterial({ color: 0xff786b, transparent: true, opacity: 0.28, depthWrite: false });
 
 function createBar(width, height, depth) {
   const cap = width * 0.52;
@@ -92,8 +92,8 @@ const heights = [3.8, 5.05, 6.35, 5.05, 3.8];
 const expandedX = [-3.04, -1.52, 0, 1.52, 3.04];
 const compressedX = [-2.16, -1.08, 0, 1.08, 2.16];
 const bars = heights.map((height, index) => {
-  const mesh = createBar(1.42, height, 1.18);
-  mesh.position.set(compressedX[index], 0, Math.abs(index - 2) * -0.13);
+  const mesh = createBar(1.12, height, 1.18);
+  mesh.position.set(compressedX[index], 0, 0);
   mesh.renderOrder = index; logo.add(mesh); return mesh;
 });
 logo.rotation.set(THREE.MathUtils.degToRad(-5), THREE.MathUtils.degToRad(-12), 0);
