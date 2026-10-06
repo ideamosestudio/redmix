@@ -47,8 +47,8 @@ const materialSettings = { map: concreteTexture, roughness: 0.31, metalness: 0.1
 const materials = [
   new THREE.MeshPhysicalMaterial({ color: 0xa80708, ...materialSettings }),
   new THREE.MeshPhysicalMaterial({ color: 0xff3f2d, ...materialSettings }),
-  new THREE.MeshPhysicalMaterial({ color: 0x8e090b, ...materialSettings }),
-  new THREE.MeshPhysicalMaterial({ color: 0x620607, ...materialSettings }),
+  new THREE.MeshPhysicalMaterial({ color: 0xb52c0c, emissive: 0x310700, emissiveIntensity: 0.38, ...materialSettings }),
+  new THREE.MeshPhysicalMaterial({ color: 0xd74314, emissive: 0x3d0900, emissiveIntensity: 0.48, ...materialSettings }),
 ];
 const edgeMaterial = new THREE.LineBasicMaterial({ color: 0xff786b, transparent: true, opacity: 0.28, depthWrite: false });
 
@@ -92,7 +92,7 @@ const heights = [3.8, 5.05, 6.35, 5.05, 3.8];
 const expandedX = [-3.04, -1.52, 0, 1.52, 3.04];
 const compressedX = [-2.16, -1.08, 0, 1.08, 2.16];
 const bars = heights.map((height, index) => {
-  const mesh = createBar(1.12, height, 1.18);
+  const mesh = createBar(1.075, height, 1.18);
   mesh.position.set(compressedX[index], 0, 0);
   mesh.renderOrder = index; logo.add(mesh); return mesh;
 });
@@ -125,13 +125,13 @@ function animate() {
     const targetBarZ = (index - 2) * .14 * openAmount;
     bar.position.x += (targetBarX - bar.position.x) * .11;
     bar.position.z += (targetBarZ - bar.position.z) * .11;
-    bar.position.y = Math.sin(elapsed * .9 + index * .65) * .035;
-    bar.rotation.z = Math.sin(elapsed * .55 + index * .8) * .006 * (index - 2);
+    bar.position.y = 0;
+    bar.rotation.z = 0;
     bar.rotation.y += (((index - 2) * .055 * openAmount) - bar.rotation.y) * .1;
   });
   pointerEnergy *= .94;
   redLight.position.x = -2.4 + Math.sin(elapsed * .7) * 2.1;
-  redLight.intensity = 9 + Math.sin(elapsed * .9) * 2.2;
+  redLight.intensity = 10;
   render(); requestAnimationFrame(animate);
 }
 
