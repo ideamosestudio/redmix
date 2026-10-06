@@ -3,6 +3,10 @@ interface Props { idPrefix?: string; compact?: boolean; }
 const { idPrefix = 'contact', compact = false } = Astro.props;
 ---
 <form class:list={['contact-form', { 'contact-form--compact': compact }]} data-email-form data-reveal>
+  <div class="contact-form__heading">
+    <span>{compact ? 'FORM. 01 / CONSULTA' : 'FORMULARIO / CONTACTO'}</span>
+    <strong>{compact ? 'CONTANOS SOBRE TU OBRA' : 'ENVIANOS TU CONSULTA'}</strong>
+  </div>
   <div class="form-field">
     <label for={`${idPrefix}-name`}>Nombre</label>
     <input id={`${idPrefix}-name`} name="name" type="text" autocomplete="name" required />

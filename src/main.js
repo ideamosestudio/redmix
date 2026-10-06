@@ -11,10 +11,11 @@ const heroCopy = document.querySelector('[data-copy]');
 const progressLine = document.querySelector('[data-progress]');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const mobile = window.matchMedia('(max-width: 720px)').matches;
+const tablet = window.matchMedia('(max-width: 900px)').matches;
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
-camera.position.set(0, 0, mobile ? 16.8 : 15.4);
+camera.position.set(0, 0, mobile ? 16.8 : tablet ? 16.1 : 15.4);
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
 renderer.setClearColor(0x000000, 0);
@@ -43,12 +44,12 @@ function createConcreteTexture() {
 }
 
 const concreteTexture = createConcreteTexture();
-const materialSettings = { map: concreteTexture, roughness: 0.31, metalness: 0.12, clearcoat: 0.62, clearcoatRoughness: 0.24, transparent: false, opacity: 1, depthWrite: true, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 };
+const materialSettings = { map: concreteTexture, roughness: 0.38, metalness: 0.08, clearcoat: 0.48, clearcoatRoughness: 0.3, transparent: false, opacity: 1, depthWrite: true, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 };
 const materials = [
-  new THREE.MeshPhysicalMaterial({ color: 0xa80708, ...materialSettings }),
-  new THREE.MeshPhysicalMaterial({ color: 0xff3f2d, ...materialSettings }),
-  new THREE.MeshPhysicalMaterial({ color: 0xb52c0c, emissive: 0x310700, emissiveIntensity: 0.38, ...materialSettings }),
-  new THREE.MeshPhysicalMaterial({ color: 0xd74314, emissive: 0x3d0900, emissiveIntensity: 0.48, ...materialSettings }),
+  new THREE.MeshPhysicalMaterial({ color: 0xb70f0b, emissive: 0x260300, emissiveIntensity: 0.18, ...materialSettings }),
+  new THREE.MeshPhysicalMaterial({ color: 0xff4d28, emissive: 0x431000, emissiveIntensity: 0.22, ...materialSettings }),
+  new THREE.MeshPhysicalMaterial({ color: 0x8f240c, emissive: 0x2d0900, emissiveIntensity: 0.3, ...materialSettings }),
+  new THREE.MeshPhysicalMaterial({ color: 0xc43c12, emissive: 0x3c0d00, emissiveIntensity: 0.34, ...materialSettings }),
 ];
 const edgeMaterial = new THREE.LineBasicMaterial({ color: 0xff786b, transparent: true, opacity: 0.28, depthWrite: false });
 
@@ -97,11 +98,11 @@ const bars = heights.map((height, index) => {
   mesh.renderOrder = index; logo.add(mesh); return mesh;
 });
 logo.rotation.set(THREE.MathUtils.degToRad(-5), THREE.MathUtils.degToRad(-12), 0);
-logo.scale.setScalar(mobile ? .92 : 1.125);
+logo.scale.setScalar(mobile ? .92 : tablet ? 1 : 1.125);
 
-scene.add(new THREE.HemisphereLight(0x8a1711, 0x080304, 0.92));
-const key = new THREE.DirectionalLight(0xffe2d8, 3.1); key.position.set(3.8, 5.5, 7); scene.add(key);
-const fill = new THREE.DirectionalLight(0xff4a36, 1.45); fill.position.set(-4, -1.5, 5); scene.add(fill);
+scene.add(new THREE.HemisphereLight(0xa32a16, 0x160502, 1.12));
+const key = new THREE.DirectionalLight(0xffc17e, 3.45); key.position.set(3.8, 5.5, 7); scene.add(key);
+const fill = new THREE.DirectionalLight(0xff5a32, 1.8); fill.position.set(-4, -1.5, 5); scene.add(fill);
 const redLight = new THREE.PointLight(0xff1f12, 9, 15, 2); redLight.position.set(-3, -1, 5); scene.add(redLight);
 const rim = new THREE.DirectionalLight(0xff3a28, 3.8); rim.position.set(-5, 2, -4); scene.add(rim);
 
@@ -112,8 +113,8 @@ function render() { renderer.render(scene, camera); }
 function animate() {
   if (!visible || reducedMotion) return;
   const elapsed = clock.getElapsedTime();
-  const targetY = THREE.MathUtils.degToRad(-8 + pointerX * (mobile ? 5 : 16) + Math.sin(scrollProgress * Math.PI) * 18);
-  const targetX = THREE.MathUtils.degToRad(-3 - pointerY * (mobile ? 3 : 8) - Math.sin(scrollProgress * Math.PI) * 4);
+  const targetY = THREE.MathUtils.degToRad(-8 + pointerX * (mobile ? 5 : tablet ? 9 : 16) + Math.sin(scrollProgress * Math.PI) * (mobile ? 10 : 18));
+  const targetX = THREE.MathUtils.degToRad(-3 - pointerY * (mobile ? 3 : tablet ? 5 : 8) - Math.sin(scrollProgress * Math.PI) * 4);
   logo.rotation.y += (targetY - logo.rotation.y) * .1;
   logo.rotation.x += (targetX - logo.rotation.x) * .1;
   logo.position.y = Math.sin(elapsed * .72) * .075;
@@ -146,7 +147,7 @@ window.addEventListener('pointermove', (event) => {
 if (!reducedMotion) {
   gsap.timeline({ scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom bottom', scrub: .7, onUpdate: ({ progress }) => { scrollProgress = progress; progressLine.style.backgroundPosition = `${100 - progress * 100}% 0`; } } })
     .to(heroCopy, { opacity: .78, ease: 'none', duration: 1 }, 0)
-    .to(camera.position, { z: mobile ? 15.1 : 13.5, ease: 'none', duration: 1 }, 0);
+    .to(camera.position, { z: mobile ? 15.1 : tablet ? 14.8 : 13.5, ease: 'none', duration: 1 }, 0);
 } else {
   bars.forEach((bar, index) => { bar.position.x = compressedX[index]; });
 }

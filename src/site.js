@@ -8,6 +8,17 @@ const navbar = document.querySelector('[data-navbar]');
 const menuToggle = document.querySelector('[data-menu-toggle]');
 const menu = document.querySelector('[data-menu]');
 
+document.documentElement.classList.add('motion-ready');
+
+const imageRevealObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('is-visible');
+    observer.unobserve(entry.target);
+  });
+}, { rootMargin: '0px 0px 10% 0px' });
+document.querySelectorAll('[data-image-reveal]').forEach((image) => imageRevealObserver.observe(image));
+
 function updateNavbar() {
   navbar?.classList.toggle('is-scrolled', window.scrollY > 24);
 }
@@ -37,20 +48,19 @@ if (!reducedMotion) {
     const isImage = element.matches('[data-image-reveal]');
     const horizontal = element.matches('.image-reveal--horizontal');
     const flow = element.matches('.image-reveal--flow');
-    const initialClip = horizontal ? 'inset(0 100% 0 0)' : flow ? 'inset(0 0 0 100%)' : 'inset(0 0 100% 0)';
     gsap.fromTo(element,
       isImage
-        ? { autoAlpha: 1, x: horizontal ? 38 : flow ? -28 : 0, clipPath: initialClip }
-        : { autoAlpha: 0, y: 12 },
+        ? { autoAlpha: 1, x: horizontal ? 24 : flow ? -18 : 0, scale: 1.012 }
+        : { autoAlpha: 1, y: 14 },
       isImage
-        ? { autoAlpha: 1, x: 0, clipPath: 'inset(0 0 0% 0)', duration: 1.15, ease: 'power3.out', scrollTrigger: { trigger: element, start: 'top 92%', once: true } }
-        : { autoAlpha: 1, y: 0, duration: .72, ease: 'power3.out', scrollTrigger: { trigger: element, start: 'top 91%', once: true } },
+        ? { autoAlpha: 1, x: 0, scale: 1, duration: 1.05, ease: 'power3.out', scrollTrigger: { trigger: element, start: 'top 94%', once: true } }
+        : { autoAlpha: 1, y: 0, duration: .72, ease: 'power3.out', scrollTrigger: { trigger: element, start: 'top 94%', once: true } },
     );
   });
 
   document.querySelectorAll('[data-stagger]').forEach((group) => {
     const cards = group.querySelectorAll('[data-card]');
-    gsap.from(cards, { autoAlpha: 0, y: 32, duration: .8, stagger: .12, ease: 'power3.out', scrollTrigger: { trigger: group, start: 'top 82%', once: true } });
+    gsap.from(cards, { autoAlpha: 1, y: 28, duration: .8, stagger: .11, ease: 'power3.out', scrollTrigger: { trigger: group, start: 'top 90%', once: true } });
   });
 
   document.querySelectorAll('[data-image-reveal] picture img').forEach((image) => {

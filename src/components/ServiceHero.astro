@@ -14,7 +14,7 @@ interface Props {
 }
 const { eyebrow, title, intro, image, imageAlt, ctaLabel, whatsappMessage, motion = 'vertical' } = Astro.props;
 ---
-<section class="page-hero service-hero">
+<section class:list={['page-hero', 'service-hero', `service-hero--${motion}`]}>
     <div class="page-hero__copy" data-reveal>
       <Breadcrumbs current={eyebrow} />
       <p class="eyebrow"><span></span>{eyebrow}</p>

@@ -10,6 +10,7 @@ const { index, title, description, href, image, imageAlt } = Astro.props;
     <span>{index}</span>
   </a>
   <div class="service-card__body">
+    <div class="service-card__meta"><span>RMX / SERVICIO</span><b>{index}</b></div>
     <h3><a href={href}>{title}</a></h3>
     <p>{description}</p>
     <div class="service-card__actions">

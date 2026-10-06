@@ -1,6 +1,8 @@
 ---
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const href = (path = '/') => `${root}${path}`;
+const pathname = Astro.url.pathname.replace(root, '') || '/';
+const current = (path: string) => path === '/' ? pathname === '/' : pathname.startsWith(path);
 ---
 
 <header class="nav-shell" data-navbar>
@@ -13,8 +15,8 @@ const href = (path = '/') => `${root}${path}`;
   </button>
 
   <nav class="nav-links" id="main-nav" aria-label="Navegación principal" data-menu>
-    <a href={href('/quienes-somos')}><span>01</span>Quiénes somos</a>
-    <div class="nav-dropdown">
+    <a class:list={{ 'is-current': current('/quienes-somos') }} href={href('/quienes-somos')}><span>01</span>Quiénes somos</a>
+    <div class:list={['nav-dropdown', { 'is-current': current('/servicios') }]}>
       <button type="button" aria-haspopup="true"><span>02</span>Servicios</button>
       <div class="nav-dropdown__panel">
         <a href={href('/servicios/hormigon-elaborado')}>Hormigón elaborado</a>
@@ -22,7 +24,7 @@ const href = (path = '/') => `${root}${path}`;
         <a href={href('/servicios/bombeo-hormigon')}>Bombeo de hormigón</a>
       </div>
     </div>
-    <a href={href('/contacto')}><span>03</span>Contacto</a>
+    <a class:list={{ 'is-current': current('/contacto') }} href={href('/contacto')}><span>03</span>Contacto</a>
   </nav>
 
   <div class="nav-status" aria-label="Ubicación"><i></i><span>LONGCHAMPS · BS. AS.</span></div>
