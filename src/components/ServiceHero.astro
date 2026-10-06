@@ -1,0 +1,28 @@
+---
+import Breadcrumbs from './Breadcrumbs.astro';
+import ImageReveal from './ImageReveal.astro';
+import WhatsAppCTA from './WhatsAppCTA.astro';
+interface Props {
+  eyebrow: string;
+  title: string;
+  intro: string[];
+  image: ImageMetadata;
+  imageAlt: string;
+  ctaLabel: string;
+  whatsappMessage: string;
+  motion?: 'vertical' | 'horizontal' | 'flow';
+}
+const { eyebrow, title, intro, image, imageAlt, ctaLabel, whatsappMessage, motion = 'vertical' } = Astro.props;
+---
+<section class="page-hero service-hero">
+    <div class="page-hero__copy" data-reveal>
+      <Breadcrumbs current={eyebrow} />
+      <p class="eyebrow"><span></span>{eyebrow}</p>
+      <h1>{title}</h1>
+      <div class="page-hero__intro">
+        {intro.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+      <WhatsAppCTA label={ctaLabel} message={whatsappMessage} />
+    </div>
+    <ImageReveal src={image} alt={imageAlt} eager {motion} class="page-hero__image" />
+</section>

@@ -1,20 +1,69 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import ImageReveal from '../components/ImageReveal.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import ProductCard from '../components/ProductCard.astro';
+import WhatsAppCTA from '../components/WhatsAppCTA.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import introImage from '../assets/redmix/home/mixer-descarga.png';
+import hormigonImage from '../assets/redmix/hormigon/hormigon-descarga.png';
+import acarreoImage from '../assets/redmix/acarreo/camion-bomba.png';
+import bombeoImage from '../assets/redmix/bombeo/bombeo-obra.png';
+import empresaImage from '../assets/redmix/empresa/planta-operacion.png';
+
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const products = ['HORMIGÓN H17', 'HORMIGÓN H21', 'HORMIGÓN H25', 'HORMIGÓN H30', 'HORMIGÓN H30 PROYECTABLE'];
 ---
 
-<!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="REDMIX Hormigonera. Soluciones que construyen futuro."
-    />
-    <meta name="theme-color" content="#111111" />
-    <title>REDMIX — Soluciones para la construcción</title>
-  </head>
-  <body>
-    <Hero />
-  </body>
-</html>
+<BaseLayout title="REDMIX Hormigonera | Hormigón elaborado, acarreo y bombeo" description="Hormigón elaborado, acarreo de bomba y bombeo de hormigón para obras. Consultá a REDMIX Hormigonera en Longchamps.">
+  <Hero />
+
+  <main class="home-content">
+    <section class="intro-section section-shell" aria-labelledby="intro-title">
+      <div class="section-heading" data-reveal>
+        <p class="section-code">01 / REDMIX</p>
+        <h2 id="intro-title">SOLUCIONES EN<br /><em>HORMIGÓN</em> PARA TU OBRA</h2>
+      </div>
+      <div class="intro-section__body" data-reveal>
+        <p>En REDMIX brindamos hormigón elaborado y servicios de bombeo para obras y proyectos de construcción. Trabajamos para simplificar cada etapa del suministro y permitir que nuestros clientes puedan resolver sus necesidades desde un mismo proveedor.</p>
+        <WhatsAppCTA label="PEDÍ TU PRESUPUESTO" />
+      </div>
+      <ImageReveal src={introImage} alt="Camión mixer descargando hormigón fresco en una obra" class="intro-section__image" />
+    </section>
+
+    <section class="services-section section-shell" id="servicios" aria-labelledby="services-title">
+      <div class="section-heading section-heading--row" data-reveal>
+        <div><p class="section-code">02 / SERVICIOS</p><h2 id="services-title">NUESTROS<br /><em>SERVICIOS.</em></h2></div>
+        <p>Soluciones vinculadas al suministro, traslado y colocación del hormigón para tu obra.</p>
+      </div>
+      <div class="services-grid" data-stagger>
+        <ServiceCard index="01" title="VENTA DE HORMIGÓN ELABORADO" description="Suministro de hormigón elaborado para diferentes tipos de obras y necesidades de construcción." href={`${root}/servicios/hormigon-elaborado`} image={hormigonImage} imageAlt="Hormigón elaborado descargándose en obra" />
+        <ServiceCard index="02" title="ACARREO DE BOMBA" description="Servicio de traslado y puesta a disposición del equipo de bombeo necesario para realizar el trabajo en obra." href={`${root}/servicios/acarreo-bomba`} image={acarreoImage} imageAlt="Camión bomba posicionado en una obra" />
+        <ServiceCard index="03" title="SERVICIO DE BOMBEO POR M³" description="Bombeo de hormigón calculado por volumen, para facilitar la descarga y colocación del material dentro de la obra." href={`${root}/servicios/bombeo-hormigon`} image={bombeoImage} imageAlt="Manguera realizando bombeo de hormigón" />
+      </div>
+    </section>
+
+    <section class="products-section section-shell" aria-labelledby="products-title">
+      <div class="section-heading section-heading--row" data-reveal>
+        <div><p class="section-code">03 / PRODUCTOS</p><h2 id="products-title">PRODUCTOS<br /><em>DE LÍNEA.</em></h2></div>
+        <div class="section-heading__aside"><p>Consultanos para conocer la alternativa adecuada para tu obra.</p><WhatsAppCTA label="CONSULTAR POR HORMIGÓN" compact /></div>
+      </div>
+      <div class="products-grid" data-stagger>
+        {products.map((product, index) => <ProductCard name={product} index={String(index + 1).padStart(2, '0')} />)}
+      </div>
+    </section>
+
+    <section class="experience-section section-shell" aria-labelledby="experience-title">
+      <ImageReveal src={empresaImage} alt="Operación de hormigón elaborado en Buenos Aires" motion="horizontal" class="experience-section__image" />
+      <div class="experience-section__copy" data-reveal>
+        <p class="section-code">04 / EXPERIENCIA</p>
+        <h2 id="experience-title">UNA EMPRESA JOVEN RESPALDADA POR MÁS DE <em>20 AÑOS</em> DE EXPERIENCIA EN EL RUBRO.</h2>
+        <p>Nuestro conocimiento del sector de la construcción nos permite acompañar obras y proyectos con soluciones vinculadas al hormigón elaborado, su traslado y su colocación.</p>
+        <a class="technical-cta" href={`${root}/quienes-somos`}><span>CONOCÉ REDMIX</span><i class="tick tick--a"></i><i class="tick tick--b"></i><i class="tick tick--c"></i><i class="tick tick--d"></i></a>
+      </div>
+    </section>
+
+    <FinalCTA />
+  </main>
+</BaseLayout>

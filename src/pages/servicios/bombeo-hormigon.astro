@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import WhatsAppCTA from '../../components/WhatsAppCTA.astro';
+import FAQ from '../../components/FAQ.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import image from '../../assets/redmix/bombeo/bombeo-obra.png';
+
+const message = 'Hola Redmix, quisiera solicitar información sobre el servicio de bombeo de hormigón por m³.';
+const faq = [
+  { question: '¿Qué es el bombeo de hormigón?', answer: 'Es un servicio que permite trasladar el hormigón desde el punto de descarga hasta el sector de colocación dentro de la obra.' },
+  { question: '¿Cuándo puede necesitarse una bomba de hormigón?', answer: 'Puede consultarse cuando la descarga directa no resulta conveniente o posible y es necesario conducir el material hasta el punto de trabajo.' },
+  { question: '¿Cómo se cotiza el servicio?', answer: 'REDMIX ofrece el servicio de bombeo calculado por volumen de hormigón. Escribinos por WhatsApp para solicitar una cotización.' },
+  { question: '¿Qué datos tengo que enviar?', answer: 'Podés contarnos dónde se encuentra la obra, el volumen aproximado y las características generales del trabajo.' },
+];
+const schema = { '@context': 'https://schema.org', '@type': 'Service', name: 'Servicio de bombeo de hormigón por m³', provider: { '@type': 'Organization', name: 'REDMIX Hormigonera' } };
+---
+<BaseLayout title="Servicio de bombeo de hormigón | REDMIX" description="Bombeo de hormigón por volumen para facilitar la descarga y colocación del material dentro de la obra. Consultá a REDMIX." {schema}>
+  <main class="inner-page">
+    <ServiceHero eyebrow="BOMBEO DE HORMIGÓN" title="BOMBEO DE HORMIGÓN POR M³" intro={['El servicio de bombeo permite trasladar el hormigón desde el punto de descarga hasta el sector de colocación dentro de la obra cuando la descarga directa no resulta conveniente o posible.', 'REDMIX ofrece el servicio de bombeo calculado por volumen de hormigón.']} {image} imageAlt="Manguera descargando hormigón fresco en una obra" ctaLabel="SOLICITAR SERVICIO DE BOMBEO" whatsappMessage={message} motion="flow" />
+
+    <section class="split-info section-shell" aria-labelledby="placement-title">
+      <div data-reveal><p class="section-code">01 / COLOCACIÓN</p><h2 id="placement-title">EL HORMIGÓN DONDE <em>LO NECESITÁS.</em></h2></div>
+      <div data-reveal><p>El bombeo facilita la colocación del hormigón en sectores donde es necesario conducir el material desde el camión hasta el punto de trabajo.</p></div>
+    </section>
+    <section class="split-info split-info--accent section-shell" aria-labelledby="pump-quote-title">
+      <div data-reveal><p class="section-code">02 / COTIZACIÓN</p><h2 id="pump-quote-title">SOLICITÁ UNA <em>COTIZACIÓN.</em></h2></div>
+      <div data-reveal><p>Contanos dónde se encuentra la obra, el volumen aproximado y las características generales del trabajo para realizar tu consulta.</p><WhatsAppCTA label="COTIZAR BOMBEO" message={message} /></div>
+    </section>
+
+    <FAQ items={faq} />
+    <FinalCTA label="SOLICITAR PRESUPUESTO" message={message} />
+  </main>
+</BaseLayout>

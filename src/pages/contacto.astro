@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactInfo from '../components/ContactInfo.astro';
+import WhatsAppCTA from '../components/WhatsAppCTA.astro';
+---
+<BaseLayout title="Contacto | REDMIX Hormigonera" description="Contactá a REDMIX Hormigonera para solicitar información o pedir un presupuesto por WhatsApp.">
+  <main class="inner-page contact-page">
+    <section class="contact-hero section-shell">
+      <div data-reveal>
+        <p class="eyebrow"><span></span>CONTACTO</p>
+        <h1>CONTACTANOS</h1>
+        <p>Dejanos tus datos o escribinos directamente por WhatsApp para solicitar información o pedir un presupuesto.</p>
+        <ContactInfo />
+        <WhatsAppCTA label="ESCRIBINOS POR WHATSAPP" />
+      </div>
+
+      <form class="contact-form" data-whatsapp-form data-reveal>
+        <div class="form-field">
+          <label for="name">Nombre</label>
+          <input id="name" name="name" type="text" autocomplete="name" required />
+        </div>
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="form-field">
+          <label for="phone">Teléfono</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+        </div>
+        <div class="form-field">
+          <label for="message">Mensaje</label>
+          <textarea id="message" name="message" rows="6" required></textarea>
+        </div>
+        <button class="technical-cta technical-cta--solid" type="submit"><span>ENVIAR CONSULTA</span><i class="tick tick--a"></i><i class="tick tick--b"></i><i class="tick tick--c"></i><i class="tick tick--d"></i></button>
+        <p class="form-note">Al enviar, se abrirá WhatsApp con los datos ingresados.</p>
+      </form>
+    </section>
+  </main>
+</BaseLayout>

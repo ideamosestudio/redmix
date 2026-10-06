@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import WhatsAppCTA from '../../components/WhatsAppCTA.astro';
+import FAQ from '../../components/FAQ.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import image from '../../assets/redmix/acarreo/camion-bomba.png';
+
+const message = 'Hola Redmix, quisiera consultar por el servicio de acarreo de bomba.';
+const faq = [
+  { question: '¿Qué es el acarreo de bomba?', answer: 'Es el servicio de traslado y puesta a disposición del equipo de bombeo necesario para realizar el trabajo en obra.' },
+  { question: '¿Cómo solicito el servicio?', answer: 'Podés escribirnos por WhatsApp para realizar la consulta y coordinar la información necesaria.' },
+  { question: '¿Qué información tengo que enviar para consultar?', answer: 'Podés enviarnos la ubicación y las características generales del trabajo para que podamos evaluar el servicio.' },
+  { question: '¿El acarreo de bomba es lo mismo que el bombeo por m³?', answer: 'El acarreo corresponde al traslado y puesta a disposición del equipo, mientras que el servicio de bombeo está asociado al trabajo de bombeo del hormigón.' },
+];
+const schema = { '@context': 'https://schema.org', '@type': 'Service', name: 'Acarreo de bomba para hormigón', provider: { '@type': 'Organization', name: 'REDMIX Hormigonera' } };
+---
+<BaseLayout title="Acarreo de bomba para hormigón | REDMIX" description="Servicio de acarreo de bomba para coordinar el traslado del equipo necesario hasta la obra. Consultá a REDMIX." {schema}>
+  <main class="inner-page">
+    <ServiceHero eyebrow="ACARREO DE BOMBA" title="ACARREO DE BOMBA PARA TU OBRA" intro={['REDMIX ofrece el servicio de acarreo de bomba para coordinar el traslado del equipo necesario hasta la obra.', 'Este servicio permite incorporar la bomba dentro de la logística del trabajo cuando la descarga o colocación del hormigón requiere equipamiento específico.']} {image} imageAlt="Camión bomba de hormigón posicionado en una obra" ctaLabel="CONSULTAR ACARREO DE BOMBA" whatsappMessage={message} motion="horizontal" />
+
+    <section class="split-info section-shell" aria-labelledby="equipment-title">
+      <div data-reveal><p class="section-code">01 / COORDINACIÓN</p><h2 id="equipment-title">COORDINÁ EL EQUIPO QUE <em>NECESITA TU OBRA.</em></h2></div>
+      <div data-reveal><p>Cada obra presenta condiciones diferentes de acceso y descarga. Contactanos con la ubicación y las características generales del trabajo para poder evaluar el servicio.</p><WhatsAppCTA label="HABLAR CON REDMIX" message={message} /></div>
+    </section>
+
+    <FAQ items={faq} />
+    <FinalCTA title="CONSULTÁ POR ACARREO" label="CONSULTAR POR WHATSAPP" message={message} />
+  </main>
+</BaseLayout>

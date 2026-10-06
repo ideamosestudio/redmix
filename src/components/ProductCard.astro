@@ -1,0 +1,9 @@
+---
+interface Props { name: string; index: string; }
+const { name, index } = Astro.props;
+---
+<article class="product-card" data-card>
+  <span>{index}</span>
+  <div class="product-card__sample" aria-hidden="true"></div>
+  <h3>{name}</h3>
+</article>

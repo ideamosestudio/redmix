@@ -1,0 +1,29 @@
+---
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const href = (path = '/') => `${root}${path}`;
+---
+
+<header class="nav-shell" data-navbar>
+  <a class="nav-logo" href={href('/')} aria-label="REDMIX Hormigonera, inicio">
+    <img src={`${root}/images/redmix-logo.png`} width="565" height="189" alt="REDMIX Hormigonera" />
+  </a>
+
+  <button class="nav-toggle" type="button" aria-label="Abrir navegación" aria-expanded="false" aria-controls="main-nav" data-menu-toggle>
+    <span></span><span></span>
+  </button>
+
+  <nav class="nav-links" id="main-nav" aria-label="Navegación principal" data-menu>
+    <a href={href('/quienes-somos')}><span>01</span>Quiénes somos</a>
+    <div class="nav-dropdown">
+      <button type="button" aria-haspopup="true"><span>02</span>Servicios</button>
+      <div class="nav-dropdown__panel">
+        <a href={href('/servicios/hormigon-elaborado')}>Hormigón elaborado</a>
+        <a href={href('/servicios/acarreo-bomba')}>Acarreo de bomba</a>
+        <a href={href('/servicios/bombeo-hormigon')}>Bombeo de hormigón</a>
+      </div>
+    </div>
+    <a href={href('/contacto')}><span>03</span>Contacto</a>
+  </nav>
+
+  <div class="nav-status" aria-label="Ubicación"><i></i><span>LONGCHAMPS · BS. AS.</span></div>
+</header>

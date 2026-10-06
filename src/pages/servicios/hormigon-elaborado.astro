@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceHero from '../../components/ServiceHero.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import WhatsAppCTA from '../../components/WhatsAppCTA.astro';
+import FAQ from '../../components/FAQ.astro';
+import FinalCTA from '../../components/FinalCTA.astro';
+import image from '../../assets/redmix/hormigon/hormigon-descarga.png';
+
+const products = ['HORMIGÓN H17', 'HORMIGÓN H21', 'HORMIGÓN H25', 'HORMIGÓN H30', 'HORMIGÓN H30 PROYECTABLE'];
+const message = 'Hola Redmix, quisiera solicitar un presupuesto por hormigón elaborado.';
+const faq = [
+  { question: '¿Qué tipos de hormigón ofrece REDMIX?', answer: 'REDMIX dispone de Hormigón H17, H21, H25, H30 y H30 proyectable. Consultanos para conocer disponibilidad y definir la alternativa correspondiente a tu obra.' },
+  { question: '¿Cómo solicito un presupuesto de hormigón?', answer: 'Podés solicitarlo directamente por WhatsApp. Contanos las características generales del proyecto y te responderemos para avanzar con la consulta.' },
+  { question: '¿Qué información tengo que enviar para cotizar?', answer: 'Podés indicar el tipo de hormigón requerido, volumen aproximado, ubicación de la obra y cualquier información relevante del proyecto.' },
+  { question: '¿Puedo consultar qué hormigón necesito para mi obra?', answer: 'Sí. Escribinos con la información disponible de tu proyecto para consultar cuál de las alternativas corresponde a tu obra.' },
+];
+const schema = { '@context': 'https://schema.org', '@type': 'Service', name: 'Hormigón elaborado', provider: { '@type': 'Organization', name: 'REDMIX Hormigonera' } };
+---
+<BaseLayout title="Hormigón elaborado | REDMIX Hormigonera" description="Hormigón elaborado para obras y proyectos de construcción. Consultá alternativas disponibles y solicitá una cotización a REDMIX." {schema}>
+  <main class="inner-page">
+    <ServiceHero eyebrow="HORMIGÓN ELABORADO" title="HORMIGÓN ELABORADO PARA TU OBRA" intro={['En REDMIX ofrecemos hormigón elaborado para obras y proyectos de construcción, con diferentes alternativas según las necesidades de cada trabajo.', 'No todas las obras requieren el mismo hormigón. Por eso podés consultarnos indicando las características de tu proyecto para definir la alternativa correspondiente y solicitar una cotización.']} {image} imageAlt="Hormigón fresco descargándose desde un camión mixer" ctaLabel="SOLICITAR PRESUPUESTO" whatsappMessage={message} />
+
+    <section class="products-section section-shell inner-section" aria-labelledby="line-products-title">
+      <div class="section-heading section-heading--row" data-reveal>
+        <div><p class="section-code">01 / PRODUCTOS</p><h2 id="line-products-title">PRODUCTOS<br /><em>DE LÍNEA.</em></h2></div>
+        <p>Disponemos de diferentes alternativas de hormigón elaborado. Consultanos para conocer disponibilidad y definir cuál corresponde a tu obra.</p>
+      </div>
+      <div class="products-grid" data-stagger>{products.map((product, index) => <ProductCard name={product} index={String(index + 1).padStart(2, '0')} />)}</div>
+    </section>
+
+    <section class="split-info section-shell" aria-labelledby="quote-info-title">
+      <div data-reveal><p class="section-code">02 / COTIZACIÓN</p><h2 id="quote-info-title">CONTANOS SOBRE<br /><em>TU OBRA.</em></h2></div>
+      <div data-reveal><p>Para solicitar una cotización podés enviarnos por WhatsApp el tipo de hormigón requerido, volumen aproximado, ubicación de la obra y cualquier información relevante del proyecto.</p><WhatsAppCTA label="COTIZAR HORMIGÓN" message={message} /></div>
+    </section>
+
+    <FAQ items={faq} />
+    <FinalCTA label="PEDIR PRESUPUESTO POR WHATSAPP" message={message} />
+  </main>
+</BaseLayout>

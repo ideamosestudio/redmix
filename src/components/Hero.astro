@@ -1,25 +1,9 @@
 ---
-import '@fontsource/roboto/300.css';
-import '../styles.css';
-
-const base = import.meta.env.BASE_URL;
+import WhatsAppCTA from './WhatsAppCTA.astro';
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
-<header class="nav-shell">
-  <a class="nav-logo" href="#inicio" aria-label="REDMIX Hormigonera, inicio">
-    <img src={`${base}/images/redmix-logo.png`} alt="REDMIX Hormigonera" />
-  </a>
-
-  <nav class="nav-links" aria-label="Navegación principal">
-    <a href="#quienes-somos"><span>01</span>Quiénes somos</a>
-    <a href="#servicios"><span>02</span>Servicios</a>
-    <a href="#contactanos"><span>03</span>Contactanos</a>
-  </nav>
-
-  <div class="nav-status" aria-hidden="true"><i></i><span>PLANTA ACTIVA</span></div>
-</header>
-
-<main>
+<div class="hero-root">
   <section class="hero" id="inicio" aria-labelledby="hero-title">
     <div class="hero-sticky">
       <div class="concrete-field" aria-hidden="true"></div>
@@ -37,21 +21,18 @@ const base = import.meta.env.BASE_URL;
       <div class="measure measure--right" aria-hidden="true"><span>COTA 06.40</span><i></i><span>RMX / 01</span></div>
 
       <div class="hero-copy" data-copy>
-        <p class="eyebrow"><span></span>INGENIERÍA EN HORMIGÓN ARMADO</p>
+        <p class="eyebrow"><span></span>HORMIGÓN ELABORADO PARA OBRAS</p>
         <h1 id="hero-title">
           <span>VENTA DE HORMIGÓN,</span>
           <span class="title-outline">ACARREO Y BOMBEO</span>
         </h1>
         <div class="hero-intro">
           <span class="intro-index">01—03</span>
-          <p>Soluciones estructurales de alto rendimiento para obras que exigen precisión, resistencia y escala.</p>
+          <p>Hormigón elaborado, acarreo y bombeo para obras y proyectos de construcción.</p>
         </div>
         <div class="hero-actions">
-          <a class="technical-cta technical-cta--solid" href="#servicios">
-            <span>EXPLORAR SERVICIOS</span>
-            <i class="tick tick--a"></i><i class="tick tick--b"></i><i class="tick tick--c"></i><i class="tick tick--d"></i>
-          </a>
-          <a class="technical-cta" href="#quienes-somos">
+          <WhatsAppCTA label="PEDIR PRESUPUESTO" />
+          <a class="technical-cta" href={`${root}/quienes-somos`}>
             <span>CONOCER REDMIX</span>
             <i class="tick tick--a"></i><i class="tick tick--b"></i><i class="tick tick--c"></i><i class="tick tick--d"></i>
           </a>
@@ -62,39 +43,20 @@ const base = import.meta.env.BASE_URL;
         <div class="object-glow" aria-hidden="true"></div>
         <canvas class="hero-canvas" aria-hidden="true"></canvas>
         <div class="object-crosshair" aria-hidden="true"><i></i><i></i></div>
-        <div class="object-tag object-tag--top" aria-hidden="true"><span>MÓDULO ESTRUCTURAL</span><b>RMX—05</b></div>
-        <div class="object-tag object-tag--bottom" aria-hidden="true"><span>CAPACIDAD</span><b>360° / 120 M³</b></div>
+        <div class="object-tag object-tag--top" aria-hidden="true"><span>SISTEMA REDMIX</span><b>HORMIGÓN</b></div>
+        <div class="object-tag object-tag--bottom" aria-hidden="true"><span>SERVICIOS</span><b>VENTA / ACARREO / BOMBEO</b></div>
       </div>
 
       <div class="hero-foot" aria-hidden="true">
-        <div><span>RESISTENCIA</span><b>H—60</b></div>
-        <div><span>CONTROL</span><b>ISO 9001</b></div>
-        <div><span>TECNOLOGÍA</span><b>REDMIX</b></div>
+        <div><span>SERVICIO 01</span><b>HORMIGÓN</b></div>
+        <div><span>SERVICIO 02</span><b>ACARREO</b></div>
+        <div><span>SERVICIO 03</span><b>BOMBEO</b></div>
         <p>DESLIZÁ PARA EXPLORAR <i data-progress></i></p>
       </div>
     </div>
   </section>
 
-  <section class="content-panel" id="quienes-somos">
-    <p class="section-code">01 / QUIÉNES SOMOS</p>
-    <h2>LA ESTRUCTURA<br />DETRÁS DE <em>CADA OBRA.</em></h2>
-    <p>Esta sección será desarrollada en la próxima etapa. Define el lenguaje visual para el resto del sitio.</p>
-  </section>
-
-  <section class="content-panel content-panel--dark" id="servicios">
-    <p class="section-code">02 / SERVICIOS</p>
-    <h2>PRECISIÓN<br />EN <em>ESCALA.</em></h2>
-  </section>
-
-  <section class="contact-panel" id="contactanos">
-    <p class="section-code">03 / CONTACTANOS</p>
-    <h2>CONSTRUYAMOS<br />LO QUE SIGUE.</h2>
-    <a class="technical-cta technical-cta--light" href="mailto:contacto@redmix.com.ar">
-      <span>INICIAR CONVERSACIÓN</span>
-      <i class="tick tick--a"></i><i class="tick tick--b"></i><i class="tick tick--c"></i><i class="tick tick--d"></i>
-    </a>
-  </section>
-</main>
+</div>
 
 <script>
   import '../main.js';

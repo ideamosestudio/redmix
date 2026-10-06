@@ -1,0 +1,32 @@
+---
+import WhatsAppCTA from './WhatsAppCTA.astro';
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const href = (path = '/') => `${root}${path}`;
+---
+
+<footer class="site-footer">
+  <div class="site-footer__brand">
+    <img src={`${root}/images/redmix-logo.png`} width="565" height="189" alt="REDMIX Hormigonera" loading="lazy" />
+    <p>Hormigón elaborado y servicios relacionados para obras y construcción.</p>
+  </div>
+  <div>
+    <p class="footer-label">Navegación</p>
+    <a href={href('/')}>Home</a>
+    <a href={href('/quienes-somos')}>Quiénes somos</a>
+    <a href={href('/contacto')}>Contacto</a>
+  </div>
+  <div>
+    <p class="footer-label">Servicios</p>
+    <a href={href('/servicios/hormigon-elaborado')}>Hormigón elaborado</a>
+    <a href={href('/servicios/acarreo-bomba')}>Acarreo de bomba</a>
+    <a href={href('/servicios/bombeo-hormigon')}>Bombeo de hormigón</a>
+  </div>
+  <div class="site-footer__contact">
+    <p class="footer-label">Contacto</p>
+    <a href="mailto:info@redmixhormigonera.com.ar">info@redmixhormigonera.com.ar</a>
+    <a href="tel:+5491138245680">+54 9 11 3824-5680</a>
+    <address>Ruta Provincial 16 3297<br />Longchamps, Provincia de Buenos Aires</address>
+    <WhatsAppCTA label="HABLAR CON REDMIX" compact />
+  </div>
+  <p class="site-footer__legal">© {new Date().getFullYear()} REDMIX HORMIGONERA</p>
+</footer>
