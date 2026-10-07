@@ -10,7 +10,6 @@ import introImage from '../assets/redmix/home/mixer-descarga.png';
 import hormigonImage from '../assets/redmix/hormigon/hormigon-descarga.png';
 import acarreoImage from '../assets/redmix/acarreo/camion-bomba.png';
 import bombeoImage from '../assets/redmix/bombeo/bombeo-obra.png';
-import empresaImage from '../assets/redmix/empresa/planta-operacion.png';
 import h17Image from '../assets/redmix/products/h17.png';
 import h21Image from '../assets/redmix/products/h21.png';
 import h25Image from '../assets/redmix/products/h25.png';
@@ -62,16 +61,6 @@ const products = [
       </div>
       <div class="products-grid" data-stagger>
         {products.map((product, index) => <ProductCard name={product.name} code={product.code} image={product.image} imageAlt={product.alt} index={String(index + 1).padStart(2, '0')} />)}
-      </div>
-    </section>
-
-    <section class="experience-section section-shell" aria-labelledby="experience-title">
-      <ImageReveal src={empresaImage} alt="Operación de hormigón elaborado en Buenos Aires" motion="horizontal" class="experience-section__image" />
-      <div class="experience-section__copy" data-reveal>
-        <p class="section-code">04 / EXPERIENCIA</p>
-        <h2 id="experience-title">UNA EMPRESA JOVEN RESPALDADA POR MÁS DE <em>20 AÑOS</em> DE EXPERIENCIA EN EL RUBRO.</h2>
-        <p>Nuestro conocimiento del sector de la construcción nos permite acompañar obras y proyectos con soluciones vinculadas al hormigón elaborado, su traslado y su colocación.</p>
-        <a class="technical-cta" href={`${root}/quienes-somos`}><span>CONOCÉ REDMIX</span><i class="tick tick--a"></i><i class="tick tick--b"></i><i class="tick tick--c"></i><i class="tick tick--d"></i></a>
       </div>
     </section>
 

@@ -31,8 +31,20 @@ const root = import.meta.env.BASE_URL.replace(/\/$/, '');
       </div>
     </section>
 
+    <section class="experience-section experience-section--statement section-shell" aria-labelledby="experience-title">
+      <div class="experience-section__copy" data-reveal>
+        <p class="section-code">02 / EXPERIENCIA</p>
+        <h2 id="experience-title">UNA EMPRESA JOVEN RESPALDADA POR MÁS DE <em>20 AÑOS</em> DE EXPERIENCIA EN EL RUBRO.</h2>
+        <p>Nuestro conocimiento del sector de la construcción nos permite acompañar obras y proyectos con soluciones vinculadas al hormigón elaborado, su traslado y su colocación.</p>
+      </div>
+      <div class="experience-counter" data-reveal aria-label="Más de veinte años de experiencia">
+        <strong data-experience-counter aria-hidden="true">01</strong>
+        <span>AÑOS<br />DE EXPERIENCIA</span>
+      </div>
+    </section>
+
     <section class="services-section section-shell" aria-labelledby="about-services-title">
-      <div class="section-heading" data-reveal><p class="section-code">02 / SERVICIOS</p><h2 id="about-services-title">SOLUCIONES PARA <em>TU OBRA.</em></h2></div>
+      <div class="section-heading" data-reveal><p class="section-code">03 / SERVICIOS</p><h2 id="about-services-title">SOLUCIONES PARA <em>TU OBRA.</em></h2></div>
       <div class="services-grid" data-stagger>
         <ServiceCard index="01" title="HORMIGÓN ELABORADO" description="Suministro de hormigón elaborado para diferentes tipos de obras y necesidades de construcción." href={`${root}/servicios/hormigon-elaborado`} image={hormigonImage} imageAlt="Descarga de hormigón elaborado" />
         <ServiceCard index="02" title="ACARREO DE BOMBA" description="Traslado y puesta a disposición del equipo de bombeo necesario para realizar el trabajo en obra." href={`${root}/servicios/acarreo-bomba`} image={acarreoImage} imageAlt="Camión bomba en obra" />
@@ -41,7 +53,7 @@ const root = import.meta.env.BASE_URL.replace(/\/$/, '');
     </section>
 
     <section class="contact-strip section-shell" data-reveal>
-      <div><p class="section-code">03 / CONTACTO</p><h2>ESTAMOS EN <em>LONGCHAMPS.</em></h2></div>
+      <div><p class="section-code">04 / CONTACTO</p><h2>ESTAMOS EN <em>LONGCHAMPS.</em></h2></div>
       <ContactInfo />
     </section>
     <FinalCTA title="HABLEMOS DE TU OBRA" label="HABLAR CON REDMIX" />

@@ -1096,3 +1096,110 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   .experience-section__image { min-height: 78vw; }
   .experience-section__copy { padding: 82px 30px; }
 }
+
+/* Content placement corrections */
+@media (min-width: 901px) {
+  .intro-section {
+    grid-template-columns: minmax(0,.82fr) minmax(520px,1.18fr);
+    grid-template-rows: auto 1fr;
+    column-gap: clamp(64px,7vw,126px);
+    align-items: start;
+  }
+  .intro-section > .section-heading { grid-column: 1; grid-row: 1; }
+  .intro-section__body { grid-column: 1; grid-row: 2; }
+  .intro-section__image {
+    grid-column: 2; grid-row: 1 / span 2; align-self: stretch;
+    height: auto; min-height: 660px; margin-top: 0;
+  }
+
+  .home-content .services-section .section-heading--row,
+  .home-content .products-section .section-heading--row {
+    text-align: center; justify-items: center;
+  }
+  .home-content .services-section .section-heading--row > div,
+  .home-content .products-section .section-heading--row > div { margin-inline: auto; }
+  .home-content .services-section .section-heading h2,
+  .home-content .products-section .section-heading h2 { margin-inline: auto; }
+  .home-content .services-section .section-code,
+  .home-content .products-section .section-code { margin-inline: auto; }
+  .home-content .services-section .section-code::after,
+  .home-content .products-section .section-code::after,
+  .home-content .services-section .section-heading > div:first-child::after,
+  .home-content .products-section .section-heading > div:first-child::after,
+  .home-content .services-section .section-heading--row::after,
+  .home-content .products-section .section-heading--row::after { display: none; }
+  .home-content .services-section .section-heading h2::after,
+  .home-content .products-section .section-heading h2::after { margin-inline: auto; }
+  .home-content .services-section .section-heading--row > p,
+  .home-content .products-section .section-heading__aside {
+    width: min(100%,720px); max-width: 720px; margin-inline: auto; padding-left: 0;
+    border-left: 0; text-align: center; justify-items: center;
+  }
+  .home-content .services-section .section-heading--row > p::before,
+  .home-content .products-section .section-heading__aside::before { left: 50%; transform: translateX(-50%); }
+}
+
+.service-card h3 {
+  font-family: 'Esperano',Impact,sans-serif; font-size: clamp(34px,2.55vw,46px);
+  font-weight: 400; line-height: .9; letter-spacing: .02em; text-transform: uppercase;
+}
+.service-card__actions { flex-direction: row; align-items: stretch; gap: 10px; }
+.service-card__actions .technical-cta {
+  flex: 1 1 0; width: auto; min-width: 0; height: 54px; padding-inline: 13px;
+  background: linear-gradient(110deg,#c51b14 0%,#ef3024 54%,#a30d09 100%); background-size: 180% 100%;
+  border-color: #ef3024; font-size: 9px; letter-spacing: .12em; text-align: center;
+}
+
+/* Experience belongs to Quienes somos */
+.experience-section--statement {
+  --section-mark: 'RMX / C.02 / EXPERIENCIA';
+  grid-template-columns: minmax(0,1.45fr) minmax(300px,.55fr); gap: clamp(54px,7vw,120px);
+  align-items: center; color: #151618; background-color: #e7e4de;
+  background-image:
+    radial-gradient(circle at 84% 42%,rgba(239,48,36,.09),transparent 25%),
+    linear-gradient(rgba(21,22,24,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(21,22,24,.04) 1px,transparent 1px);
+}
+.experience-section--statement::before { color: rgba(21,22,24,.42); }
+.experience-section--statement .experience-section__copy { min-height: 0; padding: 0; overflow: visible; }
+.experience-section--statement .experience-section__copy::before,
+.experience-section--statement .experience-section__copy::after { display: none; }
+.experience-section--statement h2 { color: #151618; font-size: clamp(62px,5.8vw,106px); }
+.experience-section--statement .experience-section__copy > p:not(.section-code) {
+  max-width: 680px; color: rgba(21,22,24,.72); border-top-color: rgba(21,22,24,.17);
+}
+.experience-counter { position: relative; display: grid; justify-items: center; align-content: center; min-height: 420px; text-align: center; }
+.experience-counter::before,
+.experience-counter::after { content: ''; position: absolute; inset: 50% auto auto 50%; transform: translate(-50%,-50%); border: 1px solid rgba(239,48,36,.16); border-radius: 50%; }
+.experience-counter::before { width: 330px; height: 330px; }
+.experience-counter::after { width: 240px; height: 240px; border-style: dashed; }
+.experience-counter strong { position: relative; z-index: 1; color: var(--red); font: 400 clamp(180px,16vw,300px)/.7 'Esperano',Impact,sans-serif; letter-spacing: .01em; }
+.experience-counter span { position: relative; z-index: 1; margin-top: 30px; color: rgba(21,22,24,.52); font: 600 9px/1.55 'Montserrat',sans-serif; letter-spacing: .22em; }
+
+@media (max-width: 900px) {
+  .experience-section--statement { grid-template-columns: 1fr; }
+  .experience-counter { min-height: 340px; }
+}
+
+@media (max-width: 720px) {
+  .hero-sticky { min-height: 780px; }
+  .hero h1 { font-size: clamp(78px,20vw,104px); letter-spacing: 2px; }
+  .hero-object { top: 74%; height: 27vh; }
+  .section-heading h2, .experience-section h2, .split-info h2, .about-copy h2, .contact-strip h2 {
+    font-size: clamp(78px,22.5vw,118px); line-height: .82; letter-spacing: 2px;
+  }
+  .page-hero h1, .contact-hero h1 { font-size: clamp(72px,20vw,102px); line-height: .82; letter-spacing: 2px; }
+  .service-hero h1 { font-size: clamp(68px,18.5vw,94px); line-height: .84; letter-spacing: 2px; }
+  .final-cta h2 { font-size: clamp(88px,25vw,124px); line-height: .82; letter-spacing: 2px; }
+  .service-card h3 { font-size: 42px; letter-spacing: 2px; }
+  .service-card__actions { justify-content: center; }
+  .service-card__actions .technical-cta { flex: 0 1 270px; }
+  .service-card__actions .technical-cta:nth-child(2) { display: none; }
+  .experience-section--statement { padding-top: 92px; padding-bottom: 92px; }
+  .experience-section--statement .experience-section__copy { padding: 0; }
+  .experience-section--statement .experience-section__copy > p:not(.section-code) { padding-left: 0; border-left: 0; }
+  .experience-counter { min-height: 300px; }
+  .experience-counter::before { width: 270px; height: 270px; }
+  .experience-counter::after { width: 195px; height: 195px; }
+  .experience-counter strong { font-size: 190px; }
+}

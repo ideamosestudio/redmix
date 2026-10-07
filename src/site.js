@@ -84,6 +84,21 @@ if (!reducedMotion) {
     );
   });
 
+  document.querySelectorAll('[data-experience-counter]').forEach((counter) => {
+    const state = { value: 1 };
+    gsap.to(state, {
+      value: 20,
+      duration: 1.65,
+      ease: 'power2.out',
+      snap: { value: 1 },
+      scrollTrigger: { trigger: counter, start: 'top 86%', once: true },
+      onUpdate: () => {
+        const value = Math.round(state.value);
+        counter.textContent = value === 20 ? '+20' : String(value).padStart(2, '0');
+      },
+    });
+  });
+
   const hero = document.querySelector('.hero-sticky');
   if (hero) {
     const timeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -106,6 +121,10 @@ if (!reducedMotion) {
       frame.addEventListener('pointerleave', () => gsap.to(image, { x: 0, y: 0, duration: .5, ease: 'power2.out' }));
     });
   }
+}
+
+if (reducedMotion) {
+  document.querySelectorAll('[data-experience-counter]').forEach((counter) => { counter.textContent = '+20'; });
 }
 
 document.querySelectorAll('[data-email-form]').forEach((form) => {
