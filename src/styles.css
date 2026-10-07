@@ -1292,3 +1292,44 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   .experience-section--statement { padding: 92px 30px; }
   .experience-counter strong { font-size: 160px; }
 }
+
+/* Service landings: use the complete desktop canvas */
+@media (min-width: 901px) {
+  .inner-page > .service-hero.page-hero {
+    display: grid; grid-template-columns: minmax(0,.92fr) minmax(0,1.08fr);
+    grid-template-rows: 1fr; align-items: center; gap: clamp(52px,5.5vw,104px);
+  }
+  .inner-page > .service-hero .page-hero__copy {
+    grid-column: 1; grid-row: 1; width: 100%; max-width: none;
+  }
+  .inner-page > .service-hero .page-hero__image {
+    grid-column: 2; grid-row: 1; width: 100%; height: min(72vh,720px); min-height: 560px; margin: 0;
+  }
+
+  .inner-page > .split-info {
+    display: grid; grid-template-columns: 1fr; justify-items: center; width: 100%;
+    padding-top: clamp(100px,8vw,140px); padding-bottom: clamp(100px,8vw,140px);
+    text-align: center;
+  }
+  .inner-page > .split-info > div:first-child {
+    width: 100%; max-width: 1500px; text-align: center;
+  }
+  .inner-page > .split-info h2 { width: 100%; max-width: none; margin-inline: auto; text-align: center; }
+  .inner-page > .split-info h2::after { margin-right: auto; margin-left: auto; }
+  .inner-page > .split-info .section-code { margin-inline: auto; }
+  .inner-page > .split-info .section-code::after { display: none; }
+  .inner-page > .split-info > div:last-child {
+    width: min(100%,940px); max-width: 940px; margin: 42px auto 0; padding: 28px 0 0;
+    border-left: 0; text-align: center;
+  }
+  .inner-page > .split-info > div:last-child p { max-width: 760px; margin-right: auto; margin-left: auto; }
+  .inner-page > .split-info > div:last-child .technical-cta { margin-inline: auto; }
+
+  .inner-page > .faq-section { justify-items: center; text-align: center; }
+  .inner-page > .faq-section > .section-heading { width: 100%; max-width: 1500px; text-align: center; }
+  .inner-page > .faq-section .section-code { margin-inline: auto; }
+  .inner-page > .faq-section .section-code::after { display: none; }
+  .inner-page > .faq-section h2 { width: 100%; max-width: none; }
+  .inner-page > .faq-section h2::after { margin-right: auto; margin-left: auto; }
+  .inner-page > .faq-section .faq-list { width: min(100%,1120px); max-width: 1120px; margin: 50px auto 0; text-align: left; }
+}
