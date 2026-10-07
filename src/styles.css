@@ -1333,3 +1333,31 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   .inner-page > .faq-section h2::after { margin-right: auto; margin-left: auto; }
   .inner-page > .faq-section .faq-list { width: min(100%,1120px); max-width: 1120px; margin: 50px auto 0; text-align: left; }
 }
+
+/* Readability and spacing for light service modules */
+.inner-page > .split-info--accent {
+  color: #151618; background-color: #e7e4de;
+}
+.inner-page > .split-info--accent::before { color: rgba(21,22,24,.42); }
+.inner-page > .split-info--accent .section-code { color: #d52218; }
+.inner-page > .split-info--accent h2 { color: #151618; }
+.inner-page > .split-info--accent h2 em { color: var(--red); }
+.inner-page > .split-info--accent > div:last-child { border-top-color: rgba(21,22,24,.2); }
+.inner-page > .split-info--accent > div:last-child p { color: rgba(21,22,24,.78); }
+
+@media (min-width: 901px) {
+  .inner-page > .split-info--accent {
+    padding-top: clamp(132px,8vw,156px); padding-bottom: clamp(92px,6.5vw,124px);
+  }
+  .inner-page > .split-info--accent h2::after { margin-top: 18px; }
+  .inner-page > .split-info--accent > div:last-child { margin-top: 26px; padding-top: 20px; }
+  .inner-page > .split-info--accent > div:last-child p {
+    max-width: 760px; margin-bottom: 24px; font-size: 16px; line-height: 1.65;
+  }
+}
+
+@media (max-width: 900px) {
+  .inner-page > .split-info--accent { padding-top: 92px; padding-bottom: 84px; }
+  .inner-page > .split-info--accent > div:last-child { margin-top: 28px; padding-top: 22px; }
+  .inner-page > .split-info--accent > div:last-child p { font-size: 15px; line-height: 1.65; }
+}
