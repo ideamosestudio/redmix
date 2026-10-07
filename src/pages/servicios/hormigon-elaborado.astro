@@ -33,11 +33,12 @@ const schema = { '@context': 'https://schema.org', '@type': 'Service', name: 'Ho
     <ServiceHero eyebrow="HORMIGÓN ELABORADO" title={["HORMIGÓN ELABORADO", "PARA TU OBRA"]} intro={['En REDMIX ofrecemos hormigón elaborado para obras y proyectos de construcción, con diferentes alternativas según las necesidades de cada trabajo.', 'No todas las obras requieren el mismo hormigón. Por eso podés consultarnos indicando las características de tu proyecto para definir la alternativa correspondiente y solicitar una cotización.']} {image} imageAlt="Hormigón fresco descargándose desde un camión mixer" ctaLabel="SOLICITAR PRESUPUESTO" whatsappMessage={message} />
 
     <section class="products-section section-shell inner-section" aria-labelledby="line-products-title">
-      <div class="section-heading section-heading--row" data-reveal>
-        <div><p class="section-code">01 / PRODUCTOS</p><h2 id="line-products-title">PRODUCTOS<br /><em>DE LÍNEA.</em></h2></div>
+      <div class="section-heading section-heading--row section-heading--centered" data-reveal>
+        <div><p class="section-code">01 / PRODUCTOS</p><h2 id="line-products-title">PRODUCTOS <em>DE LÍNEA.</em></h2></div>
         <p>Disponemos de diferentes alternativas de hormigón elaborado. Consultanos para conocer disponibilidad y definir cuál corresponde a tu obra.</p>
       </div>
       <div class="products-grid" data-stagger>{products.map((product, index) => <ProductCard name={product.name} code={product.code} image={product.image} imageAlt={product.alt} index={String(index + 1).padStart(2, '0')} />)}</div>
+      <div class="section-end-cta" data-reveal><WhatsAppCTA label="COTIZAR HORMIGÓN" message={message} /></div>
     </section>
 
     <section class="split-info section-shell" aria-labelledby="quote-info-title">

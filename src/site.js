@@ -84,21 +84,6 @@ if (!reducedMotion) {
     );
   });
 
-  document.querySelectorAll('[data-experience-counter]').forEach((counter) => {
-    const state = { value: 1 };
-    gsap.to(state, {
-      value: 20,
-      duration: 1.65,
-      ease: 'power2.out',
-      snap: { value: 1 },
-      scrollTrigger: { trigger: counter, start: 'top 86%', once: true },
-      onUpdate: () => {
-        const value = Math.round(state.value);
-        counter.textContent = value === 20 ? '+20' : String(value).padStart(2, '0');
-      },
-    });
-  });
-
   const hero = document.querySelector('.hero-sticky');
   if (hero) {
     const timeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -123,9 +108,27 @@ if (!reducedMotion) {
   }
 }
 
-if (reducedMotion) {
-  document.querySelectorAll('[data-experience-counter]').forEach((counter) => { counter.textContent = '+20'; });
-}
+document.querySelectorAll('[data-experience-counter]').forEach((counter) => {
+  if (reducedMotion) {
+    counter.textContent = '+20';
+    return;
+  }
+  const observer = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) return;
+    observer.disconnect();
+    let value = 1;
+    const timer = window.setInterval(() => {
+      value += 1;
+      counter.textContent = value === 20 ? '+20' : String(value).padStart(2, '0');
+      counter.animate(
+        [{ opacity: .35, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }],
+        { duration: 180, easing: 'cubic-bezier(.22,1,.36,1)' },
+      );
+      if (value === 20) window.clearInterval(timer);
+    }, 140);
+  }, { threshold: .6 });
+  observer.observe(counter);
+});
 
 document.querySelectorAll('[data-email-form]').forEach((form) => {
   form.addEventListener('submit', (event) => {

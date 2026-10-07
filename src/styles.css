@@ -1203,3 +1203,92 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   .experience-counter::after { width: 195px; height: 195px; }
   .experience-counter strong { font-size: 190px; }
 }
+
+/* Layout corrections after visual QA */
+.section-end-cta {
+  display: flex; justify-content: center; width: 100%; margin-top: 44px; padding-top: 34px;
+  border-top: 1px solid rgba(255,255,255,.11);
+}
+.services-section .section-end-cta { border-top-color: rgba(21,22,24,.14); }
+
+@media (min-width: 901px) {
+  .section-heading--centered {
+    width: 100%; max-width: none; margin-bottom: 38px; text-align: center; justify-items: center;
+  }
+  .section-heading--centered > div { width: 100%; margin-inline: auto; }
+  .section-heading--centered h2 {
+    width: 100%; max-width: none; margin-inline: auto; white-space: nowrap;
+    font-size: clamp(76px,7.4vw,140px); line-height: .82;
+  }
+  .section-heading--centered .section-code { margin-inline: auto; }
+  .section-heading--centered .section-code::after,
+  .section-heading--centered > div::after,
+  .section-heading--centered::after { display: none; }
+  .section-heading--centered h2::after { width: min(74%,900px); margin: 18px auto 0; }
+  .section-heading--centered > p,
+  .section-heading--centered .section-heading__aside {
+    width: min(100%,760px); max-width: 760px; margin: 18px auto 0; padding: 16px 0 0;
+    border-left: 0; text-align: center; justify-items: center;
+  }
+  .section-heading--centered > p::before,
+  .section-heading--centered .section-heading__aside::before { left: 50%; transform: translateX(-50%); }
+
+  .service-hero {
+    grid-template-columns: minmax(0,.9fr) minmax(420px,1.1fr); gap: clamp(48px,5vw,86px);
+    align-items: center; min-height: 100svh; padding-top: 130px; padding-bottom: 64px;
+  }
+  .service-hero .page-hero__copy { width: 100%; }
+  .service-hero .page-hero__copy::after { display: none; }
+  .service-hero .page-hero__image {
+    width: 100%; height: min(72vh,720px); min-height: 560px; margin: 0;
+  }
+
+  .about-hero { min-height: 72svh; display: flex; align-items: center; padding-bottom: 94px; }
+  .about-hero .page-hero__copy { width: min(100%,1080px); }
+  .about-copy {
+    grid-template-columns: minmax(0,.88fr) minmax(520px,1.12fr); grid-template-rows: auto 1fr;
+    column-gap: clamp(60px,7vw,118px); row-gap: 32px; align-items: start;
+  }
+  .about-copy > div:first-child { grid-column: 1; grid-row: 1; width: 100%; }
+  .about-copy > div:nth-child(2) { grid-column: 1; grid-row: 2; width: 100%; margin: 0; }
+  .about-copy__image {
+    grid-column: 2; grid-row: 1 / span 2; width: 100%; height: 100%; min-height: 640px; margin: 0;
+  }
+}
+
+.experience-section--statement {
+  padding: clamp(112px,9vw,164px) clamp(44px,6vw,104px);
+  color: #f4f2ee; background-color: #0d0e10;
+  background-image:
+    radial-gradient(circle at 84% 42%,rgba(239,48,36,.12),transparent 27%),
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+}
+.experience-section--statement::before { color: rgba(255,255,255,.4); }
+.experience-section--statement h2 { color: #f4f2ee; font-size: clamp(68px,6vw,112px); }
+.experience-section--statement .experience-section__copy > p:not(.section-code) {
+  color: rgba(255,255,255,.76); border-top-color: rgba(255,255,255,.14);
+}
+.experience-counter strong {
+  color: var(--red); font-family: 'Montserrat',Arial,sans-serif; font-weight: 700;
+  font-size: clamp(170px,15vw,286px); line-height: .72; letter-spacing: -.08em;
+}
+.experience-counter span { color: rgba(255,255,255,.54); }
+.experience-counter::before, .experience-counter::after { border-color: rgba(239,48,36,.2); }
+
+@media (max-width: 900px) {
+  .section-heading--centered h2 { white-space: normal; }
+  .about-copy__image { width: 100%; height: 72vw; margin-top: 44px; }
+}
+
+@media (max-width: 720px) {
+  .section-heading--centered { margin-bottom: 34px; }
+  .section-heading--centered h2::after { margin-top: 20px; }
+  .section-heading--centered > p,
+  .section-heading--centered .section-heading__aside { margin-top: 18px; padding-top: 18px; }
+  .section-end-cta { margin-top: 32px; padding-top: 28px; }
+  .about-hero { min-height: auto; }
+  .about-copy__image { height: 78vw; }
+  .experience-section--statement { padding: 92px 30px; }
+  .experience-counter strong { font-size: 160px; }
+}

@@ -43,8 +43,8 @@ const products = [
     </section>
 
     <section class="services-section section-shell" id="servicios" aria-labelledby="services-title">
-      <div class="section-heading section-heading--row" data-reveal>
-        <div><p class="section-code">02 / SERVICIOS</p><h2 id="services-title">NUESTROS<br /><em>SERVICIOS.</em></h2></div>
+      <div class="section-heading section-heading--row section-heading--centered" data-reveal>
+        <div><p class="section-code">02 / SERVICIOS</p><h2 id="services-title">NUESTROS <em>SERVICIOS.</em></h2></div>
         <p>Soluciones vinculadas al suministro, traslado y colocación del hormigón para tu obra.</p>
       </div>
       <div class="services-grid" data-stagger>
@@ -55,13 +55,14 @@ const products = [
     </section>
 
     <section class="products-section section-shell" aria-labelledby="products-title">
-      <div class="section-heading section-heading--row" data-reveal>
-        <div><p class="section-code">03 / PRODUCTOS</p><h2 id="products-title">PRODUCTOS<br /><em>DE LÍNEA.</em></h2></div>
-        <div class="section-heading__aside"><p>Consultanos para conocer la alternativa adecuada para tu obra.</p><WhatsAppCTA label="CONSULTAR POR HORMIGÓN" compact /></div>
+      <div class="section-heading section-heading--row section-heading--centered" data-reveal>
+        <div><p class="section-code">03 / PRODUCTOS</p><h2 id="products-title">PRODUCTOS <em>DE LÍNEA.</em></h2></div>
+        <div class="section-heading__aside"><p>Consultanos para conocer la alternativa adecuada para tu obra.</p></div>
       </div>
       <div class="products-grid" data-stagger>
         {products.map((product, index) => <ProductCard name={product.name} code={product.code} image={product.image} imageAlt={product.alt} index={String(index + 1).padStart(2, '0')} />)}
       </div>
+      <div class="section-end-cta" data-reveal><WhatsAppCTA label="CONSULTAR POR HORMIGÓN" /></div>
     </section>
 
     <FinalCTA />
