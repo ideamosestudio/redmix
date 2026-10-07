@@ -1446,3 +1446,77 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   .about-hero__logo .object-tag { display: none; }
   .about-hero h1 em { color: var(--red); font-style: normal; }
 }
+
+/* Readability, mobile navigation and about-hero alignment */
+.nav-links > a,
+.nav-dropdown > button,
+.nav-dropdown__panel a,
+.nav-budget,
+.technical-cta,
+.technical-cta--compact,
+.eyebrow,
+.section-code,
+.breadcrumbs,
+.contact-info span,
+.form-field label,
+.form-note,
+.footer-label,
+.site-footer__legal { font-size: 14px; }
+.service-card__meta,
+.service-card__meta b { font-size: 14px; }
+
+@media (min-width: 901px) {
+  .about-hero h1 {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: .06em;
+    max-width: 760px;
+    font-size: clamp(88px, calc(7.9vw + 9px), 154px);
+    line-height: .8;
+    letter-spacing: .015em;
+  }
+  .about-hero h1 span { display: block; white-space: nowrap; }
+}
+
+@media (max-width: 1200px) and (min-width: 901px) {
+  .service-card__actions { flex-direction: column; }
+}
+
+@media (max-width: 900px) {
+  .nav-links,
+  .nav-links.is-open {
+    justify-items: stretch;
+    text-align: left;
+  }
+  .nav-links > a,
+  .nav-dropdown,
+  .nav-dropdown > button,
+  .nav-dropdown__panel,
+  .nav-dropdown__panel a {
+    justify-self: stretch;
+    width: 100%;
+    text-align: left;
+  }
+  .nav-dropdown__panel { padding-left: 0; justify-items: stretch; }
+  .nav-dropdown__panel a { padding-left: 30px; font-size: 14px; }
+  .nav-links > a span,
+  .nav-dropdown > button span { font-size: 14px; }
+  .nav-budget--mobile {
+    width: 100% !important;
+    place-items: center start;
+    padding-left: 18px;
+    font-size: 14px !important;
+    text-align: left !important;
+  }
+  .about-hero { gap: 12px; }
+  .about-hero h1 { display: flex; flex-direction: column; gap: .08em; }
+  .about-hero h1 span { display: block; }
+  .about-hero__logo { height: 62vw; min-height: 250px; margin-top: -10px; }
+}
+
+@media (max-width: 720px) {
+  .hero { height: 142svh; }
+  .hero-object { top: 57%; height: 34vh; }
+}
