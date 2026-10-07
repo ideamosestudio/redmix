@@ -296,6 +296,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .site-footer a:hover { color: white; }
 .footer-label { margin: 0 0 8px; color: var(--red); font-family: 'Montserrat',sans-serif; font-size: 9px; letter-spacing: .18em; text-transform: uppercase; }
 .site-footer .technical-cta { margin-top: 11px; color: white; }
+.site-footer__contact-group { display: grid; gap: 5px; }
 .site-footer__legal { grid-column: 1 / -1; margin: 36px 0 0; padding-top: 25px; border-top: 1px solid rgba(255,255,255,.08); color: rgba(255,255,255,.3); font-family: 'Montserrat',sans-serif; font-size: 8px; letter-spacing: .18em; }
 
 .page-hero { min-height: 100svh; padding: 130px clamp(24px,6vw,104px) 54px; display: grid; grid-template-columns: .9fr 1.1fr; align-items: center; gap: clamp(40px,6vw,100px); background: radial-gradient(circle at 82% 30%,rgba(196,22,13,.18),transparent 28%),#111214; }
@@ -338,6 +339,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 .contact-info > div { display: grid; gap: 7px; padding-bottom: 20px; border-bottom: 1px solid currentColor; border-color: rgba(127,127,127,.25); }
 .contact-info span { color: var(--red); font-family: 'Montserrat',sans-serif; font-size: 8px; letter-spacing: .18em; }
 .contact-info a, .contact-info address { color: inherit; font-size: 15px; font-style: normal; line-height: 1.55; text-decoration: none; }
+.contact-info__links { display: grid; gap: 8px; min-width: 0; }
+.contact-info__links a { width: fit-content; max-width: 100%; overflow-wrap: anywhere; }
 
 .contact-page { min-height: 100vh; padding-top: 92px; }
 .contact-hero { min-height: calc(100vh - 92px); display: grid; grid-template-columns: .9fr 1.1fr; gap: 9vw; align-items: center; }
@@ -1499,7 +1502,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
     width: 100%;
     text-align: left;
   }
-  .nav-dropdown__panel { padding-left: 0; justify-items: stretch; }
+  .nav-dropdown__panel { left: 0; padding-left: 0; justify-items: stretch; transform: none !important; }
   .nav-dropdown__panel a { padding-left: 30px; font-size: 14px; }
   .nav-links > a span,
   .nav-dropdown > button span { font-size: 14px; }
@@ -1519,4 +1522,28 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
 @media (max-width: 720px) {
   .hero { height: 142svh; }
   .hero-object { top: 57%; height: 34vh; }
+  .hero h1 { font-size: clamp(50px,13.2vw,64px); letter-spacing: 0; }
+  .service-hero h1 { font-size: clamp(44px,13vw,54px); line-height: .88; letter-spacing: .02em; }
+  .service-hero h1 span { max-width: 100%; overflow-wrap: anywhere; }
+  .service-hero .breadcrumbs { width: 100%; max-width: 100%; gap: 6px; line-height: 1.5; }
+  .service-hero .breadcrumbs span[aria-current='page'] { flex-basis: 100%; min-width: 0; overflow-wrap: anywhere; }
+  .page-hero .technical-cta,
+  .contact-hero .technical-cta {
+    width: min(100%,330px); max-width: 100%; min-height: 54px; height: auto; padding-block: 14px; line-height: 1.35;
+  }
+}
+
+/* About hero: protect the eyebrow from the tall Ñ accent in Esperano. */
+.about-hero .eyebrow {
+  margin-bottom: clamp(24px, 2vw, 34px);
+}
+
+.about-hero h1 {
+  letter-spacing: .025em;
+}
+
+@media (max-width: 900px) {
+  .about-hero .eyebrow {
+    margin-bottom: 22px;
+  }
 }

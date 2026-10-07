@@ -142,6 +142,6 @@ document.querySelectorAll('[data-email-form]').forEach((form) => {
       `Teléfono: ${clean(data.get('phone'))}`,
       `Mensaje: ${clean(data.get('message'))}`,
     ].join('\n');
-    window.location.href = `mailto:info@redmixhormigonera.com.ar?subject=${encodeURIComponent('Consulta desde el sitio REDMIX')}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:info@redmix.com.ar?subject=${encodeURIComponent('Consulta desde el sitio REDMIX')}&body=${encodeURIComponent(body)}`;
   });
 });
