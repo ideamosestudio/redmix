@@ -916,3 +916,183 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   .experience-section__copy h2::after, .split-info h2::after, .about-copy h2::after { margin-right: auto; margin-left: auto; }
   .faq-item:hover, .faq-item[open] { padding-left: 10px; }
 }
+
+/* Unified editorial axis: no isolated split-copy layouts */
+.section-shell {
+  --section-mark: 'RMX / SECCIÓN';
+  max-width: none;
+  border-top: 1px solid rgba(255,255,255,.07);
+  background-image:
+    radial-gradient(circle at 84% 18%, rgba(239,48,36,.055), transparent 24%),
+    linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size: auto, 64px 64px, 64px 64px;
+}
+.section-shell::before {
+  content: var(--section-mark); top: 32px; left: clamp(30px,6vw,104px); transform: none;
+  padding-left: 48px; color: rgba(255,255,255,.36); font: 600 7px/1 'Montserrat',sans-serif; letter-spacing: .2em;
+  background: linear-gradient(90deg,var(--red) 0 28px,rgba(239,48,36,.18) 28px 40px,transparent 40px) no-repeat left center / 40px 1px;
+}
+.section-shell::after { right: clamp(30px,6vw,104px); height: 72px; }
+.intro-section { --section-mark: 'RMX / A.01 / PRESENTACIÓN'; }
+.services-section { --section-mark: 'RMX / A.02 / SERVICIOS'; }
+.products-section { --section-mark: 'RMX / A.03 / PRODUCTOS'; }
+.split-info { --section-mark: 'RMX / B.01 / INFORMACIÓN'; }
+.faq-section { --section-mark: 'RMX / B.02 / CONSULTAS'; }
+.about-copy { --section-mark: 'RMX / C.01 / EMPRESA'; }
+.contact-strip { --section-mark: 'RMX / C.02 / UBICACIÓN'; }
+
+.services-section {
+  background-color: #e7e4de;
+  background-image:
+    radial-gradient(circle at 84% 18%,rgba(239,48,36,.07),transparent 23%),
+    linear-gradient(rgba(21,22,24,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(21,22,24,.035) 1px,transparent 1px);
+}
+.services-section::before { color: rgba(21,22,24,.4); }
+.split-info--accent, .contact-strip {
+  background-image:
+    radial-gradient(circle at 84% 18%,rgba(239,48,36,.07),transparent 23%),
+    linear-gradient(rgba(21,22,24,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(21,22,24,.035) 1px,transparent 1px);
+}
+.split-info--accent::before, .contact-strip::before { color: rgba(21,22,24,.4); }
+
+.section-heading, .section-heading--row { width: 100%; max-width: 1120px; }
+.section-heading--row { position: relative; display: grid; grid-template-columns: 1fr; justify-content: start; align-items: start; gap: 0; max-width: none; margin-bottom: 58px; }
+.section-heading--row::after {
+  content: 'EJE 01\A RMX / SISTEMA\A +   +   +'; white-space: pre;
+  position: absolute; right: 0; bottom: 0; width: 228px; padding: 18px 18px 16px 58px;
+  border-top: 1px solid rgba(255,255,255,.11); border-bottom: 1px solid rgba(255,255,255,.07);
+  color: rgba(255,255,255,.3); font: 600 7px/1.85 'Montserrat',sans-serif; letter-spacing: .2em;
+  background:
+    linear-gradient(90deg,var(--red),var(--red)) 18px 22px / 24px 1px no-repeat,
+    linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px) 0 0 / 16px 100%;
+}
+.services-section .section-heading--row::after {
+  border-color: rgba(21,22,24,.12); color: rgba(21,22,24,.34);
+  background:
+    linear-gradient(90deg,var(--red),var(--red)) 18px 22px / 24px 1px no-repeat,
+    linear-gradient(90deg,rgba(21,22,24,.07) 1px,transparent 1px) 0 0 / 16px 100%;
+}
+.section-heading--row > p, .section-heading__aside {
+  position: relative; width: min(100%,680px); max-width: 680px; margin: 34px 0 0; padding: 21px 0 0 34px;
+  border-top: 1px solid rgba(255,255,255,.13); border-left: 1px solid rgba(239,48,36,.5);
+}
+.services-section .section-heading--row > p { border-top-color: rgba(21,22,24,.15); }
+.section-heading--row > p::before, .section-heading__aside::before {
+  content: '+'; position: absolute; top: -5px; left: -4px; color: var(--red); font: 600 9px/1 'Montserrat',sans-serif;
+}
+.section-heading h2 { max-width: 1050px; }
+.section-heading h2::after {
+  content: ''; display: block; width: min(100%,780px); height: 1px; margin-top: 30px;
+  background: linear-gradient(90deg,var(--red),rgba(239,48,36,.18) 16%,rgba(255,255,255,.08) 16%,transparent 78%);
+}
+.services-section .section-heading h2::after { background: linear-gradient(90deg,var(--red),rgba(239,48,36,.2) 16%,rgba(21,22,24,.14) 16%,transparent 78%); }
+.section-code { position: relative; width: fit-content; padding-right: 42px; }
+.section-code::after { content: ''; position: absolute; top: 50%; right: 0; width: 28px; height: 1px; background: currentColor; opacity: .42; }
+
+.intro-section { grid-template-columns: 1fr; gap: 0; }
+.intro-section__body { align-self: auto; width: min(100%,680px); max-width: 680px; margin-top: 34px; padding: 22px 0 0 34px; border-top: 1px solid var(--keyline); border-left: 1px solid rgba(239,48,36,.48); }
+.intro-section__image { margin-top: 68px; }
+
+.split-info, .about-copy, .contact-strip, .faq-section, .contact-hero, .final-cta {
+  display: grid; grid-template-columns: 1fr; gap: 0; align-items: start;
+}
+.split-info > div:first-child, .about-copy > div:first-child, .contact-strip > div:first-child,
+.faq-section > .section-heading, .contact-hero > div, .final-cta__copy { width: min(100%,1080px); }
+.split-info > div:last-child, .about-copy > div:last-child, .contact-strip > .contact-info,
+.faq-list, .contact-hero > .contact-form, .final-cta > .contact-form {
+  width: min(100%,820px); max-width: 820px; margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--keyline);
+}
+.split-info > div:last-child, .about-copy > div:last-child { border-left: 1px solid rgba(239,48,36,.48); padding-left: 34px; }
+.split-info--accent > div:last-child { border-top-color: rgba(21,22,24,.16); }
+.contact-strip > .contact-info { border-top-color: rgba(21,22,24,.16); }
+.split-info::after, .about-copy::after, .contact-strip::after { display: none; }
+.faq-list { box-shadow: none; }
+
+.page-hero {
+  grid-template-columns: 1fr; gap: 64px; align-items: start; padding-top: 152px; padding-bottom: 88px;
+  background-image:
+    radial-gradient(circle at 82% 22%,rgba(196,22,13,.2),transparent 27%),
+    linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size: auto,64px 64px,64px 64px;
+}
+.page-hero::before { left: auto; right: clamp(30px,6vw,104px); }
+.page-hero__copy { width: min(100%,1000px); }
+.page-hero__copy::after {
+  content: '+'; position: absolute; top: 120px; right: clamp(-250px,-15vw,-130px); width: 290px; height: 290px;
+  display: grid; place-items: center; border: 1px solid rgba(239,48,36,.13); border-radius: 50%;
+  color: rgba(239,48,36,.34); font: 400 12px/1 'Montserrat',sans-serif;
+  background:
+    linear-gradient(90deg,transparent calc(50% - .5px),rgba(239,48,36,.13) 50%,transparent calc(50% + .5px)),
+    linear-gradient(transparent calc(50% - .5px),rgba(239,48,36,.13) 50%,transparent calc(50% + .5px));
+  pointer-events: none;
+}
+.page-hero__intro { width: min(100%,680px); max-width: 680px; padding: 22px 0 0 34px; border-top: 1px solid var(--keyline); border-left: 1px solid rgba(239,48,36,.48); }
+.service-hero .page-hero__intro { margin-top: 38px; }
+.page-hero__image { width: 100%; height: min(66vw,760px); min-height: 520px; }
+.about-hero .page-hero__lead { width: min(100%,680px); padding: 22px 0 0 34px; border-top: 1px solid var(--keyline); border-left: 1px solid rgba(239,48,36,.48); }
+.about-hero .technical-cta { margin-top: 28px; }
+
+.experience-section { display: grid; grid-template-columns: 1fr; }
+.experience-section__image { min-height: min(68vw,820px); }
+.experience-section__copy { min-height: 620px; padding: clamp(88px,8vw,132px) clamp(30px,7vw,120px); }
+.experience-section h2 { max-width: 1120px; }
+.experience-section__copy > p:not(.section-code) { padding: 22px 0 0 34px; border-top: 1px solid var(--keyline); border-left: 1px solid rgba(239,48,36,.48); }
+
+.contact-hero { min-height: auto; padding-top: clamp(96px,9vw,140px); }
+.contact-hero > .contact-form { margin-top: 68px; padding: clamp(34px,4vw,58px); }
+.contact-hero .contact-info { width: min(100%,720px); }
+.final-cta { padding-top: clamp(112px,10vw,168px); padding-bottom: clamp(112px,10vw,168px); }
+.final-cta > .contact-form { margin-top: 68px; padding: clamp(34px,4vw,58px); }
+.final-cta__copy > p:not(.section-code) { max-width: 680px; padding: 22px 0 0 34px; border-top: 1px solid rgba(255,255,255,.18); border-left: 1px solid rgba(255,255,255,.35); }
+
+/* Dense technical ornamentation without competing with content */
+.section-shell > .section-heading::before { width: 112px; background: repeating-linear-gradient(90deg,var(--red) 0 1px,transparent 1px 8px); opacity: .72; }
+.section-heading > div:first-child { position: relative; }
+.section-heading > div:first-child::after {
+  content: '○  +  ─  +  ○'; position: absolute; top: 0; left: min(72vw,920px); color: rgba(239,48,36,.28);
+  font: 600 8px/1 'Montserrat',sans-serif; letter-spacing: .65em; white-space: nowrap;
+}
+.services-section .section-heading > div:first-child::after { color: rgba(21,22,24,.2); }
+.services-grid::before, .products-grid::after {
+  content: ''; position: absolute; z-index: 5; top: -13px; left: 0; width: 1px; height: 26px; background: var(--red);
+}
+.service-card__body::after { content: '···'; display: block; margin-top: 25px; color: rgba(21,22,24,.34); font: 600 9px/1 'Montserrat',sans-serif; letter-spacing: .45em; }
+.product-card::marker { color: var(--red); }
+.faq-item summary::after { content: 'RMX'; margin-left: auto; color: rgba(255,255,255,.24); font-size: 7px; letter-spacing: .18em; }
+.contact-form::after { content: 'RMX / TRANSMISIÓN DIRECTA'; position: absolute; right: 18px; bottom: 16px; color: rgba(255,255,255,.24); font: 600 7px/1 'Montserrat',sans-serif; letter-spacing: .17em; }
+
+@media (max-width: 900px) {
+  .page-hero { gap: 48px; }
+  .page-hero__image { min-height: 0; height: 64vw; }
+  .experience-section__copy { min-height: auto; }
+  .section-heading--row::after, .page-hero__copy::after { display: none; }
+}
+
+@media (max-width: 720px) {
+  .section-shell { background-size: auto,48px 48px,48px 48px; }
+  .section-shell::before { left: 30px; padding-left: 40px; background-size: 32px 1px; }
+  .section-heading--row, .section-heading, .intro-section__body,
+  .split-info > div, .about-copy > div, .contact-strip > div, .faq-section > div,
+  .contact-hero > div, .final-cta__copy { text-align: center; }
+  .section-heading h2::after, .experience-section__copy h2::after,
+  .split-info h2::after, .about-copy h2::after { margin-right: auto; margin-left: auto; }
+  .section-code { margin-right: auto; margin-left: auto; padding-right: 0; }
+  .section-code::after { display: none; }
+  .section-heading--row > p, .section-heading__aside, .intro-section__body,
+  .split-info > div:last-child, .about-copy > div:last-child,
+  .page-hero__intro, .about-hero .page-hero__lead,
+  .experience-section__copy > p:not(.section-code), .final-cta__copy > p:not(.section-code) {
+    margin-right: auto; margin-left: auto; padding-right: 0; padding-left: 0; border-left: 0; text-align: center;
+  }
+  .section-heading > div:first-child::after { display: none; }
+  .intro-section__image { margin-top: 48px; }
+  .page-hero { gap: 40px; padding-top: 116px; }
+  .page-hero__image { height: 74vw; }
+  .faq-list, .contact-hero > .contact-form, .final-cta > .contact-form { margin-top: 44px; }
+  .experience-section__image { min-height: 78vw; }
+  .experience-section__copy { padding: 82px 30px; }
+}
