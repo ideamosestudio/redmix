@@ -144,10 +144,18 @@ window.addEventListener('pointermove', (event) => {
   pointerEnergy = Math.min(1, pointerEnergy + .38);
 }, { passive: true });
 
-if (!reducedMotion) {
+if (!reducedMotion && hero) {
   gsap.timeline({ scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom bottom', scrub: .7, onUpdate: ({ progress }) => { scrollProgress = progress; progressLine.style.backgroundPosition = `${100 - progress * 100}% 0`; } } })
     .to(heroCopy, { opacity: .78, ease: 'none', duration: 1 }, 0)
     .to(camera.position, { z: mobile ? 15.1 : tablet ? 14.8 : 13.5, ease: 'none', duration: 1 }, 0);
+} else if (!reducedMotion && objectWrap) {
+  ScrollTrigger.create({
+    trigger: objectWrap,
+    start: 'top bottom',
+    end: 'bottom top',
+    scrub: .7,
+    onUpdate: ({ progress }) => { scrollProgress = progress; },
+  });
 } else {
   bars.forEach((bar, index) => { bar.position.x = compressedX[index]; });
 }
