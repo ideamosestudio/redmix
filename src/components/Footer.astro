@@ -1,5 +1,5 @@
 ---
-import WhatsAppCTA from './WhatsAppCTA.astro';
+import ArrowIcon from './ArrowIcon.astro';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const href = (path = '/') => `${root}${path}`;
 ---
@@ -7,11 +7,11 @@ const href = (path = '/') => `${root}${path}`;
 <footer class="site-footer">
   <div class="site-footer__brand">
     <img src={`${root}/images/redmix-logo.png`} width="565" height="189" alt="REDMIX Hormigonera" loading="lazy" />
-    <p>Hormigón elaborado y servicios relacionados para obras y construcción.</p>
+    <p>Hormigón elaborado, acarreo y bombeo para tu obra.</p>
   </div>
   <div>
     <p class="footer-label">Navegación</p>
-    <a href={href('/')}>Home</a>
+    <a href={href('/')}>Inicio</a>
     <a href={href('/quienes-somos')}>Quiénes somos</a>
     <a href={href('/contacto')}>Contacto</a>
   </div>
@@ -32,7 +32,7 @@ const href = (path = '/') => `${root}${path}`;
       <a href="tel:+5491133583377">+54 9 11 3358 3377</a>
     </div>
     <address>Ruta Provincial 16 3297<br />Longchamps, Provincia de Buenos Aires</address>
-    <WhatsAppCTA label="HABLAR CON REDMIX" compact />
+    <a class="footer-contact-link" href="https://wa.me/5491138245680" target="_blank" rel="noopener noreferrer">HABLAR CON REDMIX <ArrowIcon /></a>
   </div>
-  <p class="site-footer__legal"><span>© {new Date().getFullYear()} REDMIX HORMIGONERA</span><span>RMX / {new Date().getFullYear()}</span></p>
+  <p class="site-footer__legal"><span>© {new Date().getFullYear()} REDMIX HORMIGONERA</span><a class="footer-top" href="#page-top">Volver arriba <ArrowIcon /></a></p>
 </footer>

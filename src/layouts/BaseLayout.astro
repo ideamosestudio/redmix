@@ -61,7 +61,7 @@ const schemas = [organizationSchema, ...(Array.isArray(schema) ? schema : schema
     <title>{title}</title>
     <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
   </head>
-  <body>
+  <body id="page-top">
     <Navbar />
     <slot />
     <FloatingWhatsApp />

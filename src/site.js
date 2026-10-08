@@ -13,6 +13,8 @@ const protectedControls = [...document.querySelectorAll('.contact-form, .technic
 
 function updateNavbar() {
   navbar?.classList.toggle('is-scrolled', window.scrollY > 24);
+  const scrollRange = document.documentElement.scrollHeight - window.innerHeight;
+  navbar?.style.setProperty('--reading-progress', String(scrollRange > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollRange)) : 0));
   if (!floatingWhatsApp) return;
   const floating = floatingWhatsApp.getBoundingClientRect();
   const overlaps = window.innerWidth < 768 && protectedControls.some((element) => {
@@ -34,7 +36,7 @@ function setMenu(open) {
   menuToggle?.setAttribute('aria-label', open ? 'Cerrar navegación' : 'Abrir navegación');
   menu?.classList.toggle('is-open', open);
   document.body.classList.toggle('menu-open', open);
-  document.querySelectorAll('main,.hero-root,.site-footer').forEach(element => { element.inert = open; });
+  document.querySelectorAll('main,.hero-root,.concept-page,.site-footer').forEach(element => { element.inert = open; });
 }
 menuToggle?.addEventListener('click', () => setMenu(menuToggle.getAttribute('aria-expanded') !== 'true'));
 
@@ -99,6 +101,10 @@ motion.add('(prefers-reduced-motion: no-preference)', () => {
       .from('.hero-actions', { y: 12, opacity: 0 }, .4)
       .from('.hero-orbits, .hero-signature', { opacity: 0, stagger: .08 }, .5);
   }
+  const cinematicCopy = document.querySelector('.concept-copy');
+  if (cinematicCopy) {
+    gsap.from(cinematicCopy.children, { y: 18, opacity: 0, duration: .8, stagger: .1, ease: 'power3.out', clearProps: 'transform,opacity' });
+  }
   if (internalHero) {
     gsap.from(internalHero.children, { y: 14, duration: .6, stagger: .09, ease: 'power3.out', clearProps: 'transform' });
   }
@@ -142,4 +148,25 @@ document.querySelectorAll('[data-email-form]').forEach((form) => {
     ].join('\n');
     window.location.href = `mailto:info@redmix.com.ar?subject=${encodeURIComponent('Consulta desde el sitio REDMIX')}&body=${encodeURIComponent(body)}`;
   });
+});
+
+// Pointer lighting is local to cards and disabled for touch/reduced motion.
+const lightMedia = gsap.matchMedia();
+lightMedia.add('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)', () => {
+ const cleanups = [];
+ document.querySelectorAll('.service-card,.product-card').forEach(card => {
+  let frame = 0, x = 0, y = 0;
+  const move = event => {
+   const rect = card.getBoundingClientRect(); x = event.clientX - rect.left; y = event.clientY - rect.top;
+   if (!frame) frame = requestAnimationFrame(() => { card.style.setProperty('--light-x', x + 'px'); card.style.setProperty('--light-y', y + 'px'); frame = 0; });
+  };
+  card.addEventListener('pointermove', move, { passive: true });
+  cleanups.push(() => { card.removeEventListener('pointermove', move); cancelAnimationFrame(frame); card.style.removeProperty('--light-x'); card.style.removeProperty('--light-y'); });
+ });
+ return () => cleanups.forEach(cleanup => cleanup());
+});
+document.querySelector('.footer-top')?.addEventListener('click', event => {
+ event.preventDefault();
+ window.scrollTo({ top: 0, behavior: motionPreference.matches ? 'instant' : 'smooth' });
+ document.querySelector('.nav-logo')?.focus({ preventScroll: true });
 });
