@@ -1,4 +1,5 @@
 ---
+import ArrowIcon from "../../components/ArrowIcon.astro";
 import Portada from '../../components/propuestas/Portada.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Selector from '../../components/propuestas/Selector.astro';
@@ -7,15 +8,15 @@ export function getStaticPaths() { return ['camion','tambor','descarga'].map(var
 const { variante } = Astro.params;
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const details = {
- camion: {name:'Camión cinematográfico',eyebrow:'POTENCIA PARA LO QUE VIENE.',note:'Propuesta 01 · Escena conceptual animada, no representa la flota real.'},
- tambor: {name:'Tambor en movimiento',eyebrow:'EL MOVIMIENTO QUE CONSTRUYE.',note:'Propuesta 03 · Escena 3D interactiva. Mové el cursor para explorar.'},
- descarga: {name:'Hormigón en acción',eyebrow:'DONDE EMPIEZA TU PRÓXIMA OBRA.',note:'Propuesta 04 · Video conceptual generado con Magnific.'}
+ camion: {name:'Camión cinematográfico',eyebrow:'POTENCIA PARA LO QUE VIENE.',note:'Propuesta · Escena conceptual animada, no representa la flota real.'},
+ tambor: {name:'Tambor en movimiento',eyebrow:'EL MOVIMIENTO QUE CONSTRUYE.',note:'Propuesta · Escena 3D interactiva. Mové el cursor para explorar.'},
+ descarga: {name:'Hormigón en acción',eyebrow:'DONDE EMPIEZA TU PRÓXIMA OBRA.',note:'Propuesta · Video conceptual generado con Magnific.'}
 }[variante];
 ---
 <BaseLayout title={details.name + ' | Propuestas REDMIX'} description="Comparación de propuestas visuales para la portada de REDMIX." noindex>
   <Selector active={variante}/>
   <main class:list={['concept-page', 'concept-page--' + variante]}>
     <Portada variante={variante}/>
-    <aside class="concept-review"><div><p>EXPLORACIÓN VISUAL / REDMIX</p><h2>{details.name}</h2><span>{details.note}</span></div><a href={root + '/propuestas/'}>Ver todas las portadas ↗</a></aside>
+    <aside class="concept-review"><div><p>EXPLORACIÓN VISUAL / REDMIX</p><h2>{details.name}</h2><span>{details.note}</span></div><a href={root + '/propuestas/'}>Ver todas las portadas <ArrowIcon /></a></aside>
   </main>
 </BaseLayout>

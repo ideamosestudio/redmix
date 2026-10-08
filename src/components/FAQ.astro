@@ -19,9 +19,9 @@ const faqSchema = {
     <h2 id="faq-title">PREGUNTAS <em>FRECUENTES.</em></h2>
   </div>
   <div class="faq-list">
-    {items.map((item, index) => (
+    {items.map((item) => (
       <details class="faq-item" data-reveal>
-        <summary><span>{String(index + 1).padStart(2, '0')}</span>{item.question}<i></i></summary>
+        <summary>{item.question}<i></i></summary>
         <p>{item.answer}</p>
       </details>
     ))}

@@ -1,8 +1,9 @@
 ---
+import ArrowIcon from "./ArrowIcon.astro";
 import { Picture } from 'astro:assets';
 import WhatsAppCTA from './WhatsAppCTA.astro';
-interface Props { index: string; title: string; description: string; href: string; image: ImageMetadata; imageAlt: string; }
-const { index, title, description, href, image, imageAlt } = Astro.props;
+interface Props { title: string; description: string; href: string; image: ImageMetadata; imageAlt: string; }
+const { title, description, href, image, imageAlt } = Astro.props;
 const widths = [...new Set([480, 720, 960, 1280, 1600, image.width].filter(width => width <= image.width))].sort((a, b) => a - b);
 // Include the pixels cropped by object-fit when choosing a responsive source.
 const coverScale = Math.max(1, (image.width / image.height) / (4 / 3));
@@ -11,18 +12,17 @@ const coverScale = Math.max(1, (image.width / image.height) / (4 / 3));
 <article class="service-card" data-card>
   <a class="service-card__image" href={href} aria-label={`Conocé ${title}`}>
     <Picture src={image} formats={['avif']} fallbackFormat="webp" widths={widths} quality={90} sizes={`(max-width: 767px) ${100 * coverScale}vw, (max-width: 1199px) ${50 * coverScale}vw, ${34 * coverScale}vw`} alt={imageAlt} loading="lazy" />
-    <span>{index}</span>
   </a>
   <div class="service-card__body">
-    <div class="service-card__meta"><span>RMX / SERVICIO</span><b>{index}</b></div>
+    <div class="service-card__meta"><span>RMX / SERVICIO</span></div>
     <h3><a href={href}>{title}</a></h3>
     <p>{description}</p>
     <div class="service-card__actions">
       <a class="technical-cta technical-cta--compact" href={href}>
-        <span>VER MÁS</span><i class="cta-arrow" aria-hidden="true">→</i>
+        <span>VER MÁS</span><ArrowIcon class="cta-arrow" direction="right" />
         <i class="tick tick--a"></i><i class="tick tick--b"></i><i class="tick tick--c"></i><i class="tick tick--d"></i>
       </a>
-      <WhatsAppCTA label="PEDÍ TU PRESUPUESTO" compact />
+      <WhatsAppCTA label="SOLICITAR PRESUPUESTO" compact />
     </div>
   </div>
 </article>

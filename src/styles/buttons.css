@@ -25,7 +25,7 @@
 .technical-cta:focus-visible::before { transform: scaleX(1); }
 .technical-cta:active { transform: scale(.985); transition-duration: .12s; }
 .text-link { position: relative; display: inline-flex; align-items: center; gap: var(--space-sm); min-height: 44px; font: 600 14px/1.3 var(--font-action); letter-spacing: .04em; text-decoration: none; }
-.text-link::after { content: '→'; color: var(--red); transition: transform .3s var(--ease-heavy); }
+.text-link::after { content: ''; width: 16px; height: 16px; background: var(--red); mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 12h16m-6-6 6 6-6 6' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat; transition: transform .3s var(--ease-heavy); }
 @media (hover: hover) and (pointer: fine) {
   .technical-cta:hover { background-color: rgba(255,255,255,.1); border-color: rgba(255,255,255,.5); box-shadow: 0 8px 24px rgba(0,0,0,.15); transform: translateY(-2px); }
   .technical-cta--solid:hover { background-color: #c51e15; border-color: #ff7469; }
@@ -38,3 +38,24 @@
   .technical-cta:active { transform: scale(.985); }
 }
 @keyframes button-sweep { to { transform: translateX(110%); } }
+
+/* Shared visual language for every action, including navigation and forms. */
+.arrow-icon { display: inline-block; width: 16px; height: 16px; flex: 0 0 16px; vertical-align: middle; }
+:root body .technical-cta.technical-cta {
+ min-height: 54px; padding: 16px 24px; gap: 12px; border-radius: 3px;
+ font: 600 12px/1.3 'Montserrat',sans-serif; letter-spacing: .01em;
+ color: #fff; border: 1px solid #ffffff38; background: #ffffff09; box-shadow: none;
+}
+:root body .technical-cta.technical-cta--solid {
+ background: linear-gradient(120deg,#ff4b32,#d21c15); border-color: #ff6956; box-shadow: 0 6px 30px #f2262026;
+}
+:root body .technical-cta .tick, :root body .technical-cta::before, :root body .technical-cta::after { display: none; }
+:root body .services-section .technical-cta:not(.technical-cta--solid) { color: #242527; border-color: #24252747; background: #15161808; }
+:root body .technical-cta:focus-visible { outline: 2px solid #ff968b; outline-offset: 4px; }
+@media(hover:hover) {
+ :root body .technical-cta.technical-cta:hover { border-color: #ffffff80; background: #ffffff14; }
+ :root body .technical-cta.technical-cta--solid:hover { background: linear-gradient(120deg,#ff5942,#e0271c); border-color: #ff968b; }
+}
+@media(max-width:767px) {
+ :root body .technical-cta.technical-cta { padding: 14px 18px; }
+}

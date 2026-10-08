@@ -114,8 +114,8 @@
 .truck-services { display: flex; align-items: center; gap: 10px; font-size: 9px; letter-spacing: .13em; }
 .truck-services b { color: #e95845; font-weight: 400; }
 :is(.concept-page--camion,.concept-page--descarga) .concept-caption button { display: inline-flex; gap: 10px; align-items: center; min-height: 44px; padding: 8px 0; border: 0; border-radius: 0; background: transparent; color: #c7c9d0; font-size: 10px; margin-right: 64px; }
-:is(.concept-page--camion,.concept-page--descarga) .concept-caption button::before { content: 'Ⅱ'; color: #ff715c; font-size: 15px; }
-:is(.concept-page--camion,.concept-page--descarga) .concept-caption button[aria-pressed='true']::before { content: '▷'; }
+:is(.concept-page--camion,.concept-page--descarga) .concept-caption button::before { content: ''; display: inline-block; width: 12px; height: 14px; flex: 0 0 12px; background: linear-gradient(90deg,#ff715c 0 4px,transparent 4px 8px,#ff715c 8px 12px); }
+:is(.concept-page--camion,.concept-page--descarga) .concept-caption button[aria-pressed='true']::before { background: #ff715c; clip-path: polygon(10% 0,100% 50%,10% 100%); }
 :is(.concept-page--camion,.concept-page--descarga) .concept-caption button:hover { color: #fff; }
 @media(max-width:1023px) {
  :is(.concept-page--camion,.concept-page--descarga) .concept-intro { text-align: left; width: fit-content; }
@@ -133,3 +133,5 @@
 .logo-preview img { width:65%;height:auto; }
 
 @media(max-width:1023px) { .concept-page--descarga .truck-callout { top: 54%; right: 12%; } .concept-page--descarga .truck-wordmark { bottom: 18%; } }
+
+.truck-callout > span { color: #fff; text-shadow: 0 1px 5px #000,0 0 12px #000; background: #101318b3; padding: 6px 8px; border-radius: 2px; }

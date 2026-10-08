@@ -13,11 +13,11 @@ import h30Image from '../../assets/redmix/products/h30.png';
 import h30pImage from '../../assets/redmix/products/h30-proyectable.png';
 
 const products = [
-  { name: 'HORMIGÓN H17', code: 'RMX / 017', image: h17Image, alt: 'Imagen editorial representativa de hormigón fresco en obra' },
-  { name: 'HORMIGÓN H21', code: 'RMX / 021', image: h21Image, alt: 'Imagen editorial representativa de hormigón en encofrado' },
-  { name: 'HORMIGÓN H25', code: 'RMX / 025', image: h25Image, alt: 'Imagen editorial representativa de hormigón y armaduras' },
-  { name: 'HORMIGÓN H30', code: 'RMX / 030', image: h30Image, alt: 'Imagen editorial representativa de estructura de hormigón' },
-  { name: 'HORMIGÓN H30 PROYECTABLE', code: 'RMX / 030-P', image: h30pImage, alt: 'Imagen editorial representativa de hormigón proyectado' },
+  { name: 'HORMIGÓN H17', image: h17Image, alt: 'Imagen editorial representativa de hormigón fresco en obra' },
+  { name: 'HORMIGÓN H21', image: h21Image, alt: 'Imagen editorial representativa de hormigón en encofrado' },
+  { name: 'HORMIGÓN H25', image: h25Image, alt: 'Imagen editorial representativa de hormigón y armaduras' },
+  { name: 'HORMIGÓN H30', image: h30Image, alt: 'Imagen editorial representativa de estructura de hormigón' },
+  { name: 'HORMIGÓN H30 PROYECTABLE', image: h30pImage, alt: 'Imagen editorial representativa de hormigón proyectado' },
 ];
 const message = 'Hola Redmix, quisiera solicitar un presupuesto por hormigón elaborado.';
 const faq = [
@@ -34,15 +34,15 @@ const schema = { '@context': 'https://schema.org', '@type': 'Service', name: 'Ho
 
     <section class="products-section section-shell inner-section" aria-labelledby="line-products-title">
       <div class="section-heading section-heading--row section-heading--centered" data-reveal>
-        <div><p class="section-code">01 / PRODUCTOS</p><h2 id="line-products-title">PRODUCTOS <em>DE LÍNEA.</em></h2></div>
+        <div><p class="section-code">PRODUCTOS</p><h2 id="line-products-title">PRODUCTOS <em>DE LÍNEA.</em></h2></div>
         <p>Disponemos de diferentes alternativas de hormigón elaborado. Consultanos para conocer disponibilidad y definir cuál corresponde a tu obra.</p>
       </div>
-      <div class="products-grid" data-stagger>{products.map((product, index) => <ProductCard name={product.name} code={product.code} image={product.image} imageAlt={product.alt} index={String(index + 1).padStart(2, '0')} />)}</div>
+      <div class="products-grid" data-stagger>{products.map((product) => <ProductCard name={product.name} image={product.image} imageAlt={product.alt} />)}</div>
       <div class="section-end-cta" data-reveal><WhatsAppCTA label="COTIZAR HORMIGÓN" message={message} /></div>
     </section>
 
     <section class="split-info section-shell" aria-labelledby="quote-info-title">
-      <div data-reveal><p class="section-code">02 / COTIZACIÓN</p><h2 id="quote-info-title">CONTANOS SOBRE <em>TU OBRA.</em></h2></div>
+      <div data-reveal><p class="section-code">COTIZACIÓN</p><h2 id="quote-info-title">CONTANOS SOBRE <em>TU OBRA.</em></h2></div>
       <div data-reveal><p>Para solicitar una cotización podés enviarnos por WhatsApp el tipo de hormigón requerido, volumen aproximado, ubicación de la obra y cualquier información relevante del proyecto.</p><WhatsAppCTA label="COTIZAR HORMIGÓN" message={message} /></div>
     </section>
 

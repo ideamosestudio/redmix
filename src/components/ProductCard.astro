@@ -1,14 +1,12 @@
 ---
 import { Picture } from 'astro:assets';
-interface Props { name: string; index: string; code: string; image: ImageMetadata; imageAlt: string; }
-const { name, index, code, image, imageAlt } = Astro.props;
+interface Props { name: string; image: ImageMetadata; imageAlt: string; }
+const { name, image, imageAlt } = Astro.props;
 const widths = [...new Set([320, 520, 760, 960, image.width].filter(width => width <= image.width))].sort((a, b) => a - b);
 
 ---
 <article class="product-card" data-card>
   <Picture src={image} formats={['avif']} fallbackFormat="webp" widths={widths} quality={90} sizes="(max-width: 767px) calc(100vw - 48px), 50vw" alt={imageAlt} loading="lazy" />
-  <span class="product-card__index">{index}</span>
-  <span class="product-card__code">{code}</span>
   <i class="product-card__cross" aria-hidden="true"></i>
   <h3>{name}</h3>
 </article>

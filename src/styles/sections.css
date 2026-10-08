@@ -2,12 +2,12 @@
 .section-shell { --section-mark: 'RMX / SECCIÓN'; position: relative; isolation: isolate; width: 100%; padding: var(--space-section) var(--page-gutter); border-top: 1px solid rgba(255,255,255,.08); background-image: radial-gradient(circle at 84% 18%,rgba(239,48,36,.055),transparent 24%),linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px); background-size: auto,64px 64px,64px 64px; }
 .section-shell::before { content: var(--section-mark); position: absolute; top: 24px; left: var(--page-gutter); padding-left: 40px; color: var(--text-muted); font: 500 10px/1.4 var(--font-ui); letter-spacing: .1em; background: linear-gradient(90deg,var(--red) 0 24px,transparent 24px) no-repeat left center/32px 1px; }
 .section-shell::after { content: ''; position: absolute; z-index: -1; top: 0; right: var(--page-gutter); width: 1px; height: 48px; background: linear-gradient(var(--red),transparent); }
-.intro-section { --section-mark: 'RMX / A.01 / PRESENTACIÓN'; }
-.services-section { --section-mark: 'RMX / A.02 / SERVICIOS'; }
-.products-section { --section-mark: 'RMX / A.03 / PRODUCTOS'; }
-.split-info { --section-mark: 'RMX / B.01 / INFORMACIÓN'; }
-.faq-section { --section-mark: 'RMX / B.02 / CONSULTAS'; }
-.about-copy { --section-mark: 'RMX / C.01 / EMPRESA'; }
+.intro-section { --section-mark: 'RMX / PRESENTACIÓN'; }
+.services-section { --section-mark: 'RMX / SERVICIOS'; }
+.products-section { --section-mark: 'RMX / PRODUCTOS'; }
+.split-info { --section-mark: 'RMX / INFORMACIÓN'; }
+.faq-section { --section-mark: 'RMX / CONSULTAS'; }
+.about-copy { --section-mark: 'RMX / EMPRESA'; }
 .section-heading { min-width: 0; }
 .section-heading h2,.experience-section h2,.split-info h2,.about-copy h2,.final-cta h2 { margin: 0; font: 400 var(--type-section)/.9 var(--font-display); letter-spacing: .012em; text-transform: uppercase; }
 .section-heading h2 em,.experience-section h2 em,.split-info h2 em,.about-copy h2 em { color: var(--red); font-style: normal; }
@@ -74,7 +74,7 @@
 .product-card__cross::before { top: 7px; width: 16px; height: 1px; }
 .product-card__cross::after { left: 7px; height: 16px; width: 1px; }
 
-.experience-section--statement { --section-mark: 'RMX / C.02 / EXPERIENCIA'; display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); align-items: center; gap: var(--space-lg); background-color: #0d0e10; }
+.experience-section--statement { --section-mark: 'RMX / EXPERIENCIA'; display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); align-items: center; gap: var(--space-lg); background-color: #0d0e10; }
 .experience-section__copy { grid-column: span 8; min-width: 0; }
 .experience-section h2 { font-size: var(--type-editorial); }
 .experience-section__copy > p:not(.section-code) { max-width: 58ch; margin: var(--space-group) 0; color: var(--text-body); font-size: 16px; }
@@ -105,7 +105,7 @@
 .faq-item summary i,.faq-item summary i::after { position: absolute; right: 0; top: 36px; width: 14px; height: 1px; content: ''; background: var(--red); }
 .faq-item summary i::after { top: 0; transform: rotate(90deg); transition: transform .25s; }
 .faq-item[open] summary i::after { transform: rotate(0); }
-.faq-item > p { margin: 0; padding: 0 var(--space-group) var(--space-lg) 36px; color: var(--text-body); font-size: 16px; line-height: 1.65; }
+.faq-item > p { margin: 0; padding: 0 var(--space-group) var(--space-lg) 0; color: var(--text-body); font-size: 16px; line-height: 1.65; }
 @media (hover: hover) and (pointer: fine) {
   .service-card:hover { border-color: rgba(239,48,36,.55); }
   .service-card:hover::before { transform: scaleX(2); }
