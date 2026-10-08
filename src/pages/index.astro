@@ -9,6 +9,7 @@ import ProductCard from '../components/ProductCard.astro';
 import WhatsAppCTA from '../components/WhatsAppCTA.astro';
 import FinalCTA from '../components/FinalCTA.astro';
 import ProcessFlow from '../components/ProcessFlow.astro';
+import ServiceMarquee from '../components/ServiceMarquee.astro';
 import introImage from '../assets/redmix/home/mixer-descarga.png';
 import hormigonImage from '../assets/redmix/hormigon/hormigon-descarga.png';
 import acarreoImage from '../assets/redmix/acarreo/camion-bomba.png';
@@ -46,6 +47,8 @@ const products = [
         <ServiceCard title="SERVICIO DE BOMBEO" description="Bombeo de hormigón calculado por volumen, para facilitar la descarga y colocación del material dentro de la obra." href={`${root}/servicios/bombeo-hormigon`} image={bombeoImage} imageAlt="Manguera realizando bombeo de hormigón" />
       </div>
     </section>
+
+    <ServiceMarquee />
 
     <section class="products-section section-shell" aria-labelledby="products-title">
       <div class="section-heading section-heading--row section-heading--centered" data-reveal>

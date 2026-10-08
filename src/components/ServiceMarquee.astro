@@ -1,0 +1,21 @@
+<div class="service-marquee" aria-label="Hormigón elaborado, acarreo y bombeo">
+ <div class="service-marquee__track" aria-hidden="true">
+  {[0,1].map(() => <div class="service-marquee__group">{[0,1].map(() => <><span>HORMIGÓN ELABORADO</span><i></i><span>ACARREO</span><i></i><span>BOMBEO</span><i></i></>)}</div>)}
+ </div>
+ <button class="service-marquee__toggle" type="button" aria-label="Pausar franja animada" aria-pressed="false" hidden><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path class="marquee-pause" d="M4 3v10M12 3v10" fill="none" stroke="currentColor" stroke-width="3"/><path class="marquee-play" d="m4 2 9 6-9 6Z" fill="currentColor"/></svg></button>
+</div>
+<script>
+ const strip=document.querySelector<HTMLElement>('.service-marquee');
+ const toggle=strip?.querySelector<HTMLButtonElement>('button');
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ if(strip&&toggle){
+  toggle.hidden=reduced.matches;
+  toggle.addEventListener('click',()=>{
+   const paused=toggle.getAttribute('aria-pressed')!=='true';
+   toggle.setAttribute('aria-pressed',String(paused));
+   toggle.setAttribute('aria-label',paused?'Reanudar franja animada':'Pausar franja animada');
+   strip.classList.toggle('is-paused',paused);
+  });
+  reduced.addEventListener('change',()=>{toggle.hidden=reduced.matches;});
+ }
+</script>
