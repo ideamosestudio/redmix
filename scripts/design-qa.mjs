@@ -40,9 +40,10 @@ for (const width of widths) {
     await evaluate(`(async()=>{await document.fonts.ready;document.querySelectorAll('img').forEach(i=>i.loading='eager');await Promise.all([...document.images].map(i=>i.decode().catch(()=>{})));window.scrollTo(0,0)})()`);
     await new Promise(r => setTimeout(r, 850));
     const metrics = await evaluate(`(()=>{
-      const box=e=>{const s=getComputedStyle(e),r=e.getBoundingClientRect();return {selector:e.className,left:r.left,top:r.top,width:r.width,height:r.height,padding:s.padding,margin:s.margin,gap:s.gap,font:s.fontSize,lineHeight:s.lineHeight}};
+      const box=e=>{const s=getComputedStyle(e),r=e.getBoundingClientRect();return {selector:e.className,tag:e.tagName,left:r.left,top:r.top,width:r.width,height:r.height,padding:s.padding,margin:s.margin,gap:s.gap,font:s.fontSize,lineHeight:s.lineHeight,fontFamily:s.fontFamily,fontWeight:s.fontWeight,letterSpacing:s.letterSpacing}};
       return {viewport:innerWidth,document:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth,
-        boxes:[...document.querySelectorAll('.section-shell,.page-hero,.final-cta__inner,.final-cta,.contact-form,.hero-copy,.nav-budget--mobile,h1,h2')].map(box),
+        boxes:[...document.querySelectorAll('.section-shell,.page-hero,.final-cta__inner,.final-cta,.contact-form,.hero-copy,.nav-budget--mobile,.technical-cta,.text-link,h1,h2')].map(box),
+        fonts:[...document.fonts].filter(f=>f.family.includes('Barlow')&&f.status==='loaded').map(f=>({family:f.family,weight:f.weight})),
         overflow:[...document.querySelectorAll('h1,h2,h3,p,input,textarea,.technical-cta,.service-card,.product-card')].filter(e=>{const r=e.getBoundingClientRect();return r.width && (r.right>document.documentElement.clientWidth+1||r.left< -1||e.scrollWidth>e.clientWidth+2)}).map(e=>({text:e.textContent.slice(0,100),...box(e)})),
         links:[...document.querySelectorAll('a[href^="https://wa.me"],a[href^="tel:"],a[href^="mailto:"]')].map(e=>e.getAttribute('href')),
         canvas:[...document.querySelectorAll('canvas.hero-canvas')].map(c=>({width:c.width,height:c.height,webgl:!!c.getContext('webgl2')})),

@@ -40,7 +40,7 @@
 .site-footer__brand img { display: block; width: 160px; height: auto; }
 .site-footer__brand p { max-width: 28ch; margin: var(--space-lg) 0 0; color: var(--text-muted); font-size: 14px; line-height: 1.65; }
 .site-footer > div:not(.site-footer__brand) { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-sm); padding-top: var(--space-md); border-top: 1px solid var(--keyline); }
-.site-footer a,.site-footer address { max-width: 100%; color: var(--text-body); font-size: 14px; font-style: normal; line-height: 1.6; text-decoration: none; overflow-wrap: anywhere; }
+.site-footer a:not(.technical-cta),.site-footer address { max-width: 100%; color: var(--text-body); font-size: 14px; font-style: normal; line-height: 1.6; text-decoration: none; overflow-wrap: anywhere; }
 .site-footer a:not(.technical-cta):hover { color: white; text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 4px; }
 .footer-label { margin: 0 0 var(--space-xs); color: var(--red); font: 600 11px/1.5 var(--font-ui); letter-spacing: .14em; text-transform: uppercase; }
 .site-footer__contact-group { display: grid; gap: var(--space-xs); }

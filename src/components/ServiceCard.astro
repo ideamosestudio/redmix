@@ -6,7 +6,7 @@ const { index, title, description, href, image, imageAlt } = Astro.props;
 ---
 <article class="service-card" data-card>
   <a class="service-card__image" href={href} aria-label={`Conocé ${title}`}>
-    <Picture src={image} formats={['avif']} fallbackFormat="webp" widths={[480, 720, 960]} sizes="(max-width: 760px) 100vw, 33vw" alt={imageAlt} loading="lazy" />
+    <Picture src={image} formats={['avif']} fallbackFormat="webp" widths={[480, 720, 960]} sizes="(max-width: 767px) 100vw, (max-width: 1199px) 47vw, 33vw" alt={imageAlt} loading="lazy" />
     <span>{index}</span>
   </a>
   <div class="service-card__body">
