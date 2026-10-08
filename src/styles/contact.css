@@ -70,3 +70,25 @@
   .site-footer > div,.site-footer__legal { grid-column: auto; }
   .site-footer__legal { flex-direction: column; }
 }
+
+/* Contact closes the page with the same graphite/red palette as the hero. */
+.final-cta { background: radial-gradient(ellipse at 0 20%,#72251b26,transparent 50%),#111315; }
+.final-cta::before { opacity: .055; }
+.final-cta__inner { align-items: start; padding-block: 72px; gap: 32px; }
+.final-cta__copy { grid-column: span 5; padding-right: 0; }
+.final-cta__copy > p:not(.section-code) { margin-block: 22px; }
+.final-cta .contact-form { grid-column: 7/span 6; padding: 32px; background: #1a1c1f; border-color: #ffffff20; box-shadow: 0 18px 50px #0003; }
+.final-cta .contact-form__heading { margin-bottom: 22px; padding-bottom: 18px; }
+.final-cta .form-field { margin-bottom: 18px; }
+.final-cta .form-field input,.final-cta .form-field textarea { padding: 11px 13px; border: 1px solid #ffffff30; border-radius: 3px; background: #101214; min-height: 46px; }
+.final-cta .form-field textarea { height: 104px; min-height: 104px; }
+.final-cta .form-field input:focus,.final-cta .form-field textarea:focus { outline: 2px solid #ff7265; outline-offset: 2px; border-color: #ff7265; box-shadow: none; }
+.final-contact-data { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; margin-top: 30px; padding-top: 24px; border-top: 1px solid #ffffff20; }
+.final-contact-data > div { display: grid; align-content: start; gap: 6px; min-width: 0; }
+.final-contact-data h3 { margin: 0 0 4px; color: #ff7968; font: 600 10px/1.5 'Montserrat',sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+.final-contact-data a,.final-contact-data address { font: 400 15px/1.6 'Roboto',sans-serif; color: #d3d5da; text-decoration: none; overflow-wrap: anywhere; }
+.final-contact-data a:hover { color: #fff; text-decoration: underline; text-underline-offset: 4px; }
+.final-contact-data__address { grid-column: 1/-1; }
+@media(max-width:1023px) { .final-cta__copy,.final-cta .contact-form { grid-column: auto; } .final-cta .contact-form { padding: 24px; } .final-contact-data { grid-template-columns: 1fr; } }
+@media(max-width:767px) { .final-cta__inner { padding-block: 56px; } .final-contact-data { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; } }
+@media(max-width:359px) { .final-contact-data { grid-template-columns: 1fr; } }
