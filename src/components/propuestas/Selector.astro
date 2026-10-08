@@ -17,11 +17,12 @@ const choices = [['camion', 'CAMIÓN · PRINCIPAL', root + '/'], ['logo', 'LOGO 
   const hero = document.querySelector('.concept-hero, .hero-root');
   if (hero) {
    const observer = new IntersectionObserver(([entry]) => {
-    panel.hidden = !entry.isIntersecting || entry.intersectionRatio <= 0.05;
+    panel.hidden = window.innerWidth >= 768 && (!entry.isIntersecting || entry.intersectionRatio <= 0.05);
     if (panel.hidden) panel.open = false;
    }, { rootMargin: '-88px 0px 0px 0px', threshold: [0, 0.05] });
    observer.observe(hero);
   }
+  window.addEventListener('resize', () => { if(window.innerWidth < 768) panel.hidden = false; });
   const close = () => { panel.open = false; trigger?.focus(); };
   panel.querySelector('[data-portadas-close]')?.addEventListener('click', close);
   document.addEventListener('keydown', event => { if (event.key === 'Escape' && panel.open) close(); });
@@ -43,4 +44,11 @@ const choices = [['camion', 'CAMIÓN · PRINCIPAL', root + '/'], ['logo', 'LOGO 
  nav a { display: flex; justify-content: space-between; padding: 14px 12px; margin-top: 7px; border: 1px solid #ffffff24; border-radius: 5px; color: #eee; text-decoration: none; font-size: 11px; font-weight: 600; }
  nav a:hover, nav a[aria-current] { background: #cf241a; border-color: #fb6953; }
  @media(max-width: 767px) { .portadas-panel { right: 6px; } summary { padding: 12px 8px; } }
+ @media(max-width:767px) {
+ .portadas-panel { position:relative; right:auto; top:auto; transform:none; z-index:10; padding:0 var(--page-gutter) 18px; background:#0b0e12; }
+ summary { width:fit-content; margin-inline:auto; flex-direction:row; gap:8px; min-height:44px; padding:8px 12px; border-color:#ffffff18; border-radius:3px; box-shadow:none; background:transparent; }
+ summary > span:last-child { writing-mode:horizontal-tb; font-size:9px; }
+ .portadas-panel__icon { font-size:16px; }
+ .portadas-panel__body { position:relative; right:auto; top:auto; transform:none; width:100%; max-width:100%; margin-top:10px; border-radius:4px; }
+ }
 </style>

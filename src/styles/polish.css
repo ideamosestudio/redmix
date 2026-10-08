@@ -517,3 +517,26 @@
  .final-cta .final-contact-data > div { grid-column:1; width:100%; }
  .final-cta .final-contact-data > div + div { border-top:1px solid #ffffff12; padding-top:18px; }
 }
+
+/* Mobile hero: offer, one primary action, then the truck. */
+.hero-mobile-conjunction,.hero-mobile-description { display:none; }
+.hero-desktop-conjunction { font:inherit; }
+@media(max-width:767px) {
+ body .concept-page--camion .concept-hero { padding-top:calc(var(--header-height) + 26px); padding-bottom:12px; height:auto; min-height:0; gap:0; }
+ body .concept-page--camion .concept-eyebrow { margin-bottom:18px; }
+ body .concept-page--camion .concept-copy h1 { font-size:clamp(28px,7.8vw,54px); line-height:1.08; letter-spacing:-.025em; }
+ body .concept-page--camion .hero-desktop-conjunction,body .concept-page--camion .hero-desktop-description { display:none; }
+ body .concept-page--camion .hero-mobile-conjunction { display:inline; font:inherit; }
+ body .concept-page--camion .hero-mobile-description { display:inline; }
+ body .concept-page--camion .concept-intro { border:0; padding:0; text-align:center; max-width:34ch; width:auto; margin:18px auto; font-size:14px; line-height:1.6; }
+ body .concept-page--camion .concept-actions { display:flex; flex-direction:column; align-items:center; gap:4px; }
+ body .concept-page--camion .concept-actions .technical-cta--solid { width:100%; min-height:50px; font-size:11px; padding:12px; white-space:nowrap; }
+ body .concept-page--camion .concept-actions .technical-cta:not(.technical-cta--solid) { min-height:44px; padding:10px 12px; border:0; background:transparent; box-shadow:none; font-size:10px; gap:10px; }
+ body .concept-page--camion .concept-actions .technical-cta:not(.technical-cta--solid) .tick { display:none; }
+ body .concept-page--camion .truck-scene { margin-top:0; height:clamp(250px,67vw,400px); }
+ body .concept-page--camion .truck-scene__shade { background:linear-gradient(180deg,#0b0e12,transparent 16%,transparent 82%,#0b0e12); }
+ body .concept-page--camion .truck-callout { display:none; }
+ body .concept-page--camion .truck-wordmark { opacity:.35; bottom:3%; }
+ body .concept-page--camion .concept-caption { position:relative; order:3; inset:auto; width:100%; margin-top:6px; padding-top:8px; }
+ body .concept-page--camion .concept-caption button { margin-right:0; }
+}
