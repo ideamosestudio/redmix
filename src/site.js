@@ -165,8 +165,3 @@ lightMedia.add('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: 
  });
  return () => cleanups.forEach(cleanup => cleanup());
 });
-document.querySelector('.footer-top')?.addEventListener('click', event => {
- event.preventDefault();
- window.scrollTo({ top: 0, behavior: motionPreference.matches ? 'instant' : 'smooth' });
- document.querySelector('.nav-logo')?.focus({ preventScroll: true });
-});

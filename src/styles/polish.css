@@ -28,12 +28,9 @@
 .site-footer__brand p { margin-top: 20px; color: #afb1b7; }
 .site-footer a:not(.technical-cta),.site-footer address { color: #c9cbd0; }
 .site-footer a.footer-contact-link { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; margin-top: 4px; color: #ff806c; font: 600 11px/1.4 'Montserrat',sans-serif; }
-.footer-contact-link .arrow-icon,.footer-top .arrow-icon { transition: transform .25s; }
+.footer-contact-link .arrow-icon { transition: transform .25s; }
 .footer-contact-link:hover .arrow-icon { transform: translate(2px,-2px); }
 .site-footer__legal { align-items: center; padding-right: 70px; }
-.site-footer a.footer-top { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font: 500 11px/1.4 'Montserrat',sans-serif; }
-.footer-top .arrow-icon { transform: rotate(-45deg); }
-.footer-top:hover .arrow-icon { transform: rotate(-45deg) translate(2px,-2px); }
 @media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
  .service-card:hover { translate: 0 -5px; border-color: #9e312338; box-shadow: 0 8px 18px #11121407,0 24px 48px #11121412; }
  .service-card:hover::after,.product-card:hover::before { opacity: 1; }
@@ -76,3 +73,15 @@
  .site-footer--editorial .footer-editorial-statement { font-size: 46px; }
  .site-footer--editorial > div.site-footer__legal { flex-direction: column; align-items: flex-start; }
 }
+
+/* Readable, thematic studio credit using the official brand asset. */
+.site-footer--editorial { row-gap: 28px; }
+.site-footer--editorial .footer-label,.site-footer--editorial .footer-editorial-location { color: #bfc1c7; font-size: 11px; }
+.site-footer--editorial .site-footer__contact-group a.footer-email-primary { color: #f2f1ee; font-size: 19px; }
+.site-footer--editorial .site-footer__contact-group a.footer-email-secondary { color: #bfc1c7; font-size: 14px; }
+.site-footer--editorial > div.site-footer__legal { margin-top: 0; color: #bfc1c7; }
+.site-footer a.footer-credit { display: inline-flex; align-items: center; gap: 14px; min-height: 44px; flex-wrap: wrap; color: #c4c6cc; font: 400 11px/1.6 'Montserrat',sans-serif; letter-spacing: 0; text-decoration: none; }
+.footer-credit img { display: block; width: 100px; height: auto; flex: 0 0 100px; transition: opacity .25s; }
+.site-footer a.footer-credit:hover { color: #fff; text-decoration: none; }
+.footer-credit:focus-visible { outline: 2px solid #ff806c; outline-offset: 6px; border-radius: 2px; }
+@media(max-width:767px) { .site-footer--editorial > div.site-footer__legal { padding-right: 0; gap: 16px; } .footer-credit { max-width: calc(100% - 60px); } }

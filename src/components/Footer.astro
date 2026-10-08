@@ -23,8 +23,8 @@ const href = (path = '/') => root + path;
   <div class="site-footer__contact">
     <p class="footer-label">Hablemos de tu obra</p>
     <div class="site-footer__contact-group">
-      <a href="mailto:info@redmix.com.ar">info@redmix.com.ar</a>
-      <a href="mailto:adm@redmix.com.ar">adm@redmix.com.ar</a>
+      <a class="footer-email-primary" href="mailto:info@redmix.com.ar">info@redmix.com.ar</a>
+      <a class="footer-email-secondary" href="mailto:adm@redmix.com.ar">adm@redmix.com.ar</a>
     </div>
     <div class="site-footer__contact-group">
       <a href="tel:+5491138245680">+54 9 11 3824 5680</a>
@@ -33,5 +33,5 @@ const href = (path = '/') => root + path;
     <address>Ruta Provincial 16 3297<br />Longchamps, Provincia de Buenos Aires</address>
     <a class="footer-contact-link" href="https://wa.me/5491138245680" target="_blank" rel="noopener noreferrer">CONVERSAR POR WHATSAPP <ArrowIcon /></a>
   </div>
-  <div class="site-footer__legal"><span>© {new Date().getFullYear()} REDMIX HORMIGONERA</span><a class="footer-top" href="#page-top">Volver arriba <ArrowIcon /></a></div>
+  <div class="site-footer__legal"><span>© {new Date().getFullYear()} REDMIX HORMIGONERA</span><a class="footer-credit" href="https://ideamos.com.ar/" target="_blank" rel="noopener noreferrer" aria-label="Los cimientos digitales, desarrollados por Ideamos. Visitar Ideamos"><span>Los cimientos digitales,<br />desarrollados por</span><img src={root + '/images/ideamos-light.webp'} width="870" height="213" alt="Ideamos" loading="lazy" decoding="async" /></a></div>
 </footer>
