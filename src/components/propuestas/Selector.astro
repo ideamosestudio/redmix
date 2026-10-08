@@ -18,9 +18,9 @@ const choices = [['camion', 'CAMIÓN · PRINCIPAL', root + '/'], ['logo', 'LOGO 
   const hero = document.querySelector('.concept-hero, .hero-root');
   if (hero) {
    const observer = new IntersectionObserver(([entry]) => {
-    panel.hidden = !entry.isIntersecting;
+    panel.hidden = !entry.isIntersecting || entry.intersectionRatio <= 0.05;
     if (panel.hidden) panel.open = false;
-   }, { rootMargin: '-88px 0px 0px 0px', threshold: 0 });
+   }, { rootMargin: '-88px 0px 0px 0px', threshold: [0, 0.05] });
    observer.observe(hero);
   }
   const close = () => { panel.open = false; trigger?.focus(); };

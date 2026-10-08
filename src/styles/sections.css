@@ -190,3 +190,13 @@
 .intro-section { padding-top: 64px; }
 .intro-section__image { align-self: start; margin-top: 34px; }
 @media(max-width:767px) { .intro-section { padding-top: 48px; } .intro-section__image { margin-top: 0; } }
+
+/* Compact service introduction and clear primary/secondary actions. */
+.services-section { padding-block: 72px; }
+.services-section::before { content: none; }
+.services-section .section-heading--row { gap: 16px; margin-bottom: 32px; }
+.services-section .section-heading::after { margin-top: 8px; }
+.service-card__details { display: inline-flex; align-items: center; justify-content: flex-start; align-self: flex-start; min-height: 44px; gap: 10px; color: #242527; font: 600 12px/1.3 'Montserrat',sans-serif; text-decoration: none; }
+.service-card__details:hover { color: #b51d14; }
+.service-card__details:focus-visible { outline: 2px solid #cf241a; outline-offset: 3px; }
+@media(max-width:767px) { .services-section { padding-block: 56px; } }
