@@ -9,9 +9,10 @@ const hero = document.querySelector('.hero');
 const objectWrap = document.querySelector('[data-object-wrap]');
 const heroCopy = document.querySelector('[data-copy]');
 const progressLine = document.querySelector('[data-progress]');
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-const mobile = window.matchMedia('(max-width: 720px)').matches;
-const tablet = window.matchMedia('(max-width: 900px)').matches;
+const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+let reducedMotion = motionPreference.matches;
+let mobile = window.matchMedia('(max-width: 767px)').matches;
+let tablet = window.matchMedia('(max-width: 1023px)').matches;
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
@@ -107,11 +108,26 @@ const redLight = new THREE.PointLight(0xff1f12, 9, 15, 2); redLight.position.set
 const rim = new THREE.DirectionalLight(0xff3a28, 3.8); rim.position.set(-5, 2, -4); scene.add(rim);
 
 let visible = true; let pointerX = 0; let pointerY = 0; let pointerEnergy = 0; let scrollProgress = 0;
+let frame = 0;
+let fittedDistance = camera.position.z;
 const clock = new THREE.Clock();
-function resize() { const { clientWidth, clientHeight } = objectWrap; renderer.setSize(clientWidth, clientHeight, false); camera.aspect = clientWidth / clientHeight; camera.updateProjectionMatrix(); }
+function resize() {
+  mobile = window.innerWidth < 768; tablet = window.innerWidth < 1024;
+  const { clientWidth, clientHeight } = objectWrap;
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, mobile ? 1.5 : 2));
+  renderer.setSize(clientWidth, clientHeight, false);
+  camera.aspect = clientWidth / Math.max(1, clientHeight);
+  logo.scale.setScalar(mobile ? .92 : tablet ? 1 : 1.125);
+  // Fit the fully expanded mark, not only its closed pose, to narrow canvases.
+  fittedDistance = Math.max(mobile ? 16.8 : tablet ? 16.1 : 15.4,
+    Math.max(7.8, 9.2 / Math.max(.1, camera.aspect)) / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2))));
+  camera.position.z = fittedDistance;
+  camera.updateProjectionMatrix();
+}
 function render() { renderer.render(scene, camera); }
 function animate() {
-  if (!visible || reducedMotion) return;
+  frame = 0;
+  if (!visible || reducedMotion || document.hidden) return;
   const elapsed = clock.getElapsedTime();
   const targetY = THREE.MathUtils.degToRad(-8 + pointerX * (mobile ? 5 : tablet ? 9 : 16) + Math.sin(scrollProgress * Math.PI) * (mobile ? 10 : 18));
   const targetX = THREE.MathUtils.degToRad(-3 - pointerY * (mobile ? 3 : tablet ? 5 : 8) - Math.sin(scrollProgress * Math.PI) * 4);
@@ -133,22 +149,30 @@ function animate() {
   pointerEnergy *= .94;
   redLight.position.x = -2.4 + Math.sin(elapsed * .7) * 2.1;
   redLight.intensity = 10;
-  render(); requestAnimationFrame(animate);
+  render(); frame = requestAnimationFrame(animate);
+}
+function syncAnimation() {
+  cancelAnimationFrame(frame); frame = 0;
+  if (visible && !reducedMotion && !document.hidden) frame = requestAnimationFrame(animate);
 }
 
 new ResizeObserver(() => { resize(); render(); }).observe(objectWrap);
-new IntersectionObserver(([entry]) => { const wasVisible = visible; visible = entry.isIntersecting; if (visible && !wasVisible) animate(); }, { rootMargin: '80px' }).observe(canvas);
+new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; syncAnimation(); }, { rootMargin: '80px' }).observe(canvas);
+document.addEventListener('visibilitychange', syncAnimation);
+motionPreference.addEventListener('change', () => { reducedMotion = motionPreference.matches; syncAnimation(); render(); });
 window.addEventListener('pointermove', (event) => {
   pointerX = (event.clientX / window.innerWidth - .5) * 2;
   pointerY = (event.clientY / window.innerHeight - .5) * 2;
   pointerEnergy = Math.min(1, pointerEnergy + .38);
 }, { passive: true });
 
-if (!reducedMotion && hero) {
-  gsap.timeline({ scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom bottom', scrub: .7, onUpdate: ({ progress }) => { scrollProgress = progress; progressLine.style.backgroundPosition = `${100 - progress * 100}% 0`; } } })
+const motion = gsap.matchMedia();
+motion.add('(prefers-reduced-motion: no-preference) and (min-width: 1024px) and (min-height: 800px)', () => {
+if (hero) {
+  gsap.timeline({ scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom bottom', scrub: .7, invalidateOnRefresh: true, onUpdate: ({ progress }) => { scrollProgress = progress; progressLine.style.backgroundPosition = `${100 - progress * 100}% 0`; } } })
     .to(heroCopy, { opacity: .78, ease: 'none', duration: 1 }, 0)
-    .to(camera.position, { z: mobile ? 15.1 : tablet ? 14.8 : 13.5, ease: 'none', duration: 1 }, 0);
-} else if (!reducedMotion && objectWrap) {
+    .to(camera.position, { z: () => fittedDistance * .98, ease: 'none', duration: 1 }, 0);
+} else if (objectWrap) {
   ScrollTrigger.create({
     trigger: objectWrap,
     start: 'top bottom',
@@ -156,9 +180,9 @@ if (!reducedMotion && hero) {
     scrub: .7,
     onUpdate: ({ progress }) => { scrollProgress = progress; },
   });
-} else {
-  bars.forEach((bar, index) => { bar.position.x = compressedX[index]; });
 }
+return () => { scrollProgress = 0; };
+});
 
-resize(); render(); animate();
+resize(); render(); syncAnimation();
 window.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });

@@ -14,8 +14,8 @@ const { index, title, description, href, image, imageAlt } = Astro.props;
     <h3><a href={href}>{title}</a></h3>
     <p>{description}</p>
     <div class="service-card__actions">
-      <a class="technical-cta technical-cta--solid technical-cta--compact" href={href}>
-        <span>VER MÁS</span>
+      <a class="technical-cta technical-cta--compact" href={href}>
+        <span>VER MÁS</span><i class="cta-arrow" aria-hidden="true">→</i>
         <i class="tick tick--a"></i><i class="tick tick--b"></i><i class="tick tick--c"></i><i class="tick tick--d"></i>
       </a>
       <WhatsAppCTA label="PEDÍ TU PRESUPUESTO" compact />

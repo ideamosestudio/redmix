@@ -3,24 +3,23 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 const navbar = document.querySelector('[data-navbar]');
 const menuToggle = document.querySelector('[data-menu-toggle]');
 const menu = document.querySelector('[data-menu]');
 
-document.documentElement.classList.add('motion-ready');
-
-const imageRevealObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    entry.target.classList.add('is-visible');
-    observer.unobserve(entry.target);
-  });
-}, { rootMargin: '0px 0px 10% 0px' });
-document.querySelectorAll('[data-image-reveal]').forEach((image) => imageRevealObserver.observe(image));
+const floatingWhatsApp = document.querySelector('.floating-whatsapp');
+const protectedControls = [...document.querySelectorAll('.contact-form, .technical-cta, .contact-info')];
 
 function updateNavbar() {
   navbar?.classList.toggle('is-scrolled', window.scrollY > 24);
+  if (!floatingWhatsApp) return;
+  const floating = floatingWhatsApp.getBoundingClientRect();
+  const overlaps = window.innerWidth < 768 && protectedControls.some((element) => {
+    const rect = element.getBoundingClientRect();
+    return rect.width && rect.bottom > floating.top - 12 && rect.top < floating.bottom + 12 && rect.right > floating.left - 12 && rect.left < floating.right;
+  });
+  floatingWhatsApp.classList.toggle('is-obstructing', overlaps);
 }
 
 updateNavbar();
@@ -30,104 +29,103 @@ window.addEventListener('scroll', () => {
   navbarFrame = requestAnimationFrame(() => { updateNavbar(); navbarFrame = 0; });
 }, { passive: true });
 
-menuToggle?.addEventListener('click', () => {
-  const open = menuToggle.getAttribute('aria-expanded') !== 'true';
-  menuToggle.setAttribute('aria-expanded', String(open));
-  menuToggle.setAttribute('aria-label', open ? 'Cerrar navegación' : 'Abrir navegación');
+function setMenu(open) {
+  menuToggle?.setAttribute('aria-expanded', String(open));
+  menuToggle?.setAttribute('aria-label', open ? 'Cerrar navegación' : 'Abrir navegación');
   menu?.classList.toggle('is-open', open);
   document.body.classList.toggle('menu-open', open);
-});
+  document.querySelectorAll('main,.hero-root,.site-footer').forEach(element => { element.inert = open; });
+}
+menuToggle?.addEventListener('click', () => setMenu(menuToggle.getAttribute('aria-expanded') !== 'true'));
 
 menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
-  menuToggle?.setAttribute('aria-expanded', 'false');
-  menu.classList.remove('is-open');
-  document.body.classList.remove('menu-open');
+  setMenu(false);
 }));
 
 window.addEventListener('keydown', (event) => {
-  if (event.key !== 'Escape' || menuToggle?.getAttribute('aria-expanded') !== 'true') return;
-  menuToggle.setAttribute('aria-expanded', 'false');
-  menuToggle.setAttribute('aria-label', 'Abrir navegación');
-  menu?.classList.remove('is-open');
-  document.body.classList.remove('menu-open');
-  menuToggle.focus();
+  if (menuToggle?.getAttribute('aria-expanded') !== 'true') return;
+  if (event.key === 'Escape') { setMenu(false); menuToggle.focus(); }
+  if (event.key === 'Tab') {
+    const links = [...navbar.querySelectorAll('a,button')].filter(e => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden');
+    const first = links[0], last = links.at(-1);
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  }
 });
 
-if (!reducedMotion) {
-  document.querySelectorAll('[data-reveal]').forEach((element) => {
-    const isImage = element.matches('[data-image-reveal]');
-    const horizontal = element.matches('.image-reveal--horizontal');
-    const flow = element.matches('.image-reveal--flow');
-    gsap.fromTo(element,
-      isImage
-        ? { autoAlpha: 1, x: horizontal ? 24 : flow ? -18 : 0, scale: 1.012 }
-        : { autoAlpha: 1, y: 14 },
-      isImage
-        ? { autoAlpha: 1, x: 0, scale: 1, duration: 1.05, ease: 'power3.out', scrollTrigger: { trigger: element, start: 'top 94%', once: true } }
-        : { autoAlpha: 1, y: 0, duration: .72, ease: 'power3.out', scrollTrigger: { trigger: element, start: 'top 94%', once: true } },
-    );
-  });
-
-  document.querySelectorAll('[data-stagger]').forEach((group) => {
-    const cards = group.querySelectorAll('[data-card]');
-    gsap.from(cards, { autoAlpha: 1, y: 28, duration: .8, stagger: .11, ease: 'power3.out', scrollTrigger: { trigger: group, start: 'top 90%', once: true } });
-  });
-
-  document.querySelectorAll('[data-image-reveal] picture img').forEach((image) => {
-    gsap.fromTo(image, { yPercent: -3, scale: 1.045 }, { yPercent: 3, scale: 1, ease: 'none', scrollTrigger: { trigger: image, start: 'top bottom', end: 'bottom top', scrub: .8 } });
-  });
-
-  document.querySelectorAll('.service-card__image img, .product-card picture img').forEach((image, index) => {
-    gsap.fromTo(image,
-      { scale: 1.045, xPercent: index % 2 ? 1.2 : -1.2 },
-      { scale: 1, xPercent: 0, duration: 1.05, ease: 'power3.out', scrollTrigger: { trigger: image, start: 'top 94%', once: true } },
-    );
-  });
-
-  const hero = document.querySelector('.hero-sticky');
-  if (hero) {
-    const timeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    timeline
-      .from('.measure, .object-tag, .hero-foot', { autoAlpha: 0, duration: .35, stagger: .04 }, .08)
-      .from('.blueprint path, .blueprint circle', { strokeDasharray: 260, strokeDashoffset: 260, duration: .6 }, .12)
-      .from('.hero .eyebrow', { y: 8, duration: .35 }, .22)
-      .from('.hero h1 > span', { y: 16, duration: .62, stagger: .08 }, .3)
-      .from('.hero-intro', { y: 8, duration: .42 }, .62)
-      .from('.hero-actions, .hero-mobile-action', { y: 8, duration: .42 }, .74);
-  }
-
-  if (window.matchMedia('(pointer:fine)').matches) {
-    document.querySelectorAll('.service-card__image').forEach((frame) => {
-      const image = frame.querySelector('img');
-      frame.addEventListener('pointermove', (event) => {
-        const rect = frame.getBoundingClientRect();
-        gsap.to(image, { x: ((event.clientX - rect.left) / rect.width - .5) * 4, y: ((event.clientY - rect.top) / rect.height - .5) * 4, duration: .45, ease: 'power2.out' });
-      });
-      frame.addEventListener('pointerleave', () => gsap.to(image, { x: 0, y: 0, duration: .5, ease: 'power2.out' }));
-    });
-  }
+window.addEventListener('resize', () => { if (window.innerWidth >= 1024) setMenu(false); setDropdown(dropdown?.classList.contains('is-open')); updateNavbar(); }, { passive: true });
+document.addEventListener('focusin', updateNavbar);
+const dropdown = document.querySelector('.nav-dropdown');
+const dropdownButton = dropdown?.querySelector('button');
+function setDropdown(open) {
+  dropdown?.classList.toggle('is-open', open);
+  dropdownButton?.setAttribute('aria-expanded', String(open || window.innerWidth < 1024));
 }
-
-document.querySelectorAll('[data-experience-counter]').forEach((counter) => {
-  if (reducedMotion) {
-    counter.textContent = '+20';
-    return;
+dropdownButton?.addEventListener('click', () => setDropdown(!dropdown.classList.contains('is-open')));
+dropdown?.addEventListener('pointerenter', event => { if (event.pointerType === 'mouse') setDropdown(true); });
+dropdown?.addEventListener('pointerleave', () => { if (!dropdown.contains(document.activeElement)) setDropdown(false); });
+dropdown?.addEventListener('focusin', () => setDropdown(true));
+dropdown?.addEventListener('focusout', event => { if (!dropdown.contains(event.relatedTarget)) setDropdown(false); });
+dropdown?.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && window.innerWidth >= 1024) {
+    event.stopPropagation();
+    // Moving focus out of a submenu link fires focusin. Close after that event.
+    dropdownButton.focus();
+    setDropdown(false);
   }
-  const observer = new IntersectionObserver(([entry]) => {
-    if (!entry.isIntersecting) return;
-    observer.disconnect();
-    let value = 1;
-    const timer = window.setInterval(() => {
-      value += 1;
-      counter.textContent = value === 20 ? '+20' : String(value).padStart(2, '0');
-      counter.animate(
-        [{ opacity: .35, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }],
-        { duration: 180, easing: 'cubic-bezier(.22,1,.36,1)' },
-      );
-      if (value === 20) window.clearInterval(timer);
-    }, 140);
-  }, { threshold: .6 });
-  observer.observe(counter);
+});
+setDropdown(false);
+
+// Dividers are CSS pseudo-elements: motion never inserts boxes or changes layout.
+const motion = gsap.matchMedia();
+motion.add('(prefers-reduced-motion: no-preference)', () => {
+  const internalHero = document.querySelector('.page-hero__copy, .contact-hero > div');
+  document.querySelectorAll('[data-reveal]').forEach(element => {
+    if (element === internalHero || element.closest('.faq-item')) return;
+    const reveal = gsap.timeline({ scrollTrigger: { trigger: element, start: 'top 94%', once: true } });
+    reveal.from(element, { y: 20, duration: .65, ease: 'power3.out', clearProps: 'transform' }, 0);
+    if (element.matches('.section-heading')) {
+      reveal.fromTo(element, { '--divider-scale': 0 }, { '--divider-scale': 1, duration: .55, ease: 'power3.out' }, 0);
+    }
+  });
+  document.querySelectorAll('[data-stagger]').forEach(group => {
+    gsap.from(group.querySelectorAll('[data-card]'), { y: 18, duration: .6, stagger: .08, ease: 'power3.out', clearProps: 'transform', scrollTrigger: { trigger: group, start: 'top 92%', once: true } });
+  });
+  if (document.querySelector('.hero-sticky')) {
+    gsap.timeline({ defaults: { ease: 'power3.out', duration: .65, clearProps: 'transform,opacity,visibility' } })
+      .from('.hero .eyebrow', { y: 12, opacity: 0 }, 0)
+      .from('.hero h1 > span', { y: 20, opacity: 0, stagger: .1 }, .1)
+      .from('.hero-intro', { y: 16, opacity: 0 }, .3)
+      .from('.hero-actions, .hero-mobile-action', { y: 12, opacity: 0 }, .4)
+      .from('.measure, .object-tag, .hero-foot, .blueprint', { opacity: 0, stagger: .08 }, .5);
+  }
+  if (internalHero) {
+    gsap.from(internalHero.children, { y: 20, duration: .65, stagger: .08, ease: 'power3.out', clearProps: 'transform' });
+  }
+  document.querySelectorAll('[data-experience-counter]').forEach(counter => {
+    const count = { value: 0 };
+    gsap.to(count, { value: 20, duration: 1.2, ease: 'power2.out', onUpdate: () => { counter.textContent = `+${Math.round(count.value)}`; }, scrollTrigger: { trigger: counter, start: 'top 90%', once: true } });
+  });
+  return () => document.querySelectorAll('[data-experience-counter]').forEach(counter => { counter.textContent = '+20'; });
+});
+
+// A single cancellable animation per FAQ; no padding changes on hover/open.
+document.querySelectorAll('.faq-item').forEach(details => {
+  const summary = details.querySelector('summary');
+  let animation, expanded = details.open;
+  summary.addEventListener('click', event => {
+    if (motionPreference.matches) { expanded = !details.open; return; }
+    event.preventDefault();
+    const start = details.getBoundingClientRect().height;
+    animation?.cancel();
+    expanded = !expanded;
+    details.open = true;
+    const end = expanded ? details.getBoundingClientRect().height : summary.getBoundingClientRect().height + 1;
+    details.style.overflow = 'hidden';
+    animation = details.animate({ height: [`${start}px`, `${end}px`] }, { duration: 250, easing: 'cubic-bezier(.22,1,.36,1)' });
+    animation.onfinish = () => { details.open = expanded; details.style.overflow = ''; animation = null; };
+  });
+  motionPreference.addEventListener('change', () => { animation?.cancel(); details.open = expanded; details.style.overflow = ''; });
 });
 
 document.querySelectorAll('[data-email-form]').forEach((form) => {

@@ -1,0 +1,15 @@
+@keyframes glow-drift { to { transform: translate3d(-2%,2%,0); } }
+/* A solid surface is the fallback; blur enhances rather than supplies contrast. */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .nav-shell,.nav-dropdown__panel { background: #111214; }
+  .image-reveal__meta { background: #151618; }
+  .final-cta .contact-form { background: #420c09; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  /* Accessibility is the only global important override, including GSAP inline transforms. */
+  *,*::before,*::after { animation: none !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
+  [data-reveal],[data-card],[data-image-reveal] { opacity: 1 !important; transform: none !important; }
+  .hero { height: auto; }
+  .hero-sticky { position: relative; }
+}
