@@ -3,11 +3,12 @@ import { Picture } from 'astro:assets';
 import ArrowIcon from './ArrowIcon.astro';
 interface Props { name: string; image: ImageMetadata; imageAlt: string; }
 const { name, image, imageAlt } = Astro.props;
+const productCode = name.replace(/^HORMIGÓN\s+/, '');
 const inquiry = 'https://wa.me/5491138245680?text=' + encodeURIComponent('Hola REDMIX, quisiera consultar disponibilidad y presupuesto para ' + name + '.');
 const widths = [...new Set([320, 520, 760, 960, image.width].filter(width => width <= image.width))].sort((a, b) => a - b);
 
 ---
 <article class="product-card" data-card>
   <Picture src={image} formats={['avif']} fallbackFormat="webp" widths={widths} quality={90} sizes="(max-width: 767px) calc(100vw - 48px), 50vw" alt={imageAlt} loading="lazy" />
-  <a class="product-card__link" href={inquiry} target="_blank" rel="noopener noreferrer" aria-label={"Consultar por " + name + " en WhatsApp"}><span class="product-card__direction"><ArrowIcon /></span><div class="product-card__caption"><h3>{name}</h3><span class="product-card__action">Consultar disponibilidad <ArrowIcon direction="right" /></span></div></a>
+  <a class="product-card__link" href={inquiry} target="_blank" rel="noopener noreferrer" aria-label={"Consultar por " + name + " en WhatsApp"}><div class="product-card__caption"><h3><span class="product-card__kind">HORMIGÓN</span><span class="product-card__name">{productCode}</span></h3><span class="product-card__action">Consultar por WhatsApp <ArrowIcon /></span></div></a>
 </article>
