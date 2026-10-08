@@ -88,14 +88,14 @@
 .nav-dropdown__panel a:hover { background: #ffffff09; }
 @media(min-width: 1024px) {
  .nav-shell { grid-template-columns: minmax(175px,1fr) auto minmax(205px,1fr); gap: 24px; }
- .nav-links { gap: 4px; padding: 4px; border: 1px solid #ffffff12; border-radius: 7px; background: #ffffff03; }
- .nav-links > a:not(.nav-budget), .nav-dropdown > button { padding: 16px 20px; border-radius: 4px; color: #e3e3e5; }
- .nav-links > a:not(.nav-budget):hover,.nav-dropdown > button:hover,.nav-links > a.is-current { background: #ffffff08; }
- .nav-links > a:not(.nav-budget)::after,.nav-dropdown > button::after { left: 20px; right: 20px; bottom: 8px; }
- .nav-budget--desktop { min-height: 50px; padding: 5px 5px 5px 18px; gap: 16px; border: 1px solid #ffffff28; border-radius: 6px; background: #ffffff04; font-size: 11px; letter-spacing: .01em; }
- .nav-budget--desktop svg { box-sizing: content-box; padding: 12px; background: #e33223; border-radius: 3px; transition: background .2s; }
- .nav-budget--desktop:hover { background: #ffffff0a; border-color: #ffffff50; }
- .nav-budget--desktop:hover svg { background: #fa4935; }
+ .nav-links { gap: clamp(24px,2.5vw,40px); padding: 0; border: 0; border-radius: 0; background: transparent; }
+ .nav-links > a:not(.nav-budget), .nav-dropdown > button { padding: 16px 0; border-radius: 0; color: #e3e3e5; font-size: 13px; letter-spacing: .04em; }
+ .nav-links > a:not(.nav-budget):hover,.nav-dropdown > button:hover,.nav-links > a.is-current { background: transparent; color: #fff; }
+ .nav-links > a:not(.nav-budget)::after,.nav-dropdown > button::after { left: 0; right: 0; bottom: 8px; }
+ .nav-budget--desktop { min-height: 48px; padding: 14px 20px; gap: 14px; border: 1px solid #f14c39; border-radius: 5px; background: linear-gradient(120deg,#ef3c28,#cc251b); font-size: 12px; letter-spacing: .01em; }
+ .nav-budget--desktop svg { flex: 0 0 auto; padding: 0; background: transparent; border-radius: 0; transition: transform .2s; }
+ .nav-budget--desktop:hover { background: #e63b28; border-color: #ff7762; }
+ .nav-budget--desktop:hover svg { background: transparent; transform: translate(2px,-2px); }
 }
-@media(min-width: 1024px) and (max-width: 1199px) { .nav-shell { gap: 16px; } .nav-links > a:not(.nav-budget),.nav-dropdown > button { padding-inline: 12px; font-size: 11px; } }
+@media(min-width: 1024px) and (max-width: 1199px) { .nav-shell { gap: 16px; } .nav-links > a:not(.nav-budget),.nav-dropdown > button { padding-inline: 0; font-size: 12px; } }
 @media(max-width:1023px) { .nav-toggle { border: 1px solid #ffffff26; border-radius: 6px; background: #ffffff05; } .nav-links > a:not(.nav-budget),.nav-dropdown > button { letter-spacing: .02em; } .nav-dropdown__panel { padding: 4px 12px; } }
