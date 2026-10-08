@@ -41,10 +41,10 @@
 /* Internal heroes: one header compensation, never a second padding on main. */
 .page-hero { position: relative; display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); align-items: center; gap: var(--grid-gap); padding: var(--hero-start) var(--page-gutter) var(--space-compact); background: radial-gradient(circle at 82% 22%,rgba(196,22,13,.16),transparent 30%),linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px),var(--ink); background-size: auto,64px 64px,64px 64px,auto; }
 .page-hero__copy { position: relative; z-index: 2; grid-column: span 6; min-width: 0; padding-right: var(--space-lg); }
-.page-hero h1,.contact-hero h1 { margin: 0; font: 400 var(--type-landing)/.88 var(--font-display); letter-spacing: .018em; text-transform: uppercase; }
-.page-hero h1 { display: flex; flex-direction: column; gap: .12em; }
+.page-hero h1,.contact-hero h1 { margin: 0; font: 700 var(--type-landing)/1.04 var(--font-display); letter-spacing: -.025em; text-transform: uppercase; }
+.page-hero h1 { display: flex; flex-direction: column; gap: .08em; }
 .page-hero h1 span { display: block; }
-.page-hero__intro { max-width: 58ch; margin: var(--space-group) 0; padding-top: var(--space-lg); border-top: 1px solid var(--keyline); }
+.page-hero__intro { max-width: 58ch; margin: 28px 0; padding-top: var(--space-lg); border-top: 1px solid var(--keyline); }
 .page-hero__intro p,.page-hero__lead { color: var(--text-body); font-size: 16px; line-height: 1.65; }
 .page-hero__intro p { margin: 0; }
 .page-hero__intro p + p { margin-top: var(--space-md); }
@@ -52,9 +52,9 @@
 .breadcrumbs { display: flex; flex-wrap: wrap; gap: var(--space-xs); margin-bottom: var(--space-group); color: var(--text-muted); font: 500 11px/1.5 var(--font-ui); letter-spacing: .06em; text-transform: uppercase; }
 .breadcrumbs a { text-underline-offset: 4px; }
 .about-hero .eyebrow { margin-bottom: var(--space-group); }
-.about-hero h1 { font-size: clamp(112px,10vw,180px); line-height: .84; letter-spacing: .025em; }
-.about-hero h1 em { color: var(--red); font-style: normal; }
-.about-hero .page-hero__lead { max-width: 32ch; margin: var(--space-group) 0; font-size: var(--type-lead); line-height: 1.5; }
+.about-hero h1 { font-size: clamp(56px,5vw,84px); line-height: 1.04; letter-spacing: -.025em; }
+.about-hero h1 em { font-style: normal; }
+.about-hero .page-hero__lead { max-width: 32ch; margin: 28px 0; font-size: var(--type-lead); line-height: 1.5; }
 .about-hero__logo { position: relative; isolation: isolate; grid-column: span 6; min-width: 0; width: 100%; height: clamp(440px,42vw,680px); }
 
 @media (max-width: 1023px) {
@@ -74,7 +74,7 @@
   .page-hero__copy { max-width: 800px; }
   .page-hero__image { height: auto; aspect-ratio: 4/3; }
   .about-hero { grid-template-columns: repeat(2,minmax(0,1fr)); gap: var(--space-lg); align-items: center; }
-  .about-hero h1 { font-size: clamp(94px,12vw,124px); }
+  .about-hero h1 { font-size: clamp(48px,5.8vw,66px); }
   .about-hero__logo { height: 400px; }
 }
 @media (max-width: 767px) {
@@ -88,14 +88,14 @@
   .page-hero { gap: 40px; padding-bottom: var(--space-compact); }
   .page-hero__copy { text-align: center; }
   .page-hero .eyebrow { justify-content: center; }
-  .page-hero h1 { line-height: .92; }
+  .page-hero h1 { line-height: 1.06; }
   .page-hero__intro { margin: var(--space-group) 0; padding-top: var(--space-lg); }
   .page-hero__image { height: auto; aspect-ratio: 4/3; }
   .breadcrumbs { justify-content: center; gap: var(--space-xs); margin-bottom: var(--space-group); }
   .breadcrumbs span[aria-current='page'] { flex-basis: 100%; }
   .about-hero { grid-template-columns: 1fr; gap: var(--space-lg); }
   .about-hero .eyebrow { margin-bottom: var(--space-lg); }
-  .about-hero h1 { font-size: clamp(88px,24vw,132px); line-height: .88; }
+  .about-hero h1 { font-size: var(--type-landing); line-height: 1.06; }
   .about-hero .page-hero__lead { margin: var(--space-lg) auto var(--space-group); }
   .about-hero__logo { height: clamp(240px,70vw,360px); }
   .page-hero .technical-cta { width: min(100%,360px); }

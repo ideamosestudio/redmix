@@ -83,7 +83,7 @@ motion.add('(prefers-reduced-motion: no-preference)', () => {
   document.querySelectorAll('[data-reveal]').forEach(element => {
     if (element === internalHero || element.closest('.faq-item')) return;
     const reveal = gsap.timeline({ scrollTrigger: { trigger: element, start: 'top 94%', once: true } });
-    reveal.from(element, { y: 20, duration: .65, ease: 'power3.out', clearProps: 'transform' }, 0);
+    reveal.from(element, { y: element.querySelector('h2') ? 12 : 20, opacity: element.querySelector('h2') ? 0.35 : 1, duration: .6, ease: 'power3.out', clearProps: 'transform,opacity' }, 0);
     if (element.matches('.section-heading')) {
       reveal.fromTo(element, { '--divider-scale': 0 }, { '--divider-scale': 1, duration: .55, ease: 'power3.out' }, 0);
     }
@@ -100,7 +100,7 @@ motion.add('(prefers-reduced-motion: no-preference)', () => {
       .from('.hero-orbits, .hero-signature', { opacity: 0, stagger: .08 }, .5);
   }
   if (internalHero) {
-    gsap.from(internalHero.children, { y: 20, duration: .65, stagger: .08, ease: 'power3.out', clearProps: 'transform' });
+    gsap.from(internalHero.children, { y: 14, duration: .6, stagger: .09, ease: 'power3.out', clearProps: 'transform' });
   }
   document.querySelectorAll('[data-experience-counter]').forEach(counter => {
     const count = { value: 0 };

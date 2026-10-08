@@ -1,5 +1,4 @@
 /* Shared tokens; each component owns its base and responsive rules. */
-@font-face { font-family: 'Esperano'; src: url('/fonts/esperano.ttf') format('truetype'); font-display: swap; }
 :root {
   color: #f1f0ed; background: #111214; font-family: 'Roboto',Arial,sans-serif; font-weight: 300;
   font-synthesis: none; text-rendering: geometricPrecision;
@@ -12,11 +11,11 @@
   --page-gutter: clamp(24px,6vw,104px); --grid-gap: 24px;
   --header-height: 88px; --hero-start: calc(var(--header-height) + 64px);
   --form-padding: clamp(40px,3.3vw,48px);
-  --font-display: 'Esperano',Impact,sans-serif; --font-ui: 'Montserrat',Arial,sans-serif;
+  --font-display: 'Barlow Semi Condensed',Impact,sans-serif; --font-ui: 'Montserrat',Arial,sans-serif;
   --font-card: 'Barlow Semi Condensed',Arial,sans-serif;
   --font-action: 'Barlow Semi Condensed',Arial,sans-serif;
-  --type-hero: clamp(112px,8.2vw,176px); --type-landing: clamp(82px,6.2vw,120px);
-  --type-section: clamp(70px,7.4vw,142px); --type-editorial: clamp(56px,5.2vw,100px);
+  --type-hero: clamp(112px,8.2vw,176px); --type-landing: clamp(56px,5vw,84px);
+  --type-section: clamp(50px,4.55vw,76px); --type-editorial: clamp(46px,4vw,66px);
   --type-card: clamp(20px,1.6vw,28px); --type-lead: clamp(18px,1.3vw,20px);
   --type-body: 16px; --type-label: 11px; --type-nav: 13px;
   --ease-heavy: cubic-bezier(.22,1,.36,1);
@@ -38,13 +37,13 @@ img { max-width: 100%; }
   :root { --page-gutter: clamp(32px,calc(9.26vw - 39.12px),72px); --space-section: 96px; }
 }
 @media (max-width: 1023px) {
-  :root { --header-height: 72px; --hero-start: 128px; --type-section: clamp(70px,9vw,100px); --type-landing: clamp(78px,10vw,100px); }
+  :root { --header-height: 72px; --hero-start: 128px; --type-section: clamp(43px,5.2vw,60px); --type-landing: clamp(48px,5.8vw,66px); --type-editorial: clamp(40px,4.8vw,55px); }
 }
 @media (max-width: 767px) {
   :root { --page-gutter: 24px; --hero-start: 120px; --form-padding: 24px; --space-section: 80px;
-    --type-hero: clamp(58px,16vw,88px); --type-section: clamp(64px,17vw,100px);
-    --type-editorial: clamp(56px,15vw,88px); --type-landing: clamp(54px,14vw,88px); --type-card: 24px; }
+    --type-hero: clamp(58px,16vw,88px); --type-section: clamp(36px,9.8vw,47px);
+    --type-editorial: clamp(34px,9.4vw,44px); --type-landing: clamp(38px,10.4vw,52px); --type-card: 24px; }
 }
 @media (max-width: 359px) {
-  :root { --page-gutter: 20px; --space-section: 72px; --form-padding: 20px; --type-section: 60px; --type-landing: 50px; --type-hero: 54px; }
+  :root { --page-gutter: 20px; --space-section: 72px; --form-padding: 20px; --type-section: 33px; --type-editorial: 31px; --type-landing: 35px; --type-hero: 54px; }
 }

@@ -1,0 +1,82 @@
+/* REDMIX — unified headline treatment. Typography only; approved desktop hero excluded. */
+:root {
+  --headline-ink: #f7f4ef;
+  --headline-gradient: linear-gradient(110deg,#ffb392 -10%,#ff5946 35%,#ed201b 90%);
+  --headline-gradient-light: linear-gradient(110deg,#981711 0%,#bd2118 52%,#d42f1f 100%);
+  --headline-gradient-red: linear-gradient(110deg,#fffaf4 0%,#ffe7d6 55%,#ffd2b5 100%);
+}
+/* Preserve the cinematic hero: its rules remain the source of truth. */
+:where(.home-content,.inner-page) :where(.section-heading h2,.experience-section h2,.split-info h2,.about-copy h2,.final-cta h2,.page-hero h1,.contact-hero h1) {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -.02em;
+  text-wrap: balance;
+  overflow-wrap: normal;
+}
+:where(.home-content,.inner-page) :where(.section-heading h2,.experience-section h2,.split-info h2,.about-copy h2,.final-cta h2,.page-hero h1,.contact-hero h1) :is(em,.type-accent),
+.page-hero h1 > .type-accent {
+  color: #ff5946;
+  background: var(--headline-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-style: normal;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+/* Light sections must use deeper accessible reds. */
+:where(.services-section,.split-info--accent) :where(h2,h3) :is(em,.type-accent) {
+  color: #a8150f;
+  background-image: var(--headline-gradient-light);
+}
+:where(.services-section,.split-info--accent) :where(h2,h3) { color: #151618; }
+/* Red CTA is a different chromatic surface. */
+.final-cta h2 {
+  color: #fffaf4;
+  background: var(--headline-gradient-red);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  overflow-wrap: normal;
+}
+.contact-hero h1 {
+  color: #ff8d75;
+  background: var(--headline-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  overflow-wrap: anywhere;
+}
+/* Correct previous Esperano metrics without changing section shells or grid geometry. */
+:where(.section-heading,.about-copy,.experience-section__copy,.split-info) .section-code { margin-bottom: 18px; }
+.intro-section h2,.about-copy h2,.experience-section h2,.split-info h2,.faq-section h2 { font-size: var(--type-editorial); }
+.section-heading h2 { font-size: var(--type-section); }
+.intro-section h2 { font-size: var(--type-editorial); }
+.experience-section h2 { font-size: clamp(40px,3.5vw,58px); }
+.page-hero h1,.contact-hero h1 { font-size: var(--type-landing); }
+.page-hero h1 > span { max-width: 100%; white-space: normal; }
+.page-hero__intro { margin-block: 28px; }
+.about-hero .page-hero__lead { margin-block: 28px; }
+.final-cta h2 { font-size: clamp(48px,4.5vw,74px); }
+.product-card h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: -.015em; }
+@media (max-width:1199px) {
+  .experience-section h2 { font-size: clamp(38px,4vw,52px); }
+  .final-cta h2 { font-size: clamp(43px,5.2vw,60px); }
+}
+@media (max-width:767px) {
+  :where(.section-heading,.about-copy,.experience-section__copy,.split-info) .section-code { margin-bottom: 14px; }
+  .experience-section h2 { font-size: clamp(34px,8.8vw,44px); }
+  .page-hero__intro { margin-block: 22px; }
+  .about-hero .page-hero__lead { margin-block: 22px; }
+  .final-cta h2 { font-size: clamp(36px,9.8vw,47px); }
+  .section-heading--row { margin-bottom: 32px; }
+}
+@media (max-width:359px) {
+  .experience-section h2 { font-size: 31px; }
+  .final-cta h2 { font-size: 33px; }
+}
+@supports not (-webkit-background-clip: text) {
+  .final-cta h2 { color: #fff3e8; background: none; -webkit-text-fill-color: currentColor; }
+  .contact-hero h1 { color: #ff7861; background: none; -webkit-text-fill-color: currentColor; }
+}
