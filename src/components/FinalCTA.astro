@@ -2,7 +2,7 @@
 import WhatsAppCTA from './WhatsAppCTA.astro';
 import ContactForm from './ContactForm.astro';
 interface Props { title?: string; text?: string; label?: string; message?: string; }
-const { title = 'HABLEMOS DE TU OBRA', text = 'Contanos qué necesitás y consultá tu presupuesto.', label = 'CONSULTAR PRESUPUESTO', message } = Astro.props;
+const { title = 'HABLEMOS DE TU OBRA', text = 'Contanos qué necesitás para tu obra.', label = 'COTIZAR POR WHATSAPP', message } = Astro.props;
 ---
 <section class="final-cta" id="presupuesto">
  <div class="final-cta__inner">
@@ -11,13 +11,13 @@ const { title = 'HABLEMOS DE TU OBRA', text = 'Contanos qué necesitás y consul
     <h2>{title === 'HABLEMOS DE TU OBRA' ? <>HABLEMOS DE<br /><em>TU OBRA.</em></> : title}</h2>
     <p>{text}</p>
     <div class="quote-guide" data-quote-guide hidden>
-      <p id="quote-guide-label">¿Qué necesitás para tu obra?</p>
+      <p id="quote-guide-label">Elegí el servicio y consultanos por WhatsApp.</p>
       <div class="quote-guide__choices" role="group" aria-labelledby="quote-guide-label">
         <button type="button" data-quote-service="hormigón elaborado" aria-pressed="false">Hormigón</button>
         <button type="button" data-quote-service="servicio de bombeo" aria-pressed="false">Bombeo</button>
-        <button type="button" data-quote-service="hormigón elaborado y bombeo" aria-pressed="false">Ambos</button>
+        <button type="button" data-quote-service="hormigón elaborado y bombeo" aria-pressed="false">Hormigón + bombeo</button>
       </div>
-      <p class="quote-guide__status" aria-live="polite" aria-atomic="true">Elegí el servicio para tu consulta por WhatsApp.</p>
+      <p class="quote-guide__status" aria-live="polite" aria-atomic="true"></p>
     </div>
     <WhatsAppCTA {label} {message} icon class="quote-guide__cta" />
     <div class="final-contact-data">
