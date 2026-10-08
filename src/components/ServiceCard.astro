@@ -12,7 +12,7 @@ const coverScale = Math.max(1, (image.width / image.height) / (4 / 3));
 <article class="service-card" data-card>
   <a class="service-card__image" href={href} aria-label={`Conocé ${title}`}>
     <Picture src={image} formats={['avif']} fallbackFormat="webp" widths={widths} quality={90} sizes={`(max-width: 767px) ${100 * coverScale}vw, (max-width: 1199px) ${50 * coverScale}vw, ${34 * coverScale}vw`} alt={imageAlt} loading="lazy" />
-    <span class="service-card__explore">EXPLORAR SERVICIO<ArrowIcon direction="right" /></span>
+    <span class="service-card__explore" aria-hidden="true"><span class="service-card__explore-idle">EXPLORAR SERVICIO<ArrowIcon direction="right" /></span><span class="service-card__explore-active">VER<br />SERVICIO<ArrowIcon /></span></span>
   </a>
   <div class="service-card__body">
     <h3><a href={href}>{title}</a></h3>
