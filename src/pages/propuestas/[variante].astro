@@ -1,4 +1,5 @@
 ---
+import IndustrialBackdrop from '../../components/IndustrialBackdrop.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Selector from '../../components/propuestas/Selector.astro';
 import WhatsAppCTA from '../../components/WhatsAppCTA.astro';
@@ -13,10 +14,10 @@ const details = {
 }[variante];
 ---
 <BaseLayout title={details.name + ' | Propuestas REDMIX'} description="Comparación de propuestas visuales para la portada de REDMIX." noindex>
-  <div class="concept-toolbar"><Selector active={variante}/></div>
+  <Selector active={variante}/>
   <main class:list={['concept-page', 'concept-page--' + variante]}>
     <section class="concept-hero" aria-labelledby="concept-title" data-concept={variante}>
-      <div class="concept-atmosphere" aria-hidden="true"></div>
+      <div class="concept-atmosphere" aria-hidden="true">{variante !== 'descarga' && <IndustrialBackdrop variant={variante}/>}</div>
       {variante === 'camion' && <div class="concept-truck" data-truck><img src={root + '/propuestas/camion-concepto.webp'} width="1536" height="1024" alt="Camión mixer conceptual con cabina blanca y tambor rojo" fetchpriority="high"/><span aria-hidden="true">REDMIX</span></div>}
       {variante === 'tambor' && <div class="concept-drum"><div class="concept-drum__halo" aria-hidden="true"></div><canvas data-drum aria-label="Tambor rojo de hormigonera girando en tres dimensiones" role="img"></canvas><span class="concept-drum__label">MEZCLA EN MOVIMIENTO <i></i></span><p class="concept-fallback" hidden>La escena 3D no está disponible en este navegador.</p></div>}
       {variante === 'descarga' && <div class="concept-film"><video data-concept-video muted loop playsinline preload="metadata" poster={root + '/propuestas/descarga-magnific.jpg'} aria-label="Descarga de hormigón desde una hormigonera"><source src={root + '/propuestas/descarga-magnific.mp4'} type="video/mp4"/></video><div class="concept-film__shade"></div></div>}

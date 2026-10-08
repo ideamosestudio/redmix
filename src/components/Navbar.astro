@@ -16,18 +16,18 @@ const whatsappUrl = 'https://wa.me/5491138245680?text=Hola%20Redmix%2C%20quisier
   </button>
 
   <nav class="nav-links" id="main-nav" aria-label="Navegación principal" data-menu>
-    <a class:list={{ 'is-current': current('/quienes-somos') }} href={href('/quienes-somos')}><span>01</span>Quiénes somos</a>
+    <a class:list={{ 'is-current': current('/quienes-somos') }} href={href('/quienes-somos')}>Quiénes somos</a>
     <div class:list={['nav-dropdown', { 'is-current': current('/servicios') }]}>
-      <button type="button" aria-expanded="false" aria-controls="service-nav"><span>02</span>Servicios</button>
+      <button type="button" aria-expanded="false" aria-controls="service-nav">Servicios</button>
       <div class="nav-dropdown__panel" id="service-nav">
         <a href={href('/servicios/hormigon-elaborado')}>Hormigón elaborado</a>
         <a href={href('/servicios/acarreo-bomba')}>Acarreo de bomba</a>
         <a href={href('/servicios/bombeo-hormigon')}>Bombeo de hormigón</a>
       </div>
     </div>
-    <a class:list={{ 'is-current': current('/contacto') }} href={href('/contacto')}><span>03</span>Contacto</a>
-    <a class="nav-budget nav-budget--mobile" href={whatsappUrl} target="_blank" rel="noopener noreferrer">SOLICITAR PRESUPUESTO</a>
+    <a class:list={{ 'is-current': current('/contacto') }} href={href('/contacto')}>Contacto</a>
+    <a class="nav-budget nav-budget--mobile" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Pedir presupuesto</a>
   </nav>
 
-  <a class="nav-budget nav-budget--desktop" href={whatsappUrl} target="_blank" rel="noopener noreferrer"><i></i><span>SOLICITAR PRESUPUESTO</span></a>
+  <a class="nav-budget nav-budget--desktop" href={whatsappUrl} target="_blank" rel="noopener noreferrer"><span>Pedir presupuesto</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
 </header>

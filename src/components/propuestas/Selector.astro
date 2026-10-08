@@ -3,7 +3,36 @@ const { active = '' } = Astro.props;
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const choices = [['', '00 / ACTUAL', root + '/'], ['camion', '01 / CAMIÓN', root + '/propuestas/camion/'], ['tambor', '02 / TAMBOR 3D', root + '/propuestas/tambor/'], ['descarga', '03 / VIDEO', root + '/propuestas/descarga/']];
 ---
-<nav class="concept-selector" aria-label="Comparar propuestas de portada">
-  <span class="concept-selector__label">EXPLORÁ LAS PORTADAS</span>
-  <div>{choices.map(([key, label, href]) => <a href={href} aria-current={active === key ? 'page' : undefined}>{label}</a>)}</div>
-</nav>
+<details class="portadas-panel" data-portadas-panel>
+  <summary aria-label="Abrir o cerrar el selector de portadas"><span class="portadas-panel__icon" aria-hidden="true">◧</span><span>PORTADAS</span></summary>
+  <nav class="portadas-panel__body" aria-label="Comparar propuestas de portada">
+    <div class="portadas-panel__heading"><span>EXPLORÁ LAS PORTADAS</span><button type="button" data-portadas-close aria-label="Cerrar selector de portadas">×</button></div>
+    {choices.map(([key, label, href]) => <a href={href} aria-current={active === key ? 'page' : undefined}>{label}<span aria-hidden="true">↗</span></a>)}
+    <a class="portadas-panel__compare" href={root + '/propuestas/'}>Ver comparación<span aria-hidden="true">↗</span></a>
+  </nav>
+</details>
+<script>
+ document.querySelectorAll<HTMLDetailsElement>('[data-portadas-panel]').forEach(panel => {
+  const trigger = panel.querySelector('summary');
+  const close = () => { panel.open = false; trigger?.focus(); };
+  panel.querySelector('[data-portadas-close]')?.addEventListener('click', close);
+  document.addEventListener('keydown', event => { if (event.key === 'Escape' && panel.open) close(); });
+  document.addEventListener('pointerdown', event => { if (panel.open && event.target instanceof Node && !panel.contains(event.target)) panel.open = false; });
+ });
+</script>
+<style>
+ :global(body.menu-open) .portadas-panel { visibility: hidden; }
+ .portadas-panel { position: fixed; right: 12px; top: 50%; transform: translateY(-50%); z-index: 90; font-family: 'Montserrat',sans-serif; }
+ summary { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 14px 10px; color: #eee; background: #17191ded; border: 1px solid #ffffff30; border-radius: 8px; box-shadow: 0 8px 24px #0005; cursor: pointer; list-style: none; }
+ summary::-webkit-details-marker { display: none; }
+ summary > span:last-child { writing-mode: vertical-rl; font-size: 9px; font-weight: 600; letter-spacing: .12em; }
+ .portadas-panel__icon { color: #ff624d; font-size: 20px; line-height: 1; }
+ summary:hover, summary:focus-visible { border-color: #ff624d; }
+ .portadas-panel__body { position: absolute; right: calc(100% + 10px); top: 50%; transform: translateY(-50%); width: 270px; max-width: calc(100vw - 76px); padding: 18px; border: 1px solid #ffffff30; border-radius: 12px; background: #17191df5; backdrop-filter: blur(18px); box-shadow: 0 16px 60px #0009; }
+ .portadas-panel__heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; color: #bfc1ca; font-size: 9px; font-weight: 600; letter-spacing: .1em; }
+ button { width: 32px; height: 32px; border: 0; border-radius: 4px; background: #ffffff0d; color: white; font-size: 24px; cursor: pointer; }
+ nav a { display: flex; justify-content: space-between; padding: 14px 12px; margin-top: 7px; border: 1px solid #ffffff24; border-radius: 5px; color: #eee; text-decoration: none; font-size: 11px; font-weight: 600; }
+ nav a:hover, nav a[aria-current] { background: #cf241a; border-color: #fb6953; }
+ nav a.portadas-panel__compare { border: 0; color: #bfc1ca; font-size: 10px; margin-top: 12px; }
+ @media(max-width: 767px) { .portadas-panel { right: 6px; } summary { padding: 12px 8px; } }
+</style>
