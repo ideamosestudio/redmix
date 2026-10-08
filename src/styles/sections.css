@@ -184,3 +184,9 @@
 .intro-section .technical-cta { min-height: 54px; border-radius: 3px; border-color: #ff6956; background: linear-gradient(120deg,#ff4b32,#d21c15); box-shadow: 0 6px 30px #f2262026; font: 600 12px/1.3 'Montserrat',sans-serif; }
 .intro-section .technical-cta .tick { display: none; }
 @media(max-width:767px) { .intro-section { padding-block: 64px 56px; row-gap: 20px; } .intro-section .section-heading h2 { font-size: clamp(36px,9vw,48px); } .intro-section__body > p { font-size: 16px; } }
+
+/* One label and a shared headline/image baseline. */
+.intro-section::before { content: none; }
+.intro-section { padding-top: 64px; }
+.intro-section__image { align-self: start; margin-top: 34px; }
+@media(max-width:767px) { .intro-section { padding-top: 48px; } .intro-section__image { margin-top: 0; } }

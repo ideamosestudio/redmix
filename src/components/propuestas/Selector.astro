@@ -15,6 +15,14 @@ const choices = [['camion', 'CAMIÓN · PRINCIPAL', root + '/'], ['logo', 'LOGO 
 <script>
  document.querySelectorAll<HTMLDetailsElement>('[data-portadas-panel]').forEach(panel => {
   const trigger = panel.querySelector('summary');
+  const hero = document.querySelector('.concept-hero, .hero-root');
+  if (hero) {
+   const observer = new IntersectionObserver(([entry]) => {
+    panel.hidden = !entry.isIntersecting;
+    if (panel.hidden) panel.open = false;
+   }, { rootMargin: '-88px 0px 0px 0px', threshold: 0 });
+   observer.observe(hero);
+  }
   const close = () => { panel.open = false; trigger?.focus(); };
   panel.querySelector('[data-portadas-close]')?.addEventListener('click', close);
   document.addEventListener('keydown', event => { if (event.key === 'Escape' && panel.open) close(); });
@@ -23,6 +31,7 @@ const choices = [['camion', 'CAMIÓN · PRINCIPAL', root + '/'], ['logo', 'LOGO 
 </script>
 <style>
  :global(body.menu-open) .portadas-panel { visibility: hidden; }
+ .portadas-panel[hidden] { display: none; }
  .portadas-panel { position: fixed; right: 12px; top: 50%; transform: translateY(-50%); z-index: 90; font-family: 'Montserrat',sans-serif; }
  summary { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 14px 10px; color: #eee; background: #17191ded; border: 1px solid #ffffff30; border-radius: 8px; box-shadow: 0 8px 24px #0005; cursor: pointer; list-style: none; }
  summary::-webkit-details-marker { display: none; }
