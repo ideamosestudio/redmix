@@ -99,3 +99,10 @@
 }
 @media(min-width: 1024px) and (max-width: 1199px) { .nav-shell { gap: 16px; } .nav-links > a:not(.nav-budget),.nav-dropdown > button { padding-inline: 0; font-size: 12px; } }
 @media(max-width:1023px) { .nav-toggle { border: 1px solid #ffffff26; border-radius: 6px; background: #ffffff05; } .nav-links > a:not(.nav-budget),.nav-dropdown > button { letter-spacing: .02em; } .nav-dropdown__panel { padding: 4px 12px; } }
+
+/* Header and hero use the same budget CTA component and visual treatment. */
+.nav-shell .nav-budget { min-height: 54px; padding: 16px 24px; border-radius: 3px; border: 1px solid #ff6956; font: 600 12px/1.3 'Montserrat',sans-serif; letter-spacing: .01em; background: linear-gradient(120deg,#ff4b32,#d21c15); box-shadow: 0 6px 30px #f2262026; }
+.nav-shell .nav-budget .tick { display: none; }
+.nav-shell .nav-budget:hover { background: linear-gradient(120deg,#ff5942,#e0271c); }
+.nav-shell .nav-budget--mobile { display: none; }
+@media(max-width:1023px) { .nav-shell .nav-budget--desktop { display: none; } .nav-shell .nav-links > .nav-budget--mobile { display: flex; justify-content: space-between; } }

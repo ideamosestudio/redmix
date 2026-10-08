@@ -1,9 +1,9 @@
 ---
+import WhatsAppCTA from './WhatsAppCTA.astro';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const href = (path = '/') => `${root}${path}`;
 const pathname = Astro.url.pathname.replace(root, '') || '/';
 const current = (path: string) => path === '/' ? pathname === '/' : pathname.startsWith(path);
-const whatsappUrl = 'https://wa.me/5491138245680?text=Hola%20Redmix%2C%20quisiera%20solicitar%20un%20presupuesto.';
 ---
 
 <header class="nav-shell" data-navbar>
@@ -26,8 +26,8 @@ const whatsappUrl = 'https://wa.me/5491138245680?text=Hola%20Redmix%2C%20quisier
       </div>
     </div>
     <a class:list={{ 'is-current': current('/contacto') }} href={href('/contacto')}>Contacto</a>
-    <a class="nav-budget nav-budget--mobile" href={whatsappUrl} target="_blank" rel="noopener noreferrer">Pedir presupuesto</a>
+    <WhatsAppCTA label="SOLICITAR PRESUPUESTO" class="nav-budget nav-budget--mobile"/>
   </nav>
 
-  <a class="nav-budget nav-budget--desktop" href={whatsappUrl} target="_blank" rel="noopener noreferrer"><span>Pedir presupuesto</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a>
+  <WhatsAppCTA label="SOLICITAR PRESUPUESTO" class="nav-budget nav-budget--desktop"/>
 </header>

@@ -4,10 +4,11 @@ import Selector from '../../components/propuestas/Selector.astro';
 import '../../styles/propuestas.css';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<BaseLayout title="Tres nuevas portadas | REDMIX" description="Compará tres propuestas visuales. La portada actual sigue disponible." noindex>
-<main class="concept-gallery"><p class="concept-eyebrow">EXPLORACIÓN VISUAL / REDMIX</p><h1>TRES FORMAS DE<br/><em>CONSTRUIR IMPACTO.</em></h1><p>Probá las propuestas en pantalla completa. La portada actual se conserva y podés volver a ella en cualquier momento.</p><Selector/>
+<BaseLayout title="Cuatro portadas | REDMIX" description="Compará las cuatro portadas: camión, logo 3D, tambor y video." noindex>
+<main class="concept-gallery"><p class="concept-eyebrow">EXPLORACIÓN VISUAL / REDMIX</p><h1>CUATRO FORMAS DE<br/><em>CONSTRUIR IMPACTO.</em></h1><p>Probá las propuestas en pantalla completa. El camión es la portada principal. El logo 3D sigue disponible para comparar.</p><Selector/>
 <div class="concept-grid">
-<a href={root + '/propuestas/camion/'} class="concept-card"><img src={root + '/propuestas/camion-obra.webp'} alt="Camión mixer rojo y blanco" width="1536" height="1024"/><div><small>01 / PRESENCIA</small><h2>Camión cinematográfico</h2><p>Camión integrado en obra, con el tambor en movimiento.</p><b>EXPLORAR ↗</b></div></a>
-<a href={root + '/propuestas/tambor/'} class="concept-card concept-card--drum"><div class="drum-preview" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div><small>02 / TECNOLOGÍA</small><h2>Tambor en movimiento</h2><p>Una pieza industrial 3D que gira e interactúa con el cursor.</p><b>EXPLORAR ↗</b></div></a>
-<a href={root + '/propuestas/descarga/'} class="concept-card"><img src={root + '/propuestas/descarga-magnific.jpg'} alt="Hormigón descargándose" width="1260" height="709"/><div><small>03 / ACCIÓN</small><h2>Hormigón en acción</h2><p>Hormigón en movimiento con iluminación cinematográfica.</p><b>EXPLORAR ↗</b></div></a>
+<a href={root + '/'} class="concept-card"><img src={root + '/propuestas/camion-obra.webp'} alt="Camión mixer rojo y blanco" width="1536" height="1024"/><div><small>01 / PRINCIPAL</small><h2>Camión cinematográfico</h2><p>Camión integrado en obra, con el tambor en movimiento.</p><b>EXPLORAR ↗</b></div></a>
+<a href={root + '/propuestas/logo/'} class="concept-card"><div class="logo-preview"><img src={root + '/images/redmix-logo.png'} alt="Logo de REDMIX" width="565" height="189"/></div><div><small>02 / IDENTIDAD</small><h2>Logo 3D</h2><p>El símbolo de REDMIX con el fondo oscuro y sus líneas originales.</p><b>EXPLORAR ↗</b></div></a>
+<a href={root + '/propuestas/tambor/'} class="concept-card concept-card--drum"><div class="drum-preview" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div><small>03 / TECNOLOGÍA</small><h2>Tambor en movimiento</h2><p>Una pieza industrial 3D que gira e interactúa con el cursor.</p><b>EXPLORAR ↗</b></div></a>
+<a href={root + '/propuestas/descarga/'} class="concept-card"><img src={root + '/propuestas/descarga-magnific.jpg'} alt="Hormigón descargándose" width="1260" height="709"/><div><small>04 / ACCIÓN</small><h2>Hormigón en acción</h2><p>Hormigón en movimiento con iluminación cinematográfica.</p><b>EXPLORAR ↗</b></div></a>
 </div></main></BaseLayout>

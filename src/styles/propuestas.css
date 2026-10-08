@@ -37,7 +37,7 @@
 .concept-gallery h1 { font: 700 clamp(40px,5.3vw,80px)/1.02 'Barlow Semi Condensed',sans-serif; }
 .concept-gallery h1 em { color: #ff5843; font-style: normal; }
 .concept-gallery > p:not(.concept-eyebrow) { color: #c4c5cb; max-width: 60ch; }
-.concept-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px; }
+.concept-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; }
 .concept-card { background: #16191f; color: white; border: 1px solid #ffffff20; border-radius: 8px; overflow: hidden; text-decoration: none; transition: border-color .2s,transform .2s; }
 .concept-card:hover { border-color: #ff5942; transform: translateY(-4px); }
 .concept-card > img,.drum-preview { width: 100%; aspect-ratio: 3/2; object-fit: cover; display: block; }
@@ -102,29 +102,34 @@
 }
 
 /* Fine industrial details for the animated truck proposal. */
-.concept-page--camion .concept-copy h1 span + span { text-shadow: none; background: linear-gradient(110deg,#ffb392 -10%,#ff5946 35%,#ed201b 90%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.concept-page--camion .concept-intro { border-left: 2px solid #ed382b; padding-left: 18px; }
+:is(.concept-page--camion,.concept-page--descarga) .concept-copy h1 span + span { text-shadow: none; background: linear-gradient(110deg,#ffb392 -10%,#ff5946 35%,#ed201b 90%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+:is(.concept-page--camion,.concept-page--descarga) .concept-intro { border-left: 2px solid #ed382b; padding-left: 18px; }
 .truck-wordmark { position: absolute; right: 6%; bottom: 9%; color: transparent; -webkit-text-stroke: 1px #ffffff14; font: 700 clamp(90px,17vw,290px)/.85 'Barlow Semi Condensed',sans-serif; letter-spacing: -.045em; pointer-events: none; }
 .truck-callout { position: absolute; right: 10%; top: 22%; color: #e3e3e7; font: 600 9px/1.4 'Montserrat',sans-serif; letter-spacing: .15em; text-shadow: 0 2px 8px #000; }
 .truck-callout i { display: block; width: 70px; height: 38px; margin: 9px 0 0 auto; border-top: 1px solid #ff806e99; border-right: 1px solid #ff806e99; position: relative; }
 .truck-callout i::after { content: ''; position: absolute; bottom: -3px; right: -3px; width: 5px; height: 5px; border-radius: 50%; background: #ff715c; }
-.concept-page--camion .concept-caption { gap: 24px; padding-top: 12px; bottom: 18px; }
-.concept-page--camion .concept-location { display: flex; align-items: center; gap: 10px; }
-.concept-page--camion .concept-location::before { content: ''; width: 4px; height: 4px; background: #ff5946; border-radius: 50%; flex: 0 0 auto; }
+:is(.concept-page--camion,.concept-page--descarga) .concept-caption { gap: 24px; padding-top: 12px; bottom: 18px; }
+:is(.concept-page--camion,.concept-page--descarga) .concept-location { display: flex; align-items: center; gap: 10px; }
+:is(.concept-page--camion,.concept-page--descarga) .concept-location::before { content: ''; width: 4px; height: 4px; background: #ff5946; border-radius: 50%; flex: 0 0 auto; }
 .truck-services { display: flex; align-items: center; gap: 10px; font-size: 9px; letter-spacing: .13em; }
 .truck-services b { color: #e95845; font-weight: 400; }
-.concept-page--camion .concept-caption button { display: inline-flex; gap: 10px; align-items: center; min-height: 44px; padding: 8px 0; border: 0; border-radius: 0; background: transparent; color: #c7c9d0; font-size: 10px; margin-right: 64px; }
-.concept-page--camion .concept-caption button::before { content: 'Ⅱ'; color: #ff715c; font-size: 15px; }
-.concept-page--camion .concept-caption button[aria-pressed='true']::before { content: '▷'; }
-.concept-page--camion .concept-caption button:hover { color: #fff; }
+:is(.concept-page--camion,.concept-page--descarga) .concept-caption button { display: inline-flex; gap: 10px; align-items: center; min-height: 44px; padding: 8px 0; border: 0; border-radius: 0; background: transparent; color: #c7c9d0; font-size: 10px; margin-right: 64px; }
+:is(.concept-page--camion,.concept-page--descarga) .concept-caption button::before { content: 'Ⅱ'; color: #ff715c; font-size: 15px; }
+:is(.concept-page--camion,.concept-page--descarga) .concept-caption button[aria-pressed='true']::before { content: '▷'; }
+:is(.concept-page--camion,.concept-page--descarga) .concept-caption button:hover { color: #fff; }
 @media(max-width:1023px) {
- .concept-page--camion .concept-intro { text-align: left; width: fit-content; }
- .concept-page--camion .concept-hero { padding-bottom: 110px; }
+ :is(.concept-page--camion,.concept-page--descarga) .concept-intro { text-align: left; width: fit-content; }
+ :is(.concept-page--camion,.concept-page--descarga) .concept-hero { padding-bottom: 110px; }
  .truck-wordmark { font-size: clamp(85px,24vw,180px); bottom: 6%; right: 5%; }
  .truck-callout { font-size: 8px; top: 15%; right: 12%; letter-spacing: .08em; }
  .truck-callout i { height: 26px; width: 45px; margin-top: 6px; }
- .concept-page--camion .concept-caption { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding-top: 8px; bottom: 14px; }
- .concept-page--camion .concept-caption span { max-width: none; }
+ :is(.concept-page--camion,.concept-page--descarga) .concept-caption { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding-top: 8px; bottom: 14px; }
+ :is(.concept-page--camion,.concept-page--descarga) .concept-caption span { max-width: none; }
  .truck-services { grid-column: 1/-1; grid-row: 2; justify-content: flex-start; font-size: 8px; }
- .concept-page--camion .concept-caption button { grid-column: 2; grid-row: 1; margin-right: 44px; font-size: 9px; }
+ :is(.concept-page--camion,.concept-page--descarga) .concept-caption button { grid-column: 2; grid-row: 1; margin-right: 44px; font-size: 9px; }
 }
+
+.logo-preview { display:grid;place-items:center;aspect-ratio:3/2;background:radial-gradient(ellipse at center,#411612,#0b0d10 75%); }
+.logo-preview img { width:65%;height:auto; }
+
+@media(max-width:1023px) { .concept-page--descarga .truck-callout { top: 54%; right: 12%; } .concept-page--descarga .truck-wordmark { bottom: 18%; } }

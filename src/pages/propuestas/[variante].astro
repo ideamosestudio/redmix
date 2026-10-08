@@ -1,35 +1,21 @@
 ---
-import IndustrialBackdrop from '../../components/IndustrialBackdrop.astro';
+import Portada from '../../components/propuestas/Portada.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Selector from '../../components/propuestas/Selector.astro';
-import WhatsAppCTA from '../../components/WhatsAppCTA.astro';
 import '../../styles/propuestas.css';
 export function getStaticPaths() { return ['camion','tambor','descarga'].map(variante => ({params:{variante}})); }
 const { variante } = Astro.params;
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const details = {
  camion: {name:'Camión cinematográfico',eyebrow:'POTENCIA PARA LO QUE VIENE.',note:'Propuesta 01 · Escena conceptual animada, no representa la flota real.'},
- tambor: {name:'Tambor en movimiento',eyebrow:'EL MOVIMIENTO QUE CONSTRUYE.',note:'Propuesta 02 · Escena 3D interactiva. Mové el cursor para explorar.'},
- descarga: {name:'Hormigón en acción',eyebrow:'DONDE EMPIEZA TU PRÓXIMA OBRA.',note:'Propuesta 03 · Video conceptual generado con Magnific.'}
+ tambor: {name:'Tambor en movimiento',eyebrow:'EL MOVIMIENTO QUE CONSTRUYE.',note:'Propuesta 03 · Escena 3D interactiva. Mové el cursor para explorar.'},
+ descarga: {name:'Hormigón en acción',eyebrow:'DONDE EMPIEZA TU PRÓXIMA OBRA.',note:'Propuesta 04 · Video conceptual generado con Magnific.'}
 }[variante];
 ---
 <BaseLayout title={details.name + ' | Propuestas REDMIX'} description="Comparación de propuestas visuales para la portada de REDMIX." noindex>
   <Selector active={variante}/>
   <main class:list={['concept-page', 'concept-page--' + variante]}>
-    <section class="concept-hero" aria-labelledby="concept-title" data-concept={variante}>
-      <div class="concept-atmosphere" aria-hidden="true">{variante === 'tambor' && <IndustrialBackdrop variant={variante}/>}</div>
-      {variante === 'camion' && <div class="truck-scene"><video data-concept-video muted loop playsinline preload="metadata" poster={root + '/propuestas/camion-obra.webp'} aria-label="Camión hormigonero estacionado en obra con el tambor girando"><source src={root + '/propuestas/camion-obra.mp4'} type="video/mp4"/></video><div class="truck-scene__shade"></div><span class="truck-wordmark" aria-hidden="true">REDMIX</span><div class="truck-callout"><span>HORMIGÓN EN MOVIMIENTO</span><i aria-hidden="true"></i></div></div>}
-      {variante === 'tambor' && <div class="concept-drum"><div class="concept-drum__halo" aria-hidden="true"></div><canvas data-drum aria-label="Tambor rojo de hormigonera girando en tres dimensiones" role="img"></canvas><span class="concept-drum__label">MEZCLA EN MOVIMIENTO <i></i></span><p class="concept-fallback" hidden>La escena 3D no está disponible en este navegador.</p></div>}
-      {variante === 'descarga' && <div class="concept-film"><video data-concept-video muted loop playsinline preload="metadata" poster={root + '/propuestas/descarga-magnific.jpg'} aria-label="Descarga de hormigón desde una hormigonera"><source src={root + '/propuestas/descarga-magnific.mp4'} type="video/mp4"/></video><div class="concept-film__shade"></div></div>}
-      <div class="concept-copy">
-        <p class="concept-eyebrow"><i></i>{details.eyebrow}</p>
-        <h1 id="concept-title"><span>HORMIGÓN ELABORADO Y</span><span>ALQUILER DE BOMBA</span></h1>
-        <p class="concept-intro">Hormigón elaborado y servicio de bombeo para tu obra. Contanos qué necesitás y solicitá tu presupuesto.</p>
-        <div class="concept-actions"><WhatsAppCTA label="SOLICITAR PRESUPUESTO"/><a class="technical-cta" href={root + '/quienes-somos'}><span>CONOCER REDMIX</span></a></div>
-      </div>
-      <div class="concept-caption"><span class="concept-location">LONGCHAMPS · BUENOS AIRES</span>{variante === 'camion' && <span class="truck-services">HORMIGÓN <b>/</b> ACARREO <b>/</b> BOMBEO</span>}{<button type="button" data-motion-toggle aria-pressed="false">Pausar {variante === 'descarga' ? 'video' : 'rotación'}</button>}</div>
-    </section>
-    <aside class="concept-review"><div><p>EXPLORACIÓN VISUAL / REDMIX</p><h2>{details.name}</h2><span>{details.note}</span></div><a href={root + '/propuestas/'}>Ver las tres propuestas ↗</a></aside>
+    <Portada variante={variante}/>
+    <aside class="concept-review"><div><p>EXPLORACIÓN VISUAL / REDMIX</p><h2>{details.name}</h2><span>{details.note}</span></div><a href={root + '/propuestas/'}>Ver todas las portadas ↗</a></aside>
   </main>
 </BaseLayout>
-<script>import '../../concepts.js';</script>

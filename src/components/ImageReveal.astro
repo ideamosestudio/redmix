@@ -1,7 +1,7 @@
 ---
 import { Picture } from 'astro:assets';
-interface Props { src: ImageMetadata; alt: string; class?: string; eager?: boolean; motion?: 'vertical' | 'horizontal' | 'flow'; }
-const { src, alt, class: className = '', eager = false, motion = 'vertical' } = Astro.props;
+interface Props { label?: string; src: ImageMetadata; alt: string; class?: string; eager?: boolean; motion?: 'vertical' | 'horizontal' | 'flow'; }
+const { label = 'RMX / IMG', src, alt, class: className = '', eager = false, motion = 'vertical' } = Astro.props;
 const widths = [...new Set([640, 960, 1280, 1600, src.width].filter(width => width <= src.width))].sort((a, b) => a - b);
 // Include the pixels cropped by object-fit when choosing a responsive source.
 const coverScale = Math.max(1, (src.width / src.height) / (4 / 3));
@@ -18,7 +18,7 @@ const coverScale = Math.max(1, (src.width / src.height) / (4 / 3));
     loading={eager ? 'eager' : 'lazy'}
     fetchpriority={eager ? 'high' : 'auto'}
   />
-  <span class="image-reveal__meta" aria-hidden="true">RMX / IMG</span>
+  <span class="image-reveal__meta" aria-hidden="true">{label}</span>
   <i class="image-reveal__corner image-reveal__corner--a" aria-hidden="true"></i>
   <i class="image-reveal__corner image-reveal__corner--b" aria-hidden="true"></i>
 </figure>

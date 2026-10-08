@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
+import Portada from '../components/propuestas/Portada.astro';
 import Selector from '../components/propuestas/Selector.astro';
 import '../styles/propuestas.css';
 import ImageReveal from '../components/ImageReveal.astro';
@@ -29,20 +29,20 @@ const products = [
 ---
 
 <BaseLayout title="REDMIX Hormigonera | Hormigón elaborado, acarreo y bombeo" description="Hormigón elaborado, acarreo de bomba y bombeo de hormigón para obras. Consultá a REDMIX Hormigonera en Longchamps.">
-  <Hero />
-  <Selector/>
+  <Portada variante="camion"/>
+  <Selector active="camion"/>
 
   <main class="home-content">
     <section class="intro-section section-shell" aria-labelledby="intro-title">
       <div class="section-heading" data-reveal>
         <p class="section-code">01 / REDMIX</p>
-        <h2 id="intro-title">SOLUCIONES EN<br /><em>HORMIGÓN</em> PARA TU OBRA</h2>
+        <h2 id="intro-title">SOLUCIONES EN<br /><em>HORMIGÓN</em><br />PARA TU OBRA</h2>
       </div>
       <div class="intro-section__body" data-reveal>
-        <p>En REDMIX brindamos hormigón elaborado y servicios de bombeo para obras y proyectos de construcción. Trabajamos para simplificar cada etapa del suministro y permitir que nuestros clientes puedan resolver sus necesidades desde un mismo proveedor.</p>
-        <WhatsAppCTA label="PEDÍ TU PRESUPUESTO" />
+        <p>Hormigón elaborado, acarreo y bombeo para tu obra. Coordiná el suministro y la colocación con un mismo proveedor.</p>
+        <WhatsAppCTA label="SOLICITAR PRESUPUESTO" />
       </div>
-      <ImageReveal src={introImage} alt="Camión mixer descargando hormigón fresco en una obra" class="intro-section__image" />
+      <ImageReveal src={introImage} alt="Camión mixer descargando hormigón fresco en una obra" class="intro-section__image" label="HORMIGÓN EN OBRA" />
     </section>
 
     <section class="services-section section-shell" id="servicios" aria-labelledby="services-title">

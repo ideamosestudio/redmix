@@ -1,7 +1,7 @@
 ---
 const { active = '' } = Astro.props;
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
-const choices = [['', '00 / ACTUAL', root + '/'], ['camion', '01 / CAMIÓN', root + '/propuestas/camion/'], ['tambor', '02 / TAMBOR 3D', root + '/propuestas/tambor/'], ['descarga', '03 / VIDEO', root + '/propuestas/descarga/']];
+const choices = [['camion', '01 / CAMIÓN · PRINCIPAL', root + '/'], ['logo', '02 / LOGO 3D', root + '/propuestas/logo/'], ['tambor', '03 / TAMBOR 3D', root + '/propuestas/tambor/'], ['descarga', '04 / VIDEO', root + '/propuestas/descarga/']];
 ---
 <details class="portadas-panel" data-portadas-panel>
   <summary aria-label="Abrir o cerrar el selector de portadas"><span class="portadas-panel__icon" aria-hidden="true">◧</span><span>PORTADAS</span></summary>
