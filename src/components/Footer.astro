@@ -10,7 +10,9 @@ const href = (path = '/') => root + path;
     <p class="footer-editorial-location">Longchamps · Buenos Aires</p>
   </div>
   <nav class="footer-editorial-nav" aria-label="Navegación del pie de página">
-    <p class="footer-label">Explorá REDMIX</p>
+    <p class="footer-label footer-nav-label">Explorá REDMIX</p>
+    <button class="footer-nav-toggle" type="button" aria-expanded="false" aria-controls="footer-nav-links" hidden>Explorá REDMIX <span aria-hidden="true">+</span></button>
+    <div class="footer-nav-links" id="footer-nav-links">
     <a href={href('/')}>Inicio</a>
     <a href={href('/quienes-somos')}>Quiénes somos</a>
     <a href={href('/contacto')}>Contacto</a>
@@ -19,9 +21,10 @@ const href = (path = '/') => root + path;
       <a href={href('/servicios/acarreo-bomba')}>Acarreo de bomba</a>
       <a href={href('/servicios/bombeo-hormigon')}>Bombeo de hormigón</a>
     </div>
+    </div>
   </nav>
   <div class="site-footer__contact">
-    <p class="footer-label">Hablemos de tu obra</p>
+    <h2 class="footer-label footer-contact-heading">Hablemos de <em>tu obra</em></h2>
     <div class="site-footer__contact-group">
       <a class="footer-email-primary" href="mailto:info@redmix.com.ar">info@redmix.com.ar</a>
       <a class="footer-email-secondary" href="mailto:adm@redmix.com.ar">adm@redmix.com.ar</a>
@@ -35,3 +38,15 @@ const href = (path = '/') => root + path;
   </div>
   <div class="site-footer__legal"><span>© {new Date().getFullYear()} REDMIX HORMIGONERA</span><a class="footer-credit" href="https://ideamos.com.ar/" target="_blank" rel="noopener noreferrer" aria-label="Desarrollado por Ideamos. Visitar Ideamos"><span>Desarrollado por</span><img src={root + '/images/ideamos-light.webp'} width="870" height="213" alt="Ideamos" loading="lazy" decoding="async" /></a></div>
 </footer>
+
+<script>
+ const toggle=document.querySelector<HTMLButtonElement>('.footer-nav-toggle');
+ const links=document.querySelector<HTMLElement>('.footer-nav-links');
+ const nav=document.querySelector<HTMLElement>('.footer-editorial-nav');
+ if(toggle && links && nav){
+  const mobile=window.matchMedia('(max-width:767px)');
+  const sync=()=>{toggle.hidden=!mobile.matches;links.hidden=mobile.matches;toggle.setAttribute('aria-expanded',String(!mobile.matches));nav.classList.toggle('is-collapsible',mobile.matches);};
+  toggle.addEventListener('click',()=>{const expanded=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!expanded));links.hidden=expanded;});
+  mobile.addEventListener('change',sync);sync();
+ }
+</script>

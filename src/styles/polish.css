@@ -402,3 +402,24 @@
  .site-footer--editorial .footer-editorial-nav > a,.site-footer--editorial .footer-editorial-services a,.site-footer--editorial .site-footer__contact-group a { display:flex; align-items:center; justify-content:center; min-height:40px; }
  .site-footer--editorial > div.site-footer__legal { padding-inline:0; gap:8px; }
 }
+
+/* Footer navigation collapses only on phones; the contact invitation leads. */
+.footer-nav-links { display:flex; flex-direction:column; align-items:flex-start; gap:12px; width:100%; }
+.footer-nav-links[hidden],.footer-nav-toggle[hidden] { display:none; }
+.site-footer--editorial .footer-nav-links > a { color:#eeece8; font-size:17px; }
+.footer-contact-heading em { font-style:normal; }
+@media(max-width:767px) {
+ .footer-editorial-nav.is-collapsible .footer-nav-label { display:none; }
+ .site-footer--editorial > nav.footer-editorial-nav { padding-top:0; gap:0; }
+ .footer-nav-toggle { display:flex; align-items:center; justify-content:center; gap:14px; width:100%; min-height:64px; padding:16px; border:0; background:transparent; color:#dddeda; cursor:pointer; font:600 12px/1.5 'Montserrat',sans-serif; letter-spacing:.1em; text-transform:uppercase; }
+ .footer-nav-toggle > span { color:#ff806b; font-size:23px; font-weight:400; transition:transform .25s; }
+ .footer-nav-toggle[aria-expanded='true'] > span { transform:rotate(45deg); }
+ .footer-nav-toggle:focus-visible { outline:2px solid #ff806b; outline-offset:-3px; }
+ .footer-nav-links { align-items:center; gap:4px; padding:8px 0 24px; }
+ .site-footer--editorial .footer-nav-links > a { display:flex; align-items:center; justify-content:center; min-height:44px; }
+ .site-footer--editorial > div.site-footer__contact { position:relative; padding-top:32px; gap:20px; background:radial-gradient(ellipse at 50% 0,#b52e1712,transparent 65%); }
+ .site-footer--editorial .footer-contact-heading { margin:0 0 6px; color:#f1eeea; font:700 clamp(32px,9vw,42px)/1.08 'Barlow Semi Condensed',sans-serif; letter-spacing:-.02em; }
+ .footer-contact-heading em { display:block; color:#ff806b; }
+ .site-footer--editorial .site-footer__contact-group a.footer-email-primary { font-size:20px; }
+ .site-footer--editorial a.footer-contact-link { justify-content:center; width:100%; min-height:50px; margin-top:2px; border:1px solid #ff806b55; background:#ff806b08; }
+}
