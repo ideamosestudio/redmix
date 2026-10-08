@@ -1,12 +1,11 @@
 ---
 import ArrowIcon from "../../components/ArrowIcon.astro";
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Selector from '../../components/propuestas/Selector.astro';
 import '../../styles/propuestas.css';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <BaseLayout title="Cuatro portadas | REDMIX" description="Compará las cuatro portadas: camión, logo 3D, tambor y video." noindex>
-<main class="concept-gallery"><p class="concept-eyebrow">EXPLORACIÓN VISUAL / REDMIX</p><h1>CUATRO FORMAS DE<br/><em>CONSTRUIR IMPACTO.</em></h1><p>Probá las propuestas en pantalla completa. El camión es la portada principal. El logo 3D sigue disponible para comparar.</p><Selector/>
+<main class="concept-gallery"><p class="concept-eyebrow">EXPLORACIÓN VISUAL / REDMIX</p><h1>CUATRO FORMAS DE<br/><em>CONSTRUIR IMPACTO.</em></h1><p>Probá las propuestas en pantalla completa. El camión es la portada principal. El logo 3D sigue disponible para comparar.</p>
 <div class="concept-grid">
 <a href={root + '/'} class="concept-card"><img src={root + '/propuestas/camion-obra.webp'} alt="Camión mixer rojo y blanco" width="1536" height="1024"/><div><small>PRINCIPAL</small><h2>Camión cinematográfico</h2><p>Camión integrado en obra, con el tambor en movimiento.</p><b>EXPLORAR <ArrowIcon /></b></div></a>
 <a href={root + '/propuestas/logo/'} class="concept-card"><div class="logo-preview"><img src={root + '/images/redmix-logo.png'} alt="Logo de REDMIX" width="565" height="189"/></div><div><small>IDENTIDAD</small><h2>Logo 3D</h2><p>El símbolo de REDMIX con el fondo oscuro y sus líneas originales.</p><b>EXPLORAR <ArrowIcon /></b></div></a>

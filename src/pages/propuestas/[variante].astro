@@ -2,7 +2,6 @@
 import ArrowIcon from "../../components/ArrowIcon.astro";
 import Portada from '../../components/propuestas/Portada.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import Selector from '../../components/propuestas/Selector.astro';
 import '../../styles/propuestas.css';
 export function getStaticPaths() { return ['camion','tambor','descarga'].map(variante => ({params:{variante}})); }
 const { variante } = Astro.params;
@@ -14,7 +13,6 @@ const details = {
 }[variante];
 ---
 <BaseLayout title={details.name + ' | Propuestas REDMIX'} description="Comparación de propuestas visuales para la portada de REDMIX." noindex>
-  <Selector active={variante}/>
   <main class:list={['concept-page', 'concept-page--' + variante]}>
     <Portada variante={variante}/>
     <aside class="concept-review"><div><p>EXPLORACIÓN VISUAL / REDMIX</p><h2>{details.name}</h2><span>{details.note}</span></div><a href={root + '/propuestas/'}>Ver todas las portadas <ArrowIcon /></a></aside>
