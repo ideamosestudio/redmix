@@ -10,7 +10,16 @@ const { title = 'PEDÍ TU PRESUPUESTO', text = 'Contanos qué necesitás para tu
     <p class="section-code">CONTACTO DIRECTO</p>
     <h2>{title}</h2>
     <p>{text}</p>
-    <WhatsAppCTA {label} {message} />
+    <div class="quote-guide" data-quote-guide hidden>
+      <p id="quote-guide-label">¿Qué necesitás para tu obra?</p>
+      <div class="quote-guide__choices" role="group" aria-labelledby="quote-guide-label">
+        <button type="button" data-quote-service="hormigón elaborado" aria-pressed="false">Hormigón</button>
+        <button type="button" data-quote-service="servicio de bombeo" aria-pressed="false">Bombeo</button>
+        <button type="button" data-quote-service="hormigón elaborado y bombeo" aria-pressed="false">Ambos</button>
+      </div>
+      <p class="quote-guide__status" aria-live="polite" aria-atomic="true">Elegí una opción para preparar tu consulta.</p>
+    </div>
+    <WhatsAppCTA {label} {message} class="quote-guide__cta" />
     <div class="final-contact-data">
       <div><h3>Teléfonos</h3><a href="tel:+5491138245680">+54 9 11 3824 5680</a><a href="tel:+5491133583377">+54 9 11 3358 3377</a></div>
       <div><h3>Correo</h3><a href="mailto:info@redmix.com.ar">info@redmix.com.ar</a><a href="mailto:adm@redmix.com.ar">adm@redmix.com.ar</a></div>
@@ -20,3 +29,19 @@ const { title = 'PEDÍ TU PRESUPUESTO', text = 'Contanos qué necesitás para tu
   <ContactForm idPrefix="final" compact />
  </div>
 </section>
+
+<script>
+ document.querySelectorAll<HTMLElement>('[data-quote-guide]').forEach(guide => {
+  const link=guide.parentElement?.querySelector<HTMLAnchorElement>('.quote-guide__cta');
+  const status=guide.querySelector<HTMLElement>('.quote-guide__status');
+  if(!link || !status) return;
+  const choices=guide.querySelectorAll<HTMLButtonElement>('[data-quote-service]');
+  choices.forEach(button => button.addEventListener('click',() => {
+   choices.forEach(choice => choice.setAttribute('aria-pressed',String(choice===button)));
+   const service=button.dataset.quoteService;
+   link.href='https://wa.me/5491138245680?text='+encodeURIComponent('Hola REDMIX, quisiera solicitar un presupuesto de '+service+' para mi obra.');
+   status.textContent='Consulta por '+service+' lista para WhatsApp.';
+  }));
+  guide.hidden=false;
+ });
+</script>
