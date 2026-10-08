@@ -12,15 +12,13 @@ const coverScale = Math.max(1, (image.width / image.height) / (4 / 3));
 <article class="service-card" data-card>
   <a class="service-card__image" href={href} aria-label={`Conocé ${title}`}>
     <Picture src={image} formats={['avif']} fallbackFormat="webp" widths={widths} quality={90} sizes={`(max-width: 767px) ${100 * coverScale}vw, (max-width: 1199px) ${50 * coverScale}vw, ${34 * coverScale}vw`} alt={imageAlt} loading="lazy" />
+    <span class="service-card__explore">EXPLORAR SERVICIO<ArrowIcon direction="right" /></span>
   </a>
   <div class="service-card__body">
     <h3><a href={href}>{title}</a></h3>
     <p>{description}</p>
     <div class="service-card__actions">
-      <a class="service-card__details" href={href}>
-        <span>VER MÁS</span><ArrowIcon class="cta-arrow" direction="right" />
-      </a>
-      <WhatsAppCTA label="CONSULTAR" message={`Hola REDMIX, quisiera consultar por ${title.toLowerCase()}.`} compact secondary />
+<WhatsAppCTA label="CONSULTAR POR WHATSAPP" message={`Hola REDMIX, quisiera consultar por ${title.toLowerCase()}.`} compact secondary icon />
     </div>
   </div>
 </article>
