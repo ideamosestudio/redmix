@@ -13,15 +13,15 @@ const href = (path = '/') => root + path;
     <p class="footer-label footer-nav-label">Explorá REDMIX</p>
     <button class="footer-nav-toggle" type="button" aria-expanded="false" aria-controls="footer-nav-links" hidden>Explorá REDMIX <span aria-hidden="true">+</span></button>
     <div class="footer-nav-links" id="footer-nav-links">
-    <a href={href('/')}>Inicio</a>
-    <a href={href('/quienes-somos')}>Quiénes somos</a>
-    <a href={href('/contacto')}>Contacto</a>
+    <a href={href('/')}><span>Inicio</span><ArrowIcon class="footer-item-arrow" /></a>
+    <a href={href('/quienes-somos')}><span>Quiénes somos</span><ArrowIcon class="footer-item-arrow" /></a>
+    <a href={href('/contacto')}><span>Contacto</span><ArrowIcon class="footer-item-arrow" /></a>
     </div>
     <button class="footer-nav-toggle footer-services-toggle" type="button" aria-expanded="false" aria-controls="footer-service-links" hidden>Servicios <span aria-hidden="true">+</span></button>
     <div class="footer-editorial-services" id="footer-service-links">
-      <a href={href('/servicios/hormigon-elaborado')}>Hormigón elaborado</a>
-      <a href={href('/servicios/acarreo-bomba')}>Acarreo de bomba</a>
-      <a href={href('/servicios/bombeo-hormigon')}>Bombeo de hormigón</a>
+      <a href={href('/servicios/hormigon-elaborado')}><span>Hormigón elaborado</span><ArrowIcon class="footer-item-arrow" /></a>
+      <a href={href('/servicios/acarreo-bomba')}><span>Acarreo de bomba</span><ArrowIcon class="footer-item-arrow" /></a>
+      <a href={href('/servicios/bombeo-hormigon')}><span>Bombeo de hormigón</span><ArrowIcon class="footer-item-arrow" /></a>
     </div>
   </nav>
   <div class="site-footer__contact">
