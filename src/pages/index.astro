@@ -37,15 +37,16 @@ const products = [
   <main class="home-content">
 
     <section class="services-section section-shell" id="servicios" aria-labelledby="services-title">
-      <div class="section-heading section-heading--row section-heading--centered" data-reveal>
+      <div class="section-heading section-heading--row services-heading" data-reveal>
         <div><p class="section-code">SERVICIOS</p><h2 id="services-title">NUESTROS <em>SERVICIOS.</em></h2></div>
-        <p>Soluciones vinculadas al suministro, traslado y colocación del hormigón para tu obra.</p>
+        <p>Hormigón, traslado y bombeo. Todo lo que necesitás para avanzar con tu obra.</p>
       </div>
       <div class="services-grid" data-stagger>
-        <ServiceCard title="VENTA DE HORMIGÓN ELABORADO" description="Suministro de hormigón elaborado para diferentes tipos de obras y necesidades de construcción." href={`${root}/servicios/hormigon-elaborado`} image={hormigonImage} imageAlt="Hormigón elaborado descargándose en obra" />
-        <ServiceCard title="ACARREO DE BOMBA" description="Servicio de traslado y puesta a disposición del equipo de bombeo necesario para realizar el trabajo en obra." href={`${root}/servicios/acarreo-bomba`} image={acarreoImage} imageAlt="Camión bomba posicionado en una obra" />
-        <ServiceCard title="SERVICIO DE BOMBEO" description="Bombeo de hormigón calculado por volumen, para facilitar la descarga y colocación del material dentro de la obra." href={`${root}/servicios/bombeo-hormigon`} image={bombeoImage} imageAlt="Manguera realizando bombeo de hormigón" />
+        <ServiceCard title="VENTA DE HORMIGÓN ELABORADO" description="Hormigón elaborado para las necesidades de tu obra." href={`${root}/servicios/hormigon-elaborado`} image={hormigonImage} imageAlt="Hormigón elaborado descargándose en obra" />
+        <ServiceCard title="ACARREO DE BOMBA" description="Traslado del equipo de bombeo hasta tu obra." href={`${root}/servicios/acarreo-bomba`} image={acarreoImage} imageAlt="Camión bomba posicionado en una obra" />
+        <ServiceCard title="SERVICIO DE BOMBEO" description="Descarga y colocación del hormigón mediante bombeo." href={`${root}/servicios/bombeo-hormigon`} image={bombeoImage} imageAlt="Manguera realizando bombeo de hormigón" />
       </div>
+      <div class="services-consultation"><p>Contanos qué necesita tu obra.</p><WhatsAppCTA label="SOLICITAR PRESUPUESTO" /></div>
     </section>
 
     <ServiceMarquee />

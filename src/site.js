@@ -83,7 +83,7 @@ const motion = gsap.matchMedia();
 motion.add('(prefers-reduced-motion: no-preference)', () => {
   const internalHero = document.querySelector('.page-hero__copy, .contact-hero > div');
   document.querySelectorAll('[data-reveal]').forEach(element => {
-    if (element === internalHero || element.closest('.faq-item')) return;
+    if (element === internalHero || element.closest('.faq-item, .solutions-section')) return;
     const reveal = gsap.timeline({ scrollTrigger: { trigger: element, start: 'top 94%', once: true } });
     reveal.from(element, { y: element.querySelector('h2') ? 12 : 20, opacity: element.querySelector('h2') ? 0.35 : 1, duration: .6, ease: 'power3.out', clearProps: 'transform,opacity' }, 0);
     if (element.matches('.section-heading')) {
@@ -93,6 +93,14 @@ motion.add('(prefers-reduced-motion: no-preference)', () => {
   document.querySelectorAll('[data-stagger]').forEach(group => {
     gsap.from(group.querySelectorAll('[data-card]'), { y: 18, duration: .6, stagger: .08, ease: 'power3.out', clearProps: 'transform', scrollTrigger: { trigger: group, start: 'top 92%', once: true } });
   });
+  const solutions = document.querySelector('.solutions-section');
+  if (solutions) {
+    gsap.timeline({ defaults: { duration: .65, ease: 'power3.out', clearProps: 'transform,opacity' }, scrollTrigger: { trigger: solutions, start: 'top 82%', once: true } })
+      .from(solutions.querySelector('.section-heading'), { y: 14, opacity: 0 }, 0)
+      .from(solutions.querySelector('.intro-section__image'), { y: 18, opacity: 0 }, .08)
+      .from(solutions.querySelector('.intro-section__body'), { y: 12, opacity: 0 }, .18);
+    gsap.from(solutions.querySelectorAll('.work-sequence__heading, .work-sequence__item'), { y: 12, opacity: 0, duration: .55, stagger: .09, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: solutions.querySelector('.work-sequence'), start: 'top 92%', once: true } });
+  }
   if (document.querySelector('.hero-sticky')) {
     gsap.timeline({ defaults: { ease: 'power3.out', duration: .65, clearProps: 'transform,opacity,visibility' } })
       .from('.hero .eyebrow', { y: 12, opacity: 0 }, 0)

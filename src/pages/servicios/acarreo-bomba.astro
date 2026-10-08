@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceNavigation from '../../components/ServiceNavigation.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
 import WhatsAppCTA from '../../components/WhatsAppCTA.astro';
 import FAQ from '../../components/FAQ.astro';
@@ -16,8 +17,9 @@ const faq = [
 const schema = { '@context': 'https://schema.org', '@type': 'Service', name: 'Acarreo de bomba para hormigón', provider: { '@type': 'Organization', name: 'REDMIX Hormigonera' } };
 ---
 <BaseLayout title="Acarreo de bomba para hormigón | REDMIX" description="Servicio de acarreo de bomba para coordinar el traslado del equipo necesario hasta la obra. Consultá a REDMIX." {schema}>
-  <main class="inner-page">
-    <ServiceHero eyebrow="ACARREO DE BOMBA" title={["ACARREO DE BOMBA", "PARA TU OBRA"]} intro={['REDMIX ofrece el servicio de acarreo de bomba para coordinar el traslado del equipo necesario hasta la obra.', 'Este servicio permite incorporar la bomba dentro de la logística del trabajo cuando la descarga o colocación del hormigón requiere equipamiento específico.']} {image} imageAlt="Camión bomba de hormigón posicionado en una obra" ctaLabel="CONSULTAR ACARREO DE BOMBA" whatsappMessage={message} motion="horizontal" />
+  <main class="inner-page service-detail">
+    <ServiceHero eyebrow="ACARREO DE BOMBA" title={["ACARREO DE BOMBA", "PARA TU OBRA"]} intro={['Coordiná el traslado y la puesta a disposición del equipo de bombeo. Una solución para la logística y las condiciones de acceso de tu obra.']} {image} imageAlt="Camión bomba de hormigón posicionado en una obra" ctaLabel="CONSULTAR ACARREO DE BOMBA" whatsappMessage={message} motion="horizontal" />
+    <ServiceNavigation current="acarreo-bomba" />
 
     <section class="split-info section-shell" aria-labelledby="equipment-title">
       <div data-reveal><p class="section-code">COORDINACIÓN</p><h2 id="equipment-title">COORDINÁ EL EQUIPO QUE <em>NECESITA TU OBRA.</em></h2></div>

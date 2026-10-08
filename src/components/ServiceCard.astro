@@ -20,7 +20,7 @@ const coverScale = Math.max(1, (image.width / image.height) / (4 / 3));
       <a class="service-card__details" href={href}>
         <span>VER MÁS</span><ArrowIcon class="cta-arrow" direction="right" />
       </a>
-      <WhatsAppCTA label="SOLICITAR PRESUPUESTO" compact />
+      <WhatsAppCTA label="CONSULTAR" message={`Hola REDMIX, quisiera consultar por ${title.toLowerCase()}.`} compact secondary />
     </div>
   </div>
 </article>

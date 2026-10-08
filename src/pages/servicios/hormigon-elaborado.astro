@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceNavigation from '../../components/ServiceNavigation.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
 import ProductCard from '../../components/ProductCard.astro';
 import WhatsAppCTA from '../../components/WhatsAppCTA.astro';
@@ -29,11 +30,12 @@ const faq = [
 const schema = { '@context': 'https://schema.org', '@type': 'Service', name: 'Hormigón elaborado', provider: { '@type': 'Organization', name: 'REDMIX Hormigonera' } };
 ---
 <BaseLayout title="Hormigón elaborado | REDMIX Hormigonera" description="Hormigón elaborado para obras y proyectos de construcción. Consultá alternativas disponibles y solicitá una cotización a REDMIX." {schema}>
-  <main class="inner-page">
-    <ServiceHero eyebrow="HORMIGÓN ELABORADO" title={["HORMIGÓN ELABORADO", "PARA TU OBRA"]} intro={['En REDMIX ofrecemos hormigón elaborado para obras y proyectos de construcción, con diferentes alternativas según las necesidades de cada trabajo.', 'No todas las obras requieren el mismo hormigón. Por eso podés consultarnos indicando las características de tu proyecto para definir la alternativa correspondiente y solicitar una cotización.']} {image} imageAlt="Hormigón fresco descargándose desde un camión mixer" ctaLabel="SOLICITAR PRESUPUESTO" whatsappMessage={message} />
+  <main class="inner-page service-detail">
+    <ServiceHero eyebrow="HORMIGÓN ELABORADO" title={["HORMIGÓN ELABORADO", "PARA TU OBRA"]} intro={['Hormigón elaborado para las necesidades de tu proyecto. Consultá las alternativas disponibles y coordiná el suministro para tu obra.']} {image} imageAlt="Hormigón fresco descargándose desde un camión mixer" ctaLabel="SOLICITAR PRESUPUESTO" whatsappMessage={message} />
+    <ServiceNavigation current="hormigon-elaborado" />
 
     <section class="products-section section-shell inner-section" aria-labelledby="line-products-title">
-      <div class="section-heading section-heading--row section-heading--centered" data-reveal>
+      <div class="section-heading section-heading--row service-products-heading" data-reveal>
         <div><p class="section-code">PRODUCTOS</p><h2 id="line-products-title">PRODUCTOS <em>DE LÍNEA.</em></h2></div>
         <p>Disponemos de diferentes alternativas de hormigón elaborado. Consultanos para conocer disponibilidad y definir cuál corresponde a tu obra.</p>
       </div>

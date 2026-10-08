@@ -1,0 +1,11 @@
+---
+import ArrowIcon from './ArrowIcon.astro';
+interface Props { current: string; }
+const { current } = Astro.props;
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const services = [{slug:'hormigon-elaborado',label:'Hormigón elaborado'},{slug:'acarreo-bomba',label:'Acarreo de bomba'},{slug:'bombeo-hormigon',label:'Bombeo de hormigón'}];
+---
+<nav class="service-navigation" aria-label="Servicios de REDMIX">
+ <span>EXPLORÁ LOS SERVICIOS</span>
+ <div>{services.map(service => <a href={root + '/servicios/' + service.slug} aria-current={current === service.slug ? 'page' : undefined}>{service.label}<ArrowIcon /></a>)}</div>
+</nav>

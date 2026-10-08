@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceNavigation from '../../components/ServiceNavigation.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
 import WhatsAppCTA from '../../components/WhatsAppCTA.astro';
 import FAQ from '../../components/FAQ.astro';
@@ -16,8 +17,9 @@ const faq = [
 const schema = { '@context': 'https://schema.org', '@type': 'Service', name: 'Servicio de bombeo de hormigón por m³', provider: { '@type': 'Organization', name: 'REDMIX Hormigonera' } };
 ---
 <BaseLayout title="Servicio de bombeo de hormigón | REDMIX" description="Bombeo de hormigón por volumen para facilitar la descarga y colocación del material dentro de la obra. Consultá a REDMIX." {schema}>
-  <main class="inner-page">
-    <ServiceHero eyebrow="BOMBEO DE HORMIGÓN" title={["BOMBEO DE HORMIGÓN", "POR METRO CÚBICO"]} intro={['El servicio de bombeo permite trasladar el hormigón desde el punto de descarga hasta el sector de colocación dentro de la obra cuando la descarga directa no resulta conveniente o posible.', 'REDMIX ofrece el servicio de bombeo calculado por volumen de hormigón.']} {image} imageAlt="Manguera descargando hormigón fresco en una obra" ctaLabel="SOLICITAR SERVICIO DE BOMBEO" whatsappMessage={message} motion="flow" />
+  <main class="inner-page service-detail">
+    <ServiceHero eyebrow="BOMBEO DE HORMIGÓN" title={["BOMBEO DE HORMIGÓN", "POR METRO CÚBICO"]} intro={['Llevá el hormigón desde la descarga hasta el punto de colocación. Servicio de bombeo calculado por volumen para las necesidades de tu obra.']} {image} imageAlt="Manguera descargando hormigón fresco en una obra" ctaLabel="SOLICITAR SERVICIO DE BOMBEO" whatsappMessage={message} motion="flow" />
+    <ServiceNavigation current="bombeo-hormigon" />
 
     <section class="split-info section-shell" aria-labelledby="placement-title">
       <div data-reveal><p class="section-code">COLOCACIÓN</p><h2 id="placement-title">EL HORMIGÓN DONDE <em>LO NECESITÁS.</em></h2></div>
