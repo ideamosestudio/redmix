@@ -16,11 +16,12 @@ const href = (path = '/') => root + path;
     <a href={href('/')}>Inicio</a>
     <a href={href('/quienes-somos')}>Quiénes somos</a>
     <a href={href('/contacto')}>Contacto</a>
-    <div class="footer-editorial-services">
+    </div>
+    <button class="footer-nav-toggle footer-services-toggle" type="button" aria-expanded="false" aria-controls="footer-service-links" hidden>Servicios <span aria-hidden="true">+</span></button>
+    <div class="footer-editorial-services" id="footer-service-links">
       <a href={href('/servicios/hormigon-elaborado')}>Hormigón elaborado</a>
       <a href={href('/servicios/acarreo-bomba')}>Acarreo de bomba</a>
       <a href={href('/servicios/bombeo-hormigon')}>Bombeo de hormigón</a>
-    </div>
     </div>
   </nav>
   <div class="site-footer__contact">
@@ -40,13 +41,13 @@ const href = (path = '/') => root + path;
 </footer>
 
 <script>
- const toggle=document.querySelector<HTMLButtonElement>('.footer-nav-toggle');
- const links=document.querySelector<HTMLElement>('.footer-nav-links');
  const nav=document.querySelector<HTMLElement>('.footer-editorial-nav');
- if(toggle && links && nav){
-  const mobile=window.matchMedia('(max-width:767px)');
+ const mobile=window.matchMedia('(max-width:767px)');
+ nav?.querySelectorAll<HTMLButtonElement>('.footer-nav-toggle').forEach(toggle=>{
+  const links=document.getElementById(toggle.getAttribute('aria-controls') || '');
+  if(!links) return;
   const sync=()=>{toggle.hidden=!mobile.matches;links.hidden=mobile.matches;toggle.setAttribute('aria-expanded',String(!mobile.matches));nav.classList.toggle('is-collapsible',mobile.matches);};
   toggle.addEventListener('click',()=>{const expanded=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!expanded));links.hidden=expanded;});
   mobile.addEventListener('change',sync);sync();
- }
+ });
 </script>

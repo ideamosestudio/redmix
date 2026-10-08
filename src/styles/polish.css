@@ -423,3 +423,9 @@
  .site-footer--editorial .site-footer__contact-group a.footer-email-primary { font-size:20px; }
  .site-footer--editorial a.footer-contact-link { justify-content:center; width:100%; min-height:50px; margin-top:2px; border:1px solid #ff806b55; background:#ff806b08; }
 }
+
+.footer-editorial-services[hidden] { display:none; }
+@media(max-width:767px) {
+ .footer-services-toggle { border-top:1px solid #ffffff26; }
+ .footer-editorial-nav > .footer-editorial-services { margin:0; padding:8px 0 24px; border-top:0; }
+}
