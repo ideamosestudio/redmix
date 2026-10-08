@@ -8,10 +8,10 @@ const steps = [
 ];
 ---
 <section class="work-sequence" aria-labelledby="process-title">
- <div class="work-sequence__heading" data-reveal><h3 id="process-title">DE LA MEZCLA<br /><em>A TU OBRA.</em></h3><p>Tu obra, de principio a fin.<br />Un mismo proveedor.</p></div>
+ <div class="work-sequence__heading" data-reveal><h3 id="process-title">DE LA MEZCLA<br /><em>A TU OBRA.</em></h3><p>Suministro, logística y colocación.</p></div>
  <div class="work-sequence__items">
   {steps.map(step => <a class="work-sequence__item" href={root + step.href}>
-   <div><h4>{step.title}</h4><span class="work-sequence__arrow"><ArrowIcon /></span></div>
+   <div><h4>{step.title.split(" ").slice(0,-1).join(" ")} <span class="work-sequence__ending">{step.title.split(" ").at(-1)}<span class="work-sequence__arrow"><ArrowIcon /></span></span></h4></div>
    <p>{step.text}</p>
   </a>)}
  </div>

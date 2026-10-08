@@ -9,7 +9,7 @@ const menuToggle = document.querySelector('[data-menu-toggle]');
 const menu = document.querySelector('[data-menu]');
 
 const floatingWhatsApp = document.querySelector('.floating-whatsapp');
-const protectedControls = [...document.querySelectorAll('.contact-form, .technical-cta, .contact-info')];
+const protectedControls = [...document.querySelectorAll('.contact-form, .technical-cta, .contact-info, .final-contact-data, .site-footer')];
 
 function updateNavbar() {
   navbar?.classList.toggle('is-scrolled', window.scrollY > 24);

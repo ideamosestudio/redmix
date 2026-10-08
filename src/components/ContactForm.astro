@@ -4,8 +4,8 @@ const { idPrefix = 'contact', compact = false } = Astro.props;
 ---
 <form class:list={['contact-form', { 'contact-form--compact': compact }]} data-email-form data-reveal>
   <div class="contact-form__heading">
-    <span>{compact ? 'FORM. CONSULTA' : 'FORMULARIO / CONTACTO'}</span>
-    <strong>{compact ? 'CONTANOS SOBRE TU OBRA' : 'ENVIANOS TU CONSULTA'}</strong>
+    {!compact && <span>FORMULARIO / CONTACTO</span>}
+    <strong>{compact ? 'Contanos sobre tu obra' : 'ENVIANOS TU CONSULTA'}</strong>
   </div>
   <div class="form-field">
     <label for={`${idPrefix}-name`}>Nombre</label>
@@ -19,6 +19,6 @@ const { idPrefix = 'contact', compact = false } = Astro.props;
     <label for={`${idPrefix}-message`}>Mensaje</label>
     <textarea id={`${idPrefix}-message`} name="message" rows={compact ? 4 : 6} required></textarea>
   </div>
-  <button class="technical-cta technical-cta--solid" type="submit"><span>ENVIAR CONSULTA</span><i class="tick tick--a"></i><i class="tick tick--b"></i><i class="tick tick--c"></i><i class="tick tick--d"></i></button>
+  <button class="technical-cta contact-form__submit" type="submit"><span>ENVIAR CONSULTA</span><i class="tick tick--a"></i><i class="tick tick--b"></i><i class="tick tick--c"></i><i class="tick tick--d"></i></button>
   <p class="form-note">Al enviar, se abrirá tu aplicación de correo con el mensaje preparado.</p>
 </form>
