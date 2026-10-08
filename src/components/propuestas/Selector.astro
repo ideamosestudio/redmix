@@ -1,0 +1,9 @@
+---
+const { active = '' } = Astro.props;
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const choices = [['', '00 / ACTUAL', root + '/'], ['camion', '01 / CAMIÓN', root + '/propuestas/camion/'], ['tambor', '02 / TAMBOR 3D', root + '/propuestas/tambor/'], ['descarga', '03 / VIDEO', root + '/propuestas/descarga/']];
+---
+<nav class="concept-selector" aria-label="Comparar propuestas de portada">
+  <span class="concept-selector__label">EXPLORÁ LAS PORTADAS</span>
+  <div>{choices.map(([key, label, href]) => <a href={href} aria-current={active === key ? 'page' : undefined}>{label}</a>)}</div>
+</nav>
