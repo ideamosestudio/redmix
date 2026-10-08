@@ -16,7 +16,7 @@
 }
 .nav-links > a:not(.nav-budget)::after,.nav-dropdown > button::after { content: ''; position: absolute; bottom: 8px; left: 0; right: 0; height: 1px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform .25s var(--ease-heavy); }
 .nav-links .is-current,.nav-dropdown.is-current > button { color: #fff; }
-.nav-links > .is-current::after,.nav-dropdown.is-current > button::after { transform: scaleX(1); }
+.nav-links > a.is-current::after,.nav-dropdown.is-current > button::after { transform: scaleX(1); }
 .nav-dropdown { position: relative; }
 .nav-dropdown__panel {
   position: absolute; top: calc(100% + 8px); left: 50%; width: 280px; padding: var(--space-sm); display: grid; gap: var(--space-2xs);
