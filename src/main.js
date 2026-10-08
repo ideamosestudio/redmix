@@ -7,8 +7,6 @@ gsap.registerPlugin(ScrollTrigger);
 const canvas = document.querySelector('.hero-canvas');
 const hero = document.querySelector('.hero');
 const objectWrap = document.querySelector('[data-object-wrap]');
-const heroCopy = document.querySelector('[data-copy]');
-const progressLine = document.querySelector('[data-progress]');
 const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 let reducedMotion = motionPreference.matches;
 let mobile = window.matchMedia('(max-width: 767px)').matches;
@@ -168,11 +166,7 @@ window.addEventListener('pointermove', (event) => {
 
 const motion = gsap.matchMedia();
 motion.add('(prefers-reduced-motion: no-preference) and (min-width: 1024px) and (min-height: 800px)', () => {
-if (hero) {
-  gsap.timeline({ scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom bottom', scrub: .7, invalidateOnRefresh: true, onUpdate: ({ progress }) => { scrollProgress = progress; progressLine.style.backgroundPosition = `${100 - progress * 100}% 0`; } } })
-    .to(heroCopy, { opacity: .78, ease: 'none', duration: 1 }, 0)
-    .to(camera.position, { z: () => fittedDistance * .98, ease: 'none', duration: 1 }, 0);
-} else if (objectWrap) {
+if (!hero && objectWrap) {
   ScrollTrigger.create({
     trigger: objectWrap,
     start: 'top bottom',
