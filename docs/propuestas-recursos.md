@@ -18,3 +18,6 @@ Material de referencia inicial no utilizado: descarga.mp4 y descarga-poster.jpg,
 ## Fondo arquitectonico Magnific
 Generado con Magnific, 75 creditos. Fuente public/propuestas/arquitectura-magnific.png; version web arquitectura-magnific.webp. Arquitectura brutalista de hormigon con iluminacion roja, perspectiva profunda, sin personas ni vehiculos, espacio oscuro a la izquierda para titulares. Tratamiento CSS de saturacion, contraste y degradados distinto para actual/camion/tambor. El video queda sin este fondo.
 Retoque posterior: eliminacion de texto incidental mediante Ideogram precise edit (80 creditos). Total fondo: 155 creditos.
+
+## Reemplazo por obra en construccion
+A pedido del usuario se reemplaza el fondo arquitectonico por una imagen conceptual fotorrealista de obra exterior: columnas y losas de hormigon, encofrados, andamios y grua al atardecer. Generado con Magnific (75 creditos). Archivos: public/propuestas/obra-construccion.png y obra-construccion.webp. Tratamiento casi monocromatico, sin iluminacion roja artificial. No representa una obra real de REDMIX. La portada de video no cambia.

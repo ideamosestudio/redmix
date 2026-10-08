@@ -18,7 +18,7 @@ const whatsappUrl = 'https://wa.me/5491138245680?text=Hola%20Redmix%2C%20quisier
   <nav class="nav-links" id="main-nav" aria-label="Navegación principal" data-menu>
     <a class:list={{ 'is-current': current('/quienes-somos') }} href={href('/quienes-somos')}>Quiénes somos</a>
     <div class:list={['nav-dropdown', { 'is-current': current('/servicios') }]}>
-      <button type="button" aria-expanded="false" aria-controls="service-nav">Servicios</button>
+      <button type="button" aria-expanded="false" aria-controls="service-nav">Servicios<svg class="nav-chevron" width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></button>
       <div class="nav-dropdown__panel" id="service-nav">
         <a href={href('/servicios/hormigon-elaborado')}>Hormigón elaborado</a>
         <a href={href('/servicios/acarreo-bomba')}>Acarreo de bomba</a>
