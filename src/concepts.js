@@ -14,9 +14,6 @@ button?.addEventListener('click', () => { paused = !paused; label(); syncVideo()
 reduce.addEventListener('change', () => { paused = reduce.matches; label(); syncVideo(); syncScene(); });
 document.addEventListener('visibilitychange', () => { syncVideo(); syncScene(); });
 if (section) new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; syncVideo(); syncScene(); }).observe(section);
-const truck = document.querySelector('[data-truck]');
-if (truck) section.addEventListener('pointermove', event => { if (reduce.matches || event.pointerType !== 'mouse') return; const r=section.getBoundingClientRect(); truck.style.setProperty('--truck-x', `${(event.clientX/r.width-.5)*12}px`); truck.style.setProperty('--truck-y', `${((event.clientY-r.top)/r.height-.5)*8}px`); }, {passive:true});
-section?.addEventListener('pointerleave', () => { truck?.style.setProperty('--truck-x','0px'); truck?.style.setProperty('--truck-y','0px'); });
 const canvas = document.querySelector('[data-drum]');
 if (canvas) {
  try {

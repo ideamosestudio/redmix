@@ -21,3 +21,7 @@ Retoque posterior: eliminacion de texto incidental mediante Ideogram precise edi
 
 ## Reemplazo por obra en construccion
 A pedido del usuario se reemplaza el fondo arquitectonico por una imagen conceptual fotorrealista de obra exterior: columnas y losas de hormigon, encofrados, andamios y grua al atardecer. Generado con Magnific (75 creditos). Archivos: public/propuestas/obra-construccion.png y obra-construccion.webp. Tratamiento casi monocromatico, sin iluminacion roja artificial. No representa una obra real de REDMIX. La portada de video no cambia.
+
+## Camion animado integrado
+Escena conceptual integrada generada con Magnific: camion moderno blanco con tambor rojo, apoyado sobre suelo de obra, perspectiva y sombras compartidas. Dos generaciones de imagen: 150 creditos. Animacion Seedance 2.5, 6 segundos, 1080p, sin audio: 4740 creditos. Fotograma inicial y final iguales para continuidad. Instruccion de movimiento: solo el tambor gira sobre su eje, cabina, ruedas, fondo y camara inmoviles. Archivos camion-obra.png, camion-obra.webp y camion-obra.mp4 en public/propuestas/. No representa la flota real.
+Se genero una segunda variante con Seedance 1.5 (660 creditos). La comparacion directa de fotogramas confirmo que la primera si gira sutilmente; se conserva Seedance 2.5 por su fondo estable, sin la nube de polvo de la segunda. Coste total de esta iteracion: 5550 creditos. Video servido: 674040 bytes.

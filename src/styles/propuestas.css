@@ -14,9 +14,6 @@
 .concept-actions .technical-cta { min-height: 54px; font: 600 12px/1.3 'Montserrat',sans-serif; border-radius: 3px; }
 .concept-actions .technical-cta--solid { background: linear-gradient(120deg,#ff4b32,#d21c15); box-shadow: 0 6px 30px #f2262026; }
 .concept-actions .tick { display: none; }
-.concept-truck { position: absolute; width: 60%; height: 64%; max-height: 540px; right: -2%; bottom: 12%; z-index: 1; transform: translate3d(var(--truck-x,0),var(--truck-y,0),0); transition: transform .6s ease-out; }
-.concept-truck img { display: block; width: 100%; height: 100%; object-fit: contain; mask-image: linear-gradient(90deg,transparent,#000 18%,#000 91%,transparent),linear-gradient(0deg,transparent,#000 14%,#000 86%,transparent); mask-composite: intersect; }
-.concept-truck span { position: absolute; bottom: 4%; right: 14%; color: #ffffff06; -webkit-text-stroke: 1px #ffffff12; font: 700 11vw/1 'Barlow Semi Condensed',sans-serif; z-index: -1; }
 .concept-page--camion .concept-copy { text-shadow: 0 2px 20px #000; }
 .concept-page--camion .concept-intro { max-width: 35ch; }
 .concept-drum { position: absolute; right: -3%; top: calc(var(--header-height) + 20px); width: 55%; height: calc(100% - var(--header-height) - 90px); z-index: 1; }
@@ -62,8 +59,6 @@
  .concept-intro { margin: 24px auto; }
  .concept-page--camion .concept-intro { max-width: 42ch; }
  .concept-actions { justify-content: center; }
- .concept-truck { position: relative; height: auto; max-height: none; width: 110%; right: auto; bottom: auto; order: 2; margin-top: -15px; }
- .concept-truck img { height: auto; }
  .concept-drum { position: relative; top: auto; right: auto; width: 100%; height: 360px; order: 2; }
  .concept-film__shade { background: linear-gradient(180deg,#05070ae6,rgba(4,7,10,.8) 45%,rgba(4,7,10,.24) 70%,#090b0f); }
  .concept-page--descarga .concept-hero { min-height: 100svh; }
@@ -79,7 +74,6 @@
  .concept-intro { font-size: 14px; }
  .concept-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
  .concept-actions .technical-cta { font-size: 9px; padding: 10px; min-height: 52px; }
- .concept-truck { width: 120%; margin-top: 10px; }
  .concept-drum { height: 280px; }
  .concept-drum__label { bottom: 0; font-size: 8px; }
  .concept-caption { bottom: 18px; gap: 8px; font-size: 8px; letter-spacing: .04em; }
@@ -89,4 +83,20 @@
  .concept-card > img,.drum-preview { height: auto; aspect-ratio: 3/2; }
  .concept-gallery { padding-top: calc(var(--header-height) + 38px); }
 }
-@media (prefers-reduced-motion: reduce) { .concept-truck,.concept-card { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .concept-card { transition: none; } }
+
+/* One photographic scene keeps the truck grounded and lighting coherent. */
+.truck-scene { position: absolute; inset: 0; z-index: -2; }
+.truck-scene video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; }
+.truck-scene__shade { position: absolute; inset: 0; background: linear-gradient(90deg,#080b10f2 0%,#080b10b8 32%,#080b1033 55%,transparent 76%),linear-gradient(0deg,#080b10d9,transparent 24%); }
+.concept-page--camion .concept-copy { width: 58%; }
+.concept-page--camion .concept-copy h1 { font-size: clamp(40px,3.85vw,70px); }
+.concept-page--camion .concept-intro { max-width: 39ch; color: #d4d6dc; }
+@media(max-width:1023px) {
+ .concept-page--camion .concept-hero { min-height: 0; padding-bottom: 90px; background: #0b0e12; }
+ .concept-page--camion .concept-copy { width: 100%; }
+ .concept-page--camion .concept-copy h1 { font-size: clamp(25px,6.4vw,54px); }
+ .truck-scene { position: relative; inset: auto; order: 2; width: calc(100% + 2 * var(--page-gutter)); height: clamp(280px,55vw,450px); margin-top: 12px; z-index: 0; }
+ .truck-scene video { object-position: right center; }
+ .truck-scene__shade { background: linear-gradient(180deg,#0b0e12,transparent 22%,transparent 82%,#0b0e12); }
+}
