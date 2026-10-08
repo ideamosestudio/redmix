@@ -19,7 +19,8 @@ interface Props {
 
 const { title, description, schema } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const socialImage = new URL(`${import.meta.env.BASE_URL}images/redmix-logo.png`, Astro.site);
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+const socialImage = new URL(`${root}/images/redmix-logo.png`, Astro.site);
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': ['LocalBusiness', 'Organization'],
@@ -46,7 +47,7 @@ const schemas = [organizationSchema, ...(Array.isArray(schema) ? schema : schema
     <meta name="description" content={description} />
     <meta name="theme-color" content="#111214" />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}images/redmix-logo.png`} />
+    <link rel="icon" type="image/svg+xml" href={`${root}/favicon.svg?v=redmix-1`} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_AR" />
     <meta property="og:site_name" content="REDMIX Hormigonera" />

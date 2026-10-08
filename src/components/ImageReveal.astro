@@ -2,14 +2,18 @@
 import { Picture } from 'astro:assets';
 interface Props { src: ImageMetadata; alt: string; class?: string; eager?: boolean; motion?: 'vertical' | 'horizontal' | 'flow'; }
 const { src, alt, class: className = '', eager = false, motion = 'vertical' } = Astro.props;
+const widths = [...new Set([640, 960, 1280, 1600, src.width].filter(width => width <= src.width))].sort((a, b) => a - b);
+// Include the pixels cropped by object-fit when choosing a responsive source.
+const coverScale = Math.max(1, (src.width / src.height) / (4 / 3));
+
 ---
 <figure class:list={['image-reveal', `image-reveal--${motion}`, className]} data-reveal data-image-reveal>
   <Picture
     src={src}
     formats={['avif']}
     fallbackFormat="webp"
-    widths={[640, 960, 1280, 1600, 1920]}
-    sizes="(max-width: 760px) 100vw, 70vw"
+    widths={widths} quality={90}
+    sizes={`(max-width: 1023px) ${100 * coverScale}vw, ${50 * coverScale}vw`}
     alt={alt}
     loading={eager ? 'eager' : 'lazy'}
     fetchpriority={eager ? 'high' : 'auto'}

@@ -32,7 +32,7 @@
 .intro-section__body,.about-copy > div:nth-child(2) { grid-column: 1/span 5; grid-row: 2; max-width: 58ch; }
 .intro-section__body > p,.about-copy > div:nth-child(2) p { margin: 0 0 var(--space-lg); color: var(--text-body); font-size: 16px; line-height: 1.65; }
 .intro-section__body .technical-cta,.about-copy > div:nth-child(2) .technical-cta { margin-top: var(--space-xs); }
-.intro-section__image,.about-copy__image { grid-column: 7/span 6; grid-row: 1/span 2; align-self: stretch; width: 100%; min-height: 600px; height: 100%; }
+.intro-section__image,.about-copy__image { grid-column: 7/span 6; grid-row: 1/span 2; align-self: center; width: 100%; min-height: 0; height: auto; aspect-ratio: 4/3; }
 .intro-section h2,.about-copy h2 { font-size: var(--type-editorial); }
 
 /* Services: aligned titles/actions without long fixed-height descriptions. */
@@ -123,7 +123,7 @@
   .intro-section,.about-copy { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .intro-section > .section-heading,.about-copy > div:first-child { grid-column: 1/-1; grid-row: auto; }
   .intro-section__body,.about-copy > div:nth-child(2) { grid-column: 1; grid-row: auto; }
-  .intro-section__image,.about-copy__image { grid-column: 2; grid-row: 2; min-height: 420px; }
+  .intro-section__image,.about-copy__image { grid-column: 2; grid-row: 2; min-height: 0; }
   .product-card { aspect-ratio: 1; }
   .product-card:nth-last-child(-n+2) { aspect-ratio: 3/2; }
   .experience-section__copy { grid-column: span 8; }
@@ -141,7 +141,7 @@
   .section-heading--centered::after { margin-left: 0; }
   .intro-section,.about-copy { grid-template-columns: 1fr; gap: var(--space-group); }
   .intro-section > .section-heading,.intro-section__body,.intro-section__image,.about-copy > div:first-child,.about-copy > div:nth-child(2),.about-copy__image { grid-column: 1; grid-row: auto; }
-  .intro-section__image,.about-copy__image { height: auto; min-height: 0; aspect-ratio: 4/5; margin-top: var(--space-md); }
+  .intro-section__image,.about-copy__image { height: auto; min-height: 0; aspect-ratio: 4/3; margin-top: var(--space-md); }
   .services-section > .section-heading:not(.section-heading--row) { margin-bottom: var(--space-block); }
   .services-grid { grid-template-columns: 1fr; gap: var(--space-md); }
   .service-card { display: flex; }

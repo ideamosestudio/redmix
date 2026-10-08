@@ -3,10 +3,14 @@ import { Picture } from 'astro:assets';
 import WhatsAppCTA from './WhatsAppCTA.astro';
 interface Props { index: string; title: string; description: string; href: string; image: ImageMetadata; imageAlt: string; }
 const { index, title, description, href, image, imageAlt } = Astro.props;
+const widths = [...new Set([480, 720, 960, 1280, 1600, image.width].filter(width => width <= image.width))].sort((a, b) => a - b);
+// Include the pixels cropped by object-fit when choosing a responsive source.
+const coverScale = Math.max(1, (image.width / image.height) / (4 / 3));
+
 ---
 <article class="service-card" data-card>
   <a class="service-card__image" href={href} aria-label={`Conocé ${title}`}>
-    <Picture src={image} formats={['avif']} fallbackFormat="webp" widths={[480, 720, 960]} sizes="(max-width: 767px) 100vw, (max-width: 1199px) 47vw, 33vw" alt={imageAlt} loading="lazy" />
+    <Picture src={image} formats={['avif']} fallbackFormat="webp" widths={widths} quality={90} sizes={`(max-width: 767px) ${100 * coverScale}vw, (max-width: 1199px) ${50 * coverScale}vw, ${34 * coverScale}vw`} alt={imageAlt} loading="lazy" />
     <span>{index}</span>
   </a>
   <div class="service-card__body">
