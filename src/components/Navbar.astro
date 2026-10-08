@@ -1,4 +1,5 @@
 ---
+import ArrowIcon from './ArrowIcon.astro';
 import WhatsAppCTA from './WhatsAppCTA.astro';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const href = (path = '/') => `${root}${path}`;
@@ -16,13 +17,14 @@ const current = (path: string) => path === '/' ? pathname === '/' : pathname.sta
   </button>
 
   <nav class="nav-links" id="main-nav" aria-label="Navegación principal" data-menu>
+    <p class="mobile-menu-kicker" aria-hidden="true">REDMIX · CONSTRUÍ LO QUE VIENE</p>
     <a class:list={{ 'is-current': current('/quienes-somos') }} href={href('/quienes-somos')}>Quiénes somos</a>
     <div class:list={['nav-dropdown', { 'is-current': current('/servicios') }]}>
       <button type="button" aria-expanded="false" aria-controls="service-nav">Servicios<svg class="nav-chevron" width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></button>
       <div class="nav-dropdown__panel" id="service-nav">
-        <a href={href('/servicios/hormigon-elaborado')}>Hormigón elaborado</a>
-        <a href={href('/servicios/acarreo-bomba')}>Acarreo de bomba</a>
-        <a href={href('/servicios/bombeo-hormigon')}>Bombeo de hormigón</a>
+        <a href={href('/servicios/hormigon-elaborado')} aria-current={current('/servicios/hormigon-elaborado') ? 'page' : undefined}><span><strong>Hormigón elaborado</strong><small>Suministro para tu obra</small></span><ArrowIcon /></a>
+        <a href={href('/servicios/acarreo-bomba')} aria-current={current('/servicios/acarreo-bomba') ? 'page' : undefined}><span><strong>Acarreo de bomba</strong><small>Traslado del equipo</small></span><ArrowIcon /></a>
+        <a href={href('/servicios/bombeo-hormigon')} aria-current={current('/servicios/bombeo-hormigon') ? 'page' : undefined}><span><strong>Bombeo de hormigón</strong><small>Colocación en destino</small></span><ArrowIcon /></a>
       </div>
     </div>
     <a class:list={{ 'is-current': current('/contacto') }} href={href('/contacto')}>Contacto</a>

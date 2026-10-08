@@ -480,3 +480,40 @@
  .footer-editorial-nav a:is(:hover,:active,:focus-visible) .footer-item-arrow { opacity:1; transform:translate(2px,-2px); }
  .footer-nav-toggle[aria-expanded='true'] { color:#ffad9b; }
 }
+
+/* Service navigation with clear titles and compact supporting descriptions. */
+.mobile-menu-kicker { display:none; }
+.nav-dropdown__panel { width:340px; padding:10px; border-radius:5px; border-top:2px solid #ef513c; background:linear-gradient(145deg,#242020,#121416 65%); box-shadow:0 22px 60px #0008; }
+.nav-dropdown__panel::before { content:'SOLUCIONES PARA TU OBRA'; padding:12px 12px 16px; color:#ff9b87; font-size:9px; }
+.nav-dropdown__panel a { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:16px 12px; border-radius:2px; }
+.nav-dropdown__panel a + a { border-top:1px solid #ffffff0d; }
+.nav-dropdown__panel a span { display:grid; gap:5px; }
+.nav-dropdown__panel strong { color:#efeeeb; font:600 20px/1.15 'Barlow Semi Condensed',sans-serif; }
+.nav-dropdown__panel small { color:#abadb3; font:400 12px/1.5 'Roboto',sans-serif; }
+.nav-dropdown__panel .arrow-icon { width:16px; height:16px; flex:0 0 16px; color:#ff806b; transition:transform .25s; }
+.nav-dropdown__panel a:is(:hover,:focus-visible,[aria-current='page']) { background:#ff806b0b; }
+.nav-dropdown__panel a:focus-visible { outline:2px solid #ff806b; outline-offset:-2px; }
+.nav-dropdown__panel a:hover .arrow-icon { transform:translate(2px,-2px); }
+@media(max-width:1023px) {
+ .nav-links { isolation:isolate; background:#0c0e10; padding-top:calc(var(--header-height) + 24px); gap:0; }
+ .nav-links::before { content:''; position:fixed; z-index:-1; pointer-events:none; inset:0; background:radial-gradient(ellipse at 10% 25%,#a632232a,transparent 50%),radial-gradient(ellipse at 95% 80%,#d33b1d1c,transparent 45%); background-size:160% 160%; animation:menu-light-drift 18s ease-in-out infinite alternate; animation-play-state:paused; }
+ .nav-links.is-open::before { animation-play-state:running; }
+ .mobile-menu-kicker { display:block; margin:0 0 16px; color:#bdaba4; font:500 9px/1.5 'Montserrat',sans-serif; letter-spacing:.12em; }
+ .nav-links > a:not(.nav-budget),.nav-dropdown > button { font:600 clamp(25px,6vw,32px)/1.1 'Barlow Semi Condensed',sans-serif; letter-spacing:-.01em; min-height:56px; padding:14px 0; }
+ .nav-dropdown > button { display:flex; align-items:center; justify-content:space-between; }
+ .nav-chevron { color:#ff806b; }
+ .nav-dropdown__panel { width:100%; margin:10px 0; padding:4px 10px; border:1px solid #ffffff12; border-left:2px solid #ff806b66; background:#ffffff03; box-shadow:none; }
+ .nav-dropdown__panel a { padding:12px 8px; min-height:62px; }
+ .nav-dropdown__panel strong { font-size:20px; }
+ .nav-dropdown__panel small { font-size:11px; }
+ .nav-shell .nav-links > .nav-budget--mobile { justify-content:center; gap:16px; margin-top:22px; min-height:52px; padding:14px; font-size:11px; }
+}
+@keyframes menu-light-drift { from { background-position:0% 0%; } to { background-position:100% 100%; } }
+@media(prefers-reduced-motion:reduce) { .nav-links::before { animation:none; } }
+@media(max-width:767px) {
+ .products-section .product-project-cta { text-align:center; align-items:center; }
+ .products-section .product-project-cta p { width:100%; max-width:28ch; margin-inline:auto; text-wrap:balance; }
+ .final-cta .final-contact-data { grid-template-columns:1fr; gap:20px; }
+ .final-cta .final-contact-data > div { grid-column:1; width:100%; }
+ .final-cta .final-contact-data > div + div { border-top:1px solid #ffffff12; padding-top:18px; }
+}
