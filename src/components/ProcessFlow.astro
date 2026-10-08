@@ -1,24 +1,18 @@
 ---
 import ArrowIcon from './ArrowIcon.astro';
-const { integrated = false } = Astro.props;
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 const steps = [
- {title:'Suministro',text:'Hormigón elaborado para tu proyecto.',href:'/servicios/hormigon-elaborado',path:'M16 14h32l-5 21H21L16 14Zm8 21v11m16-11v11M18 50h28M12 14h40M28 20h8m-7 6h6'},
- {title:'Traslado de equipo',text:'Acercamos el equipo de bombeo a tu obra.',href:'/servicios/acarreo-bomba',path:'M8 24h29v23H8V24Zm29 8h10l9 9v6H37M42 32v9h14M13 47a5 5 0 1 0 10 0 5 5 0 1 0-10 0m27 0a5 5 0 1 0-10 0 5 5 0 1 0 10 0M15 19l13-9 15 9'},
- {title:'Bombeo',text:'Llevamos el hormigón al punto de colocación.',href:'/servicios/bombeo-hormigon',path:'M8 49h34M15 49V37h20v12M24 37V19l17-9 11 11-9 17v12M29 37V22l11-6 6 6-8 15v13M37 55h14M8 55h20'}
+ {title:'SUMINISTRO',text:'Hormigón elaborado para las necesidades de tu proyecto.',href:'/servicios/hormigon-elaborado'},
+ {title:'TRASLADO',text:'Coordinación del equipo de bombeo para llegar a tu obra.',href:'/servicios/acarreo-bomba'},
+ {title:'BOMBEO',text:'Colocación del hormigón donde tu obra lo necesita.',href:'/servicios/bombeo-hormigon'}
 ];
 ---
-<section class:list={['process-flow', integrated && 'process-flow--integrated']} aria-labelledby="process-title" data-process-flow>
- {integrated ? <h3 class="process-flow__subheading" id="process-title">DE LA MEZCLA A TU OBRA</h3> : <div class="process-flow__heading" data-reveal><p class="section-code">DE LA MEZCLA A TU OBRA</p><h2 id="process-title">UNA OBRA.<br /><em>TODO CONECTADO.</em></h2><p>Suministro, traslado y colocación con REDMIX.</p></div>}
- <div class="process-flow__diagram" data-reveal>
-  <div class="process-flow__track" aria-hidden="true"><i></i></div>
-  {steps.map(step => <a class="process-step" href={root + step.href}>
-   <span class="process-step__icon"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={step.path}/></svg></span>
-   <span class="process-step__copy"><strong>{step.title}</strong><span>{step.text}</span><span class="process-step__link">Conocer servicio <ArrowIcon direction="right" /></span></span>
+<section class="work-sequence" aria-labelledby="process-title">
+ <div class="work-sequence__heading" data-reveal><h3 id="process-title">DE LA MEZCLA<br /><em>A TU OBRA.</em></h3><p>Tres servicios.<br />Un mismo proveedor.</p></div>
+ <div class="work-sequence__items">
+  {steps.map(step => <a class="work-sequence__item" href={root + step.href}>
+   <div><h4>{step.title}</h4><span class="work-sequence__arrow"><ArrowIcon /></span></div>
+   <p>{step.text}</p>
   </a>)}
  </div>
 </section>
-<script>
- const flow = document.querySelector('[data-process-flow]');
- if(flow) new IntersectionObserver(([entry]) => flow.classList.toggle('is-in-view',entry.isIntersecting),{threshold:.15}).observe(flow);
-</script>
