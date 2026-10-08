@@ -48,3 +48,31 @@
  .product-card__caption { inset: auto 20px 20px; }
 }
 @media(prefers-reduced-motion:reduce) { .service-card,.product-card,.arrow-icon { translate: none; } }
+
+/* Editorial footer: a brand statement, an index, and direct contact. */
+.site-footer--editorial { grid-template-columns: minmax(0,1.25fr) minmax(0,.8fr) minmax(0,1fr); gap: 40px 64px; padding-top: 64px; background: #0b0d0f; }
+.site-footer--editorial > div,.site-footer--editorial > nav { grid-column: auto; }
+.site-footer--editorial .site-footer__brand { align-self: start; }
+.site-footer--editorial .site-footer__brand img { width: 168px; }
+.site-footer--editorial .footer-editorial-statement { margin: 28px 0 20px; max-width: none; color: #f0eeea; font: 700 clamp(36px,3.6vw,54px)/1.02 'Barlow Semi Condensed',sans-serif; letter-spacing: -.025em; }
+.footer-editorial-statement em { color: #f16a56; font-style: normal; }
+.site-footer--editorial .footer-editorial-location { margin: 0; color: #a7a9b0; font: 500 10px/1.6 'Montserrat',sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+.site-footer--editorial > nav { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding-top: 18px; border-top: 1px solid #ffffff26; }
+.site-footer--editorial > div.site-footer__contact { padding-top: 18px; gap: 16px; }
+.site-footer--editorial .footer-label { margin-bottom: 8px; color: #a9acb4; font-size: 10px; }
+.site-footer--editorial .footer-editorial-nav > a { color: #eeece8; font-size: 17px; }
+.footer-editorial-services { display: grid; gap: 10px; margin-top: 12px; padding-top: 20px; border-top: 1px solid #ffffff18; width: 100%; }
+.site-footer--editorial .site-footer__contact-group { gap: 4px; }
+.site-footer--editorial .site-footer__contact-group:first-of-type a { color: #eeece8; font-size: 17px; }
+.site-footer--editorial > div.site-footer__legal { grid-column: 1/-1; display: flex; flex-direction: row; justify-content: space-between; align-items: center; padding-top: 16px; margin-top: 8px; gap: 16px; }
+@media(max-width:1023px) {
+ .site-footer--editorial { grid-template-columns: 1fr 1fr; gap: 36px; }
+ .site-footer--editorial .site-footer__brand { grid-column: 1/-1; }
+ .site-footer--editorial .footer-editorial-statement { font-size: 48px; }
+}
+@media(max-width:767px) {
+ .site-footer--editorial { grid-template-columns: 1fr; gap: 32px; padding-top: 48px; }
+ .site-footer--editorial .site-footer__brand { grid-column: auto; }
+ .site-footer--editorial .footer-editorial-statement { font-size: 46px; }
+ .site-footer--editorial > div.site-footer__legal { flex-direction: column; align-items: flex-start; }
+}
