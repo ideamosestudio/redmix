@@ -7,5 +7,5 @@ const services = [{slug:'hormigon-elaborado',label:'Hormigón elaborado'},{slug:
 ---
 <nav class="service-navigation" aria-label="Servicios de REDMIX">
  <span>EXPLORÁ LOS SERVICIOS</span>
- <div>{services.map(service => <a href={root + '/servicios/' + service.slug} aria-current={current === service.slug ? 'page' : undefined}>{service.label}<ArrowIcon /></a>)}</div>
+ <div>{services.map(service => <a href={root + '/servicios/' + service.slug} aria-current={current === service.slug ? 'page' : undefined}><span>{service.label}</span>{current === service.slug ? <small>Estás acá</small> : <ArrowIcon />}</a>)}</div>
 </nav>

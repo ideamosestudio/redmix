@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServiceMarquee from '../../components/ServiceMarquee.astro';
 import ServiceNavigation from '../../components/ServiceNavigation.astro';
 import ServiceHero from '../../components/ServiceHero.astro';
 import ProductCard from '../../components/ProductCard.astro';
@@ -49,6 +50,7 @@ const schema = { '@context': 'https://schema.org', '@type': 'Service', name: 'Ho
     </section>
 
     <FAQ items={faq} />
+    <ServiceMarquee />
     <FinalCTA label="PEDIR PRESUPUESTO POR WHATSAPP" message={message} />
   </main>
 </BaseLayout>

@@ -1,5 +1,4 @@
 ---
-import Breadcrumbs from './Breadcrumbs.astro';
 import ImageReveal from './ImageReveal.astro';
 import WhatsAppCTA from './WhatsAppCTA.astro';
 interface Props {
@@ -16,7 +15,6 @@ const { eyebrow, title, intro, image, imageAlt, ctaLabel, whatsappMessage, motio
 ---
 <section class:list={['page-hero', 'service-hero', `service-hero--${motion}`]}>
     <div class="page-hero__copy" data-reveal>
-      <Breadcrumbs current={eyebrow} />
       <p class="eyebrow"><span></span>{eyebrow}</p>
       <h1>{Array.isArray(title) ? title.map((line, index) => <span class={index === 1 ? 'type-accent' : undefined}>{line}</span>) : title}</h1>
       <div class="page-hero__intro">

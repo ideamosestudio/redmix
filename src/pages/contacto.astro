@@ -1,21 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ContactInfo from '../components/ContactInfo.astro';
-import WhatsAppCTA from '../components/WhatsAppCTA.astro';
-import ContactForm from '../components/ContactForm.astro';
+import FinalCTA from '../components/FinalCTA.astro';
 ---
 <BaseLayout title="Contacto | REDMIX Hormigonera" description="Contactá a REDMIX Hormigonera para solicitar información o pedir un presupuesto por WhatsApp.">
-  <main class="inner-page contact-page">
-    <section class="contact-hero section-shell">
-      <div data-reveal>
-        <p class="eyebrow"><span></span>CONTACTO</p>
-        <h1>CONTACTANOS</h1>
-        <p>Dejanos tus datos o escribinos directamente por WhatsApp para solicitar información o pedir un presupuesto.</p>
-        <ContactInfo />
-        <WhatsAppCTA label="ESCRIBINOS POR WHATSAPP" />
-      </div>
-
-      <ContactForm idPrefix="contact-page" />
-    </section>
-  </main>
+ <main class="inner-page contact-page contact-page--editorial"><FinalCTA headingTag="h1" /></main>
 </BaseLayout>

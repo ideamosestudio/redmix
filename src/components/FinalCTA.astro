@@ -1,14 +1,14 @@
 ---
 import WhatsAppCTA from './WhatsAppCTA.astro';
 import ContactForm from './ContactForm.astro';
-interface Props { title?: string; text?: string; label?: string; message?: string; }
-const { title = 'HABLEMOS DE TU OBRA', text = 'Contanos qué necesitás para tu obra.', label = 'COTIZAR POR WHATSAPP', message } = Astro.props;
+interface Props { title?: string; text?: string; label?: string; message?: string; headingTag?: "h1" | "h2"; }
+const { title = 'HABLEMOS DE TU OBRA', text = 'Contanos qué necesitás para tu obra.', label = 'COTIZAR POR WHATSAPP', message, headingTag: Heading = "h2" } = Astro.props;
 ---
 <section class="final-cta" id="presupuesto">
  <div class="final-cta__inner">
   <div class="final-cta__copy" data-reveal>
     <p class="section-code">CONTACTO DIRECTO</p>
-    <h2>{title === 'HABLEMOS DE TU OBRA' ? <>HABLEMOS DE<br /><em>TU OBRA.</em></> : title}</h2>
+    <Heading>{title === 'HABLEMOS DE TU OBRA' ? <>HABLEMOS DE<br /><em>TU OBRA.</em></> : title}</Heading>
     <p>{text}</p>
     <div class="quote-guide" data-quote-guide hidden>
       <p id="quote-guide-label">Elegí el servicio y consultanos por WhatsApp.</p>

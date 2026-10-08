@@ -11,38 +11,31 @@ import bombeoImage from '../assets/redmix/bombeo/bombeo-obra.png';
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <BaseLayout title="Quiénes somos | REDMIX Hormigonera" description="Conocé REDMIX Hormigonera, una empresa joven con más de 20 años de experiencia en el rubro de la construcción.">
-  <main class="inner-page">
+  <main class="inner-page about-page">
     <section class="about-hero page-hero">
       <div class="page-hero__copy" data-reveal>
-        <p class="eyebrow"><span></span>REDMIX HORMIGONERA</p>
-        <h1><span>QUIÉNES</span><span><em>SOMOS.</em></span></h1>
-        <p class="page-hero__lead">Una empresa joven con más de 20 años de experiencia en el rubro.</p>
+        <p class="eyebrow"><span></span>REDMIX · LONGCHAMPS</p>
+        <h1><span>EXPERIENCIA</span><span>PARA <em>CONSTRUIR.</em></span></h1>
+        <p class="page-hero__lead">Somos REDMIX. Hormigón elaborado, acarreo y bombeo, con la experiencia del rubro puesta al servicio de tu obra.</p>
         <WhatsAppCTA label="HABLAR CON REDMIX" />
       </div>
-      <div class="about-hero__logo" data-object-wrap aria-label="Símbolo animado de REDMIX">
-        <div class="object-glow" aria-hidden="true"></div>
-        <canvas class="hero-canvas" aria-hidden="true"></canvas>
-        <div class="object-crosshair" aria-hidden="true"><i></i><i></i></div>
-        <div class="object-tag object-tag--top" aria-hidden="true"><span>SISTEMA REDMIX</span><b>HORMIGÓN</b></div>
-      </div>
+      <ImageReveal src={empresaImage} alt="Operación de hormigón elaborado" eager class="about-hero__image" label="" />
     </section>
 
     <section class="about-copy section-shell">
-      <div data-reveal><p class="section-code">REDMIX</p><h2>EXPERIENCIA QUE ACOMPAÑA <em>CADA PROYECTO.</em></h2></div>
+      <div data-reveal><p class="section-code">REDMIX</p><h2>TU OBRA.<br /><em>UN MISMO PROVEEDOR.</em></h2></div>
       <div data-reveal>
         <p>REDMIX combina una estructura dinámica con la experiencia acumulada durante más de dos décadas dentro del sector de la construcción.</p>
         <p>Desde Longchamps, Provincia de Buenos Aires, brindamos soluciones vinculadas al hormigón elaborado y servicios complementarios para obras.</p>
-        <WhatsAppCTA label="HABLAR CON REDMIX" />
+        <p class="about-origin">LONGCHAMPS · BUENOS AIRES</p>
       </div>
-      <ImageReveal src={empresaImage} alt="Actividad en una operación de hormigón elaborado" eager motion="horizontal" class="about-copy__image" />
     </section>
 
     <section class="experience-section experience-section--statement section-shell" aria-labelledby="experience-title">
       <div class="experience-section__copy" data-reveal>
         <p class="section-code">EXPERIENCIA</p>
-        <h2 id="experience-title">UNA EMPRESA JOVEN RESPALDADA POR MÁS DE <em>20 AÑOS</em> DE EXPERIENCIA EN EL RUBRO.</h2>
-        <p>Nuestro conocimiento del sector de la construcción nos permite acompañar obras y proyectos con soluciones vinculadas al hormigón elaborado, su traslado y su colocación.</p>
-        <WhatsAppCTA label="HABLAR CON REDMIX" />
+        <h2 id="experience-title">UNA MIRADA JOVEN.<br /><em>EXPERIENCIA EN OBRA.</em></h2>
+        <p>Más de dos décadas de experiencia en el rubro respaldan nuestro trabajo. Unimos ese conocimiento con una estructura dinámica para acompañar cada proyecto.</p>
       </div>
       <div class="experience-counter" data-reveal aria-label="Más de veinte años de experiencia">
         <strong data-experience-counter aria-hidden="true">+20</strong>
@@ -51,18 +44,14 @@ const root = import.meta.env.BASE_URL.replace(/\/$/, '');
     </section>
 
     <section class="services-section section-shell" aria-labelledby="about-services-title">
-      <div class="section-heading" data-reveal><p class="section-code">SERVICIOS</p><h2 id="about-services-title">SOLUCIONES PARA <em>TU OBRA.</em></h2></div>
+      <div class="section-heading section-heading--row services-heading" data-reveal><div><p class="section-code">SERVICIOS</p><h2 id="about-services-title">SOLUCIONES PARA <em>TU OBRA.</em></h2></div><p>Suministro, traslado y colocación. Conocé cómo podemos acompañarte.</p></div>
       <div class="services-grid" data-stagger>
-        <ServiceCard title="HORMIGÓN ELABORADO" description="Suministro de hormigón elaborado para diferentes tipos de obras y necesidades de construcción." href={`${root}/servicios/hormigon-elaborado`} image={hormigonImage} imageAlt="Descarga de hormigón elaborado" />
-        <ServiceCard title="ACARREO DE BOMBA" description="Traslado y puesta a disposición del equipo de bombeo necesario para realizar el trabajo en obra." href={`${root}/servicios/acarreo-bomba`} image={acarreoImage} imageAlt="Camión bomba en obra" />
-        <ServiceCard title="BOMBEO DE HORMIGÓN" description="Bombeo por volumen para facilitar la descarga y colocación del material dentro de la obra." href={`${root}/servicios/bombeo-hormigon`} image={bombeoImage} imageAlt="Bombeo de hormigón en obra" />
+        <ServiceCard title="HORMIGÓN ELABORADO" description="Hormigón elaborado para las necesidades de tu obra." href={`${root}/servicios/hormigon-elaborado`} image={hormigonImage} imageAlt="Descarga de hormigón elaborado" />
+        <ServiceCard title="ACARREO DE BOMBA" description="Traslado del equipo de bombeo hasta tu obra." href={`${root}/servicios/acarreo-bomba`} image={acarreoImage} imageAlt="Camión bomba en obra" />
+        <ServiceCard title="BOMBEO DE HORMIGÓN" description="Descarga y colocación del hormigón mediante bombeo." href={`${root}/servicios/bombeo-hormigon`} image={bombeoImage} imageAlt="Bombeo de hormigón en obra" />
       </div>
     </section>
 
     <FinalCTA title="HABLEMOS DE TU OBRA" label="HABLAR CON REDMIX" />
   </main>
 </BaseLayout>
-
-<script>
-  import '../main.js';
-</script>
