@@ -2,14 +2,13 @@
 import ArrowIcon from "../ArrowIcon.astro";
 const { active = '' } = Astro.props;
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
-const choices = [['camion', 'CAMIÓN · PRINCIPAL', root + '/'], ['logo', 'LOGO 3D', root + '/propuestas/logo/'], ['tambor', 'TAMBOR 3D', root + '/propuestas/tambor/'], ['descarga', 'VIDEO', root + '/propuestas/descarga/']];
+const choices = [['camion', 'CAMIÓN · PRINCIPAL', root + '/'], ['logo', 'LOGO 3D', root + '/propuestas/logo/'], ['descarga', 'VIDEO', root + '/propuestas/descarga/']];
 ---
 <details class="portadas-panel" data-portadas-panel>
   <summary aria-label="Abrir o cerrar el selector de portadas"><span class="portadas-panel__icon" aria-hidden="true">◧</span><span>PORTADAS</span></summary>
   <nav class="portadas-panel__body" aria-label="Comparar propuestas de portada">
     <div class="portadas-panel__heading"><span>EXPLORÁ LAS PORTADAS</span><button type="button" data-portadas-close aria-label="Cerrar selector de portadas">×</button></div>
     {choices.map(([key, label, href]) => <a href={href} aria-current={active === key ? 'page' : undefined}>{label}<ArrowIcon /></a>)}
-    <a class="portadas-panel__compare" href={root + '/propuestas/'}>Ver comparación<ArrowIcon /></a>
   </nav>
 </details>
 <script>
@@ -43,6 +42,5 @@ const choices = [['camion', 'CAMIÓN · PRINCIPAL', root + '/'], ['logo', 'LOGO 
  button { width: 32px; height: 32px; border: 0; border-radius: 4px; background: #ffffff0d; color: white; font-size: 24px; cursor: pointer; }
  nav a { display: flex; justify-content: space-between; padding: 14px 12px; margin-top: 7px; border: 1px solid #ffffff24; border-radius: 5px; color: #eee; text-decoration: none; font-size: 11px; font-weight: 600; }
  nav a:hover, nav a[aria-current] { background: #cf241a; border-color: #fb6953; }
- nav a.portadas-panel__compare { border: 0; color: #bfc1ca; font-size: 10px; margin-top: 12px; }
  @media(max-width: 767px) { .portadas-panel { right: 6px; } summary { padding: 12px 8px; } }
 </style>
