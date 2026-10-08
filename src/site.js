@@ -97,7 +97,7 @@ motion.add('(prefers-reduced-motion: no-preference)', () => {
       .from('.hero h1 > span', { y: 20, opacity: 0, stagger: .1 }, .1)
       .from('.hero-intro', { y: 16, opacity: 0 }, .3)
       .from('.hero-actions', { y: 12, opacity: 0 }, .4)
-      .from('.measure, .object-tag, .blueprint', { opacity: 0, stagger: .08 }, .5);
+      .from('.hero-orbits, .hero-signature', { opacity: 0, stagger: .08 }, .5);
   }
   if (internalHero) {
     gsap.from(internalHero.children, { y: 20, duration: .65, stagger: .08, ease: 'power3.out', clearProps: 'transform' });

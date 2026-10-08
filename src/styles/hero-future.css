@@ -1,0 +1,67 @@
+/* Cinematic home composition. Internal pages retain their own hero styles. */
+.hero--future { background: #090a0c; }
+.hero--future .hero-sticky { display: flex; min-height: 560px; padding-top: calc(var(--header-height) + 32px); padding-bottom: 76px; }
+.hero--future .concrete-field { background: radial-gradient(ellipse at 80% 45%,#301011 0,transparent 47%),linear-gradient(110deg,#101115,#090a0c 62%); }
+.hero--future .technical-grid { top: 45%; inset-inline: -25%; opacity: .25; transform: perspective(500px) rotateX(62deg); transform-origin: center bottom; background-size: 90px 90px; mask-image: linear-gradient(transparent,#000); }
+.hero--future .ambient-glow { background: radial-gradient(ellipse at 79% 47%,rgba(239,48,36,.25),transparent 37%); }
+.hero--future .scanline { left: auto; right: 0; bottom: 0; top: auto; width: 100%; height: 1px; background: linear-gradient(90deg,transparent,#ff493c,transparent); box-shadow: 0 0 24px #e42b20; }
+.hero-wordmark { position: absolute; right: -1%; bottom: 22px; z-index: -2; color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,.045); font: 700 clamp(170px,24vw,450px)/1 'Barlow Semi Condensed',sans-serif; letter-spacing: -.04em; pointer-events: none; }
+.hero--future .hero-copy { width: 65%; max-width: 1050px; }
+.hero--future .eyebrow { margin-bottom: clamp(20px,3svh,32px); font-size: 11px; letter-spacing: .23em; color: #dedcda; }
+.hero--future .eyebrow > span { height: 6px; flex-basis: 6px; border-radius: 50%; background: #ff5748; box-shadow: 0 0 16px #ff3024; }
+.hero--future h1 { gap: .08em; font-family: 'Barlow Semi Condensed',sans-serif; font-weight: 700; font-size: clamp(48px,min(5.3vw,10.8svh),92px); line-height: 1.04; letter-spacing: -.025em; text-wrap: initial; }
+.hero--future h1 > span { white-space: nowrap; }
+.hero--future h1 > span:first-child { color: #f7f4ef; text-shadow: 0 4px 28px rgba(0,0,0,.25); }
+.hero--future h1 .title-outline { color: #ff5444; background: linear-gradient(110deg,#ffb392 -10%,#ff5946 35%,#ed201b 90%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.hero--future .hero-intro { max-width: 43ch; margin: clamp(24px,4.2svh,40px) 0; padding-left: 18px; border-left: 2px solid #ed382b; }
+.hero--future .hero-intro p { font-size: 16px; color: #bdbec5; line-height: 1.65; }
+.hero--future .hero-actions { gap: 20px; }
+.hero--future .hero-actions .technical-cta { min-height: 56px; border-radius: 3px; font: 600 13px/1.3 'Montserrat',sans-serif; letter-spacing: .01em; }
+.hero--future .hero-actions .technical-cta--solid { background: linear-gradient(120deg,#ff4c36,#d91a13); border-color: #ff6956; box-shadow: inset 0 1px 0 rgba(255,255,255,.2),0 8px 38px rgba(234,35,22,.22); }
+.hero--future .hero-actions .technical-cta:not(.technical-cta--solid) { background: rgba(255,255,255,.035); border-color: rgba(255,255,255,.22); }
+.hero--future .hero-actions .tick { display: none; }
+.hero--future .hero-object { position: absolute; top: calc(var(--header-height) + 12px); right: -2%; width: 51%; height: calc(100% - var(--header-height) - 60px); z-index: 3; }
+.hero--future .hero-canvas { z-index: 2; }
+.hero--future .object-glow { inset: 18% 14%; background: radial-gradient(ellipse,rgba(255,42,18,.32),rgba(174,12,18,.14) 44%,transparent 70%); filter: blur(40px); }
+.hero-orbits { position: absolute; inset: 10% 9%; perspective: 700px; }
+.hero-orbits i { position: absolute; inset: 4%; border: 1px solid rgba(255,97,69,.27); border-radius: 50%; transform: rotate(-28deg) rotateX(60deg); box-shadow: 0 0 18px rgba(255,59,29,.07); }
+.hero-orbits i:nth-child(2) { inset: -2%; transform: rotate(42deg) rotateX(65deg); border-color: rgba(255,165,129,.18); }
+.hero-orbits i:nth-child(3) { inset: 9%; transform: rotate(85deg) rotateX(62deg); border-style: dashed; border-color: rgba(255,93,66,.13); }
+.hero-orbits i::after { content: ''; position: absolute; top: 12%; left: 12%; width: 5px; height: 5px; border-radius: 50%; background: #ff9f76; box-shadow: 0 0 15px #ff4424; }
+.hero-platform { position: absolute; bottom: 3%; left: 22%; width: 56%; height: 9%; border-radius: 50%; background: radial-gradient(ellipse,rgba(255,50,20,.32),transparent 66%); filter: blur(12px); }
+.hero-signature { position: absolute; bottom: 24px; left: var(--page-gutter); right: var(--page-gutter); display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid rgba(255,255,255,.12); padding-top: 17px; color: #a8a9b0; font: 500 10px/1.5 'Montserrat',sans-serif; letter-spacing: .14em; }
+.hero-signature span { display: flex; align-items: center; gap: 10px; }
+.hero-signature i { width: 5px; height: 5px; background: #ff4939; border-radius: 50%; }
+.hero-signature b { color: #e14737; font-weight: 400; }
+@media (prefers-reduced-motion: no-preference) {
+ .hero-orbits { animation: orbital-drift 16s ease-in-out infinite alternate; }
+ @keyframes orbital-drift { to { transform: rotate(12deg) scale(1.035); } }
+}
+@media (max-width: 1199px) and (min-width: 1024px) {
+ .hero--future h1 { font-size: min(5.2vw,10svh); }
+ .hero--future .hero-copy { width: 69%; }
+ .hero--future .hero-actions { gap: 12px; }
+ .hero--future .hero-actions .technical-cta { padding-inline: 18px; font-size: 11px; }
+}
+@media (max-width: 1023px) {
+ .hero--future .hero-sticky { display: flex; flex-direction: column; height: auto; min-height: 0; padding-top: calc(var(--header-height) + 36px); padding-bottom: 80px; }
+ .hero--future .hero-copy { width: 100%; max-width: 720px; }
+ .hero--future h1 { font-size: clamp(32px,6.5vw,65px); }
+ .hero--future .hero-intro { margin: 24px auto; padding-left: 0; border-left: 0; max-width: 42ch; }
+ .hero--future .hero-actions { display: flex; justify-content: center; gap: 12px; }
+ .hero--future .hero-object { position: relative; top: auto; right: auto; width: 100%; height: 320px; margin-top: 10px; }
+ .hero-wordmark { bottom: 75px; font-size: 29vw; }
+ .hero-signature { bottom: 22px; font-size: 8px; }
+}
+@media (max-width: 767px) {
+ .hero--future .hero-sticky { padding-top: calc(var(--header-height) + 30px); }
+ .hero--future .eyebrow { font-size: 9px; letter-spacing: .18em; margin-bottom: 22px; }
+ .hero--future h1 { font-size: clamp(27px,7.7vw,55px); line-height: 1.12; gap: .14em; }
+ .hero--future .hero-intro p { font-size: 14px; line-height: 1.6; }
+ .hero--future .hero-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+ .hero--future .hero-actions .technical-cta { padding: 12px 10px; min-height: 52px; font: 600 10px/1.4 'Montserrat',sans-serif; }
+ .hero--future .hero-object { height: clamp(230px,65vw,320px); }
+ .hero-signature { justify-content: center; }
+ .hero-signature span:last-child { display: none; }
+ .hero--future .technical-grid { top: 62%; }
+}

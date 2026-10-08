@@ -43,7 +43,7 @@ function createConcreteTexture() {
 }
 
 const concreteTexture = createConcreteTexture();
-const materialSettings = { map: concreteTexture, roughness: 0.38, metalness: 0.08, clearcoat: 0.48, clearcoatRoughness: 0.3, transparent: false, opacity: 1, depthWrite: true, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 };
+const materialSettings = { map: concreteTexture, roughness: hero ? 0.24 : 0.38, metalness: hero ? 0.3 : 0.08, clearcoat: hero ? 1 : 0.48, clearcoatRoughness: 0.2, transparent: false, opacity: 1, depthWrite: true, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 };
 const materials = [
   new THREE.MeshPhysicalMaterial({ color: 0xb70f0b, emissive: 0x260300, emissiveIntensity: 0.18, ...materialSettings }),
   new THREE.MeshPhysicalMaterial({ color: 0xff4d28, emissive: 0x431000, emissiveIntensity: 0.22, ...materialSettings }),
@@ -100,10 +100,10 @@ logo.rotation.set(THREE.MathUtils.degToRad(-5), THREE.MathUtils.degToRad(-12), 0
 logo.scale.setScalar(mobile ? .92 : tablet ? 1 : 1.125);
 
 scene.add(new THREE.HemisphereLight(0xa32a16, 0x160502, 1.12));
-const key = new THREE.DirectionalLight(0xffc17e, 3.45); key.position.set(3.8, 5.5, 7); scene.add(key);
+const key = new THREE.DirectionalLight(hero ? 0xffe8da : 0xffc17e, hero ? 4.5 : 3.45); key.position.set(3.8, 5.5, 7); scene.add(key);
 const fill = new THREE.DirectionalLight(0xff5a32, 1.8); fill.position.set(-4, -1.5, 5); scene.add(fill);
-const redLight = new THREE.PointLight(0xff1f12, 9, 15, 2); redLight.position.set(-3, -1, 5); scene.add(redLight);
-const rim = new THREE.DirectionalLight(0xff3a28, 3.8); rim.position.set(-5, 2, -4); scene.add(rim);
+const redLight = new THREE.PointLight(0xff1f12, hero ? 0 : 9, 15, 2); redLight.position.set(-3, -1, 5); scene.add(redLight);
+const rim = new THREE.DirectionalLight(hero ? 0xffd2bb : 0xff3a28, hero ? 5 : 3.8); rim.position.set(-5, 2, -4); scene.add(rim);
 
 let visible = true; let pointerX = 0; let pointerY = 0; let pointerEnergy = 0; let scrollProgress = 0;
 let frame = 0;
@@ -146,7 +146,7 @@ function animate() {
   });
   pointerEnergy *= .94;
   redLight.position.x = -2.4 + Math.sin(elapsed * .7) * 2.1;
-  redLight.intensity = 10;
+  redLight.intensity = hero ? 0 : 10;
   render(); frame = requestAnimationFrame(animate);
 }
 function syncAnimation() {
