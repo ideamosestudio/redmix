@@ -131,3 +131,30 @@
  .quote-guide__choices { gap: 6px; }
  .quote-guide__choices button { padding-inline: 12px; }
 }
+
+/* Home reading sequence: offer, products, working process, then contact. */
+.home-content > .services-section,.home-content > .products-section { padding-block: 72px; }
+.solutions-section { background: #e8e5df; color: #17191c; border-top: 1px solid #ffffff14; }
+.solutions-section .intro-section { padding-block: 72px 36px; border-top: 0; background: transparent; }
+.solutions-section .intro-section .section-heading h2 { color: #17191c; }
+.solutions-section .intro-section .section-heading h2 em { color: #b12318; background-image: linear-gradient(110deg,#981711,#bd2118 52%,#d42f1f); }
+.solutions-section .section-code { color: #ad241a; }
+.solutions-section .intro-section__body > p { color: #454648; }
+.solutions-section .section-heading::after { background: linear-gradient(90deg,#b12318 0 32px,#17191c26 32px); }
+.solutions-section .intro-section__image { box-shadow: 0 14px 36px #1b161a12; }
+.solutions-section .process-flow--integrated { grid-template-columns: 1fr; gap: 24px; margin-inline: var(--page-gutter); padding: 28px 0 72px; background: transparent; border-top: 1px solid #17191c26; }
+.process-flow__subheading { margin: 0; color: #626368; font: 600 11px/1.5 'Montserrat',sans-serif; letter-spacing: .1em; }
+.solutions-section .process-step { color: #17191c; }
+.solutions-section .process-step__icon { background: #edeae5; color: #a8291d; border-color: #a8291d40; box-shadow: 0 8px 20px #17191c08; }
+.solutions-section .process-step__copy > span:not(.process-step__link) { color: #505156; }
+.solutions-section .process-step__link { color: #9b261c; }
+.solutions-section .process-flow__track { background: #a8291d40; }
+.solutions-section .process-flow__track i { background: linear-gradient(90deg,transparent,#a8291d,transparent); }
+.solutions-section .process-step:focus-visible { outline-color: #a8291d; }
+.home-content > .final-cta { border-top: 1px solid #ffffff14; }
+.site-footer--editorial { border-top-color: #ffffff20; }
+@media(max-width:767px) {
+ .home-content > .services-section,.home-content > .products-section { padding-block: 56px; }
+ .solutions-section .intro-section { padding-block: 56px 32px; }
+ .solutions-section .process-flow--integrated { padding-bottom: 56px; }
+}

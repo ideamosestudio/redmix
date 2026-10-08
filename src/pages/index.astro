@@ -34,19 +34,6 @@ const products = [
   <Selector active="camion"/>
 
   <main class="home-content">
-    <section class="intro-section section-shell" aria-labelledby="intro-title">
-      <div class="section-heading" data-reveal>
-        <p class="section-code">REDMIX</p>
-        <h2 id="intro-title">SOLUCIONES EN<br /><em>HORMIGÓN</em><br />PARA TU OBRA</h2>
-      </div>
-      <div class="intro-section__body" data-reveal>
-        <p>Hormigón elaborado, acarreo y bombeo para tu obra. Coordiná el suministro y la colocación con un mismo proveedor.</p>
-        <WhatsAppCTA label="SOLICITAR PRESUPUESTO" />
-      </div>
-      <ImageReveal src={introImage} alt="Camión mixer descargando hormigón fresco en una obra" class="intro-section__image" label="HORMIGÓN EN OBRA" />
-    </section>
-
-    <ProcessFlow />
 
     <section class="services-section section-shell" id="servicios" aria-labelledby="services-title">
       <div class="section-heading section-heading--row section-heading--centered" data-reveal>
@@ -69,6 +56,21 @@ const products = [
         {products.map((product) => <ProductCard name={product.name} image={product.image} imageAlt={product.alt} />)}
       </div>
       <div class="section-end-cta" data-reveal><WhatsAppCTA label="CONSULTAR POR HORMIGÓN" /></div>
+    </section>
+
+    <section class="solutions-section" aria-labelledby="intro-title">
+    <div class="intro-section section-shell" aria-labelledby="intro-title">
+      <div class="section-heading" data-reveal>
+        <p class="section-code">REDMIX</p>
+        <h2 id="intro-title">SOLUCIONES EN<br /><em>HORMIGÓN</em><br />PARA TU OBRA</h2>
+      </div>
+      <div class="intro-section__body" data-reveal>
+        <p>Hormigón elaborado, acarreo y bombeo para tu obra. Coordiná el suministro y la colocación con un mismo proveedor.</p>
+        <WhatsAppCTA label="SOLICITAR PRESUPUESTO" />
+      </div>
+      <ImageReveal src={introImage} alt="Camión mixer descargando hormigón fresco en una obra" class="intro-section__image" label="HORMIGÓN EN OBRA" />
+    </div>
+      <ProcessFlow integrated />
     </section>
 
     <FinalCTA />
