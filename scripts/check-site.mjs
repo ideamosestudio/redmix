@@ -28,6 +28,6 @@ const map=readFileSync('dist/sitemap.xml','utf8');for(const r of routes)assert.o
 assert.ok(existsSync('dist/llms.txt'));
 assert.ok(!existsSync('dist/propuestas/index.html'),'Discarded demos must not ship');
 const assets=readdirSync('dist/_astro');const javascript=assets.filter(f=>f.endsWith('.js')).reduce((total,f)=>total+statSync(join('dist/_astro',f)).size,0);
-assert.ok(javascript<180000,'JS budget: '+javascript);
+assert.ok(javascript<30000,'JS budget: '+javascript);
 assert.ok(!assets.some(f=>/three\.module/.test(f)),'No unused 3D runtime');
 console.log('PASS SEO, links, schema, security and JS budget:',javascript,'bytes');

@@ -15,8 +15,7 @@
     "@fontsource/barlow-semi-condensed": "^5.3.0",
     "@fontsource/montserrat": "^5.3.0",
     "@fontsource/roboto": "^5.3.0",
-    "astro": "7.3.8",
-    "gsap": "^3.13.0"
+    "astro": "7.3.8"
   },
   "engines": {
     "node": ">=22.12.0",

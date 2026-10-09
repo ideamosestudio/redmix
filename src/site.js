@@ -1,8 +1,5 @@
 import './smooth-wheel.js';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
+import './reveal.js';
 
 const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 const navbar = document.querySelector('[data-navbar]');
@@ -79,51 +76,6 @@ dropdown?.addEventListener('keydown', event => {
 });
 setDropdown(false);
 
-// Dividers are CSS pseudo-elements: motion never inserts boxes or changes layout.
-const motion = gsap.matchMedia();
-motion.add('(prefers-reduced-motion: no-preference)', () => {
-  const internalHero = document.querySelector('.page-hero__copy, .contact-hero > div');
-  document.querySelectorAll('[data-reveal]').forEach(element => {
-    if (element === internalHero || element.closest('.faq-item, .solutions-section')) return;
-    const reveal = gsap.timeline({ scrollTrigger: { trigger: element, start: 'top 94%', once: true } });
-    reveal.from(element, { y: element.querySelector('h2') ? 12 : 20, opacity: element.querySelector('h2') ? 0.35 : 1, duration: .6, ease: 'power3.out', clearProps: 'transform,opacity' }, 0);
-    if (element.matches('.section-heading')) {
-      reveal.fromTo(element, { '--divider-scale': 0 }, { '--divider-scale': 1, duration: .55, ease: 'power3.out' }, 0);
-    }
-  });
-  document.querySelectorAll('[data-stagger]').forEach(group => {
-    gsap.from(group.querySelectorAll('[data-card]'), { y: 18, duration: .6, stagger: .08, ease: 'power3.out', clearProps: 'transform', scrollTrigger: { trigger: group, start: 'top 92%', once: true } });
-  });
-  const solutions = document.querySelector('.solutions-section');
-  if (solutions) {
-    gsap.timeline({ defaults: { duration: .65, ease: 'power3.out', clearProps: 'transform,opacity' }, scrollTrigger: { trigger: solutions, start: 'top 82%', once: true } })
-      .from(solutions.querySelector('.section-heading'), { y: 14, opacity: 0 }, 0)
-      .from(solutions.querySelector('.intro-section__image'), { y: 18, opacity: 0 }, .08)
-      .from(solutions.querySelector('.intro-section__body'), { y: 12, opacity: 0 }, .18);
-    gsap.from(solutions.querySelectorAll('.work-sequence__heading, .work-sequence__item'), { y: 12, opacity: 0, duration: .55, stagger: .09, ease: 'power3.out', clearProps: 'transform,opacity', scrollTrigger: { trigger: solutions.querySelector('.work-sequence'), start: 'top 92%', once: true } });
-  }
-  if (document.querySelector('.hero-sticky')) {
-    gsap.timeline({ defaults: { ease: 'power3.out', duration: .65, clearProps: 'transform,opacity,visibility' } })
-      .from('.hero .eyebrow', { y: 12, opacity: 0 }, 0)
-      .from('.hero h1 > span', { y: 20, opacity: 0, stagger: .1 }, .1)
-      .from('.hero-intro', { y: 16, opacity: 0 }, .3)
-      .from('.hero-actions', { y: 12, opacity: 0 }, .4)
-      .from('.hero-orbits, .hero-signature', { opacity: 0, stagger: .08 }, .5);
-  }
-  const cinematicCopy = document.querySelector('.concept-copy');
-  if (cinematicCopy) {
-    gsap.from(cinematicCopy.children, { y: 18, opacity: 0, duration: .8, stagger: .1, ease: 'power3.out', clearProps: 'transform,opacity' });
-  }
-  if (internalHero) {
-    gsap.from(internalHero.children, { y: 14, duration: .6, stagger: .09, ease: 'power3.out', clearProps: 'transform' });
-  }
-  document.querySelectorAll('[data-experience-counter]').forEach(counter => {
-    const count = { value: 0 };
-    gsap.to(count, { value: 20, duration: 1.2, ease: 'power2.out', onUpdate: () => { counter.textContent = `+${Math.round(count.value)}`; }, scrollTrigger: { trigger: counter, start: 'top 90%', once: true } });
-  });
-  return () => document.querySelectorAll('[data-experience-counter]').forEach(counter => { counter.textContent = '+20'; });
-});
-
 // A single cancellable animation per FAQ; no padding changes on hover/open.
 document.querySelectorAll('.faq-item').forEach(details => {
   const summary = details.querySelector('summary');
@@ -160,8 +112,11 @@ document.querySelectorAll('[data-email-form]').forEach((form) => {
 });
 
 // Pointer lighting is local to cards and disabled for touch/reduced motion.
-const lightMedia = gsap.matchMedia();
-lightMedia.add('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)', () => {
+const lightMedia = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+let clearLighting = () => {};
+function syncLighting() {
+ clearLighting();
+ if (!lightMedia.matches) return;
  const cleanups = [];
  document.querySelectorAll('.service-card,.product-card').forEach(card => {
   let frame = 0, x = 0, y = 0;
@@ -172,5 +127,7 @@ lightMedia.add('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: 
   card.addEventListener('pointermove', move, { passive: true });
   cleanups.push(() => { card.removeEventListener('pointermove', move); cancelAnimationFrame(frame); card.style.removeProperty('--light-x'); card.style.removeProperty('--light-y'); });
  });
- return () => cleanups.forEach(cleanup => cleanup());
-});
+ clearLighting = () => cleanups.forEach(cleanup => cleanup());
+}
+lightMedia.addEventListener('change', syncLighting);
+syncLighting();

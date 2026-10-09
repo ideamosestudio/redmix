@@ -16,6 +16,7 @@ Sitio estático de Astro para REDMIX Hormigonera. Node 24 LTS y npm 9.6.5 o supe
 - src/pages: home, empresa, contacto y tres servicios.
 - src/components/HomeHero.astro y src/home-video.js: portada activa. El video espera la carga inicial y se pausa fuera de pantalla, con movimiento reducido o ahorro de datos.
 - src/layouts/BaseLayout.astro: metadatos, entidad de negocio y política CSP.
+- src/reveal.js: animaciones nativas con IntersectionObserver, sin cálculos continuos de scroll.
 - src/styles: estilos por componente; polish.css conserva los ajustes visuales aprobados.
 - public/llms.txt y public/sitemap.xml: información pública y rutas canónicas. Actualizar junto con contenido y datos de contacto.
 - scripts/check-site.mjs: integridad del HTML construido, enlaces internos, metadatos y recursos.

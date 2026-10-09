@@ -20,7 +20,7 @@ function nativeArea(event) {
 function tick(time) {
  const dt = lastTime ? Math.min(40, time - lastTime) : 16;
  lastTime = time; target = clamp(target);
- const next = scrollY + (target - scrollY) * (1 - Math.exp(-dt / 115));
+ const next = scrollY + (target - scrollY) * (1 - Math.exp(-dt / 200));
  written = Math.abs(target - next) < .8 ? target : next;
  window.scrollTo({top:written, behavior:'instant'});
  written = scrollY;
@@ -35,7 +35,7 @@ window.addEventListener('wheel', event => {
  const nextDirection = Math.sign(delta);
  if (!frame || direction !== nextDirection) target = scrollY;
  direction = nextDirection;
- target = clamp(target + Math.max(-240, Math.min(240, delta * .85)));
+ target = clamp(target + Math.max(-180, Math.min(180, delta * .7)));
  if (Math.abs(target - scrollY) < 1) { stop(); return; }
  event.preventDefault();
  if (!frame) { written = scrollY; frame = requestAnimationFrame(tick); }
