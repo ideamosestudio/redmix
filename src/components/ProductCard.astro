@@ -10,6 +10,6 @@ const widths = [...new Set([320, 520, 760, 960, image.width].filter(width => wid
 
 ---
 <article class="product-card" data-card>
-  <Picture src={image} formats={['avif']} fallbackFormat="webp" widths={widths} quality={78} sizes="(max-width: 767px) calc(100vw - 48px), 50vw" alt={imageAlt} loading="lazy" fetchpriority="low" />
+  <Picture src={image} formats={['avif']} fallbackFormat="webp" widths={widths} quality={78} sizes="(max-width: 767px) calc(100vw - 48px), 50vw" alt={imageAlt} loading="lazy" fetchpriority="auto" />
   <a class="product-card__link" href={inquiry} target="_blank" rel="noopener noreferrer" aria-label={name + ". Consultar por WhatsApp"}><div class="product-card__caption"><h3><span class="product-card__kind">HORMIGÓN</span><span class="product-card__name">{grade}</span>{qualifiers.length > 0 && <span class="product-card__variant">{qualifiers.join(' ')}</span>}</h3><span class="product-card__action">Consultar por WhatsApp <ArrowIcon /></span></div></a>
 </article>

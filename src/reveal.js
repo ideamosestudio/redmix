@@ -1,9 +1,12 @@
 // One observer, compositor-only transitions, and no scroll-position polling.
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+const mobile = matchMedia('(max-width: 1023px), (pointer: coarse)');
 const active = new Set();
 const countFrames = new Set();
 function reveal(element, delay = 0, fade = false) {
   if (!element || reduced.matches) return;
+  // Mobile content remains fully visible; no delayed reveal during touch scrolling.
+  if (mobile.matches) return;
   const animation = element.animate([
     { transform: 'translateY(16px)', opacity: fade ? .35 : 1 },
     { transform: 'translateY(0)', opacity: 1 },
@@ -30,7 +33,7 @@ const observer = new IntersectionObserver(entries => {
       element.querySelectorAll('[data-card]').forEach((card, index) => reveal(card, index * 80));
     } else reveal(element, 0, element.matches('.section-heading'));
   }
-}, { rootMargin: '0px 0px -6% 0px' });
+}, { rootMargin: '0px 0px 160px 0px' });
 document.querySelectorAll('[data-reveal], [data-stagger], [data-experience-counter], .work-sequence__item').forEach(element => {
   // Hero text is visible immediately; translations do not delay its paint.
   if (element.matches('.page-hero__copy')) {

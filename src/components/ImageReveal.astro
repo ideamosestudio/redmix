@@ -16,7 +16,7 @@ const coverScale = Math.max(1, (src.width / src.height) / (4 / 3));
     sizes={fullBleed ? "(max-width: 767px) 1100px, 100vw" : `(max-width: 1023px) ${100 * coverScale}vw, ${50 * coverScale}vw`}
     alt={alt}
     loading={eager ? 'eager' : 'lazy'}
-    fetchpriority={eager ? 'high' : 'low'}
+    fetchpriority={eager ? 'high' : 'auto'}
   />
   {label && <span class="image-reveal__meta" aria-hidden="true">{label}</span>}
   <i class="image-reveal__corner image-reveal__corner--a" aria-hidden="true"></i>
