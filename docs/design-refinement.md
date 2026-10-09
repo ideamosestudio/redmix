@@ -1,3 +1,5 @@
+> Documento histórico de diseño. Para estructura y comandos vigentes, consultar README.md.
+
 # REDMIX — refinamiento local
 
 ## Estado y alcance

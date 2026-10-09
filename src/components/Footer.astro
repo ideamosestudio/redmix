@@ -5,8 +5,9 @@ const href = (path = '/') => root + path;
 ---
 <footer class="site-footer site-footer--editorial">
   <div class="site-footer__brand">
-    <a href={href('/')} aria-label="REDMIX — Inicio"><img src={root + '/images/redmix-logo.png'} width="565" height="189" alt="REDMIX Hormigonera" loading="lazy" /></a>
+    <a href={href('/')} aria-label="REDMIX — Inicio"><img src={root + '/images/redmix-logo.webp'} width="565" height="189" alt="REDMIX Hormigonera" loading="lazy" /></a>
     <p class="footer-editorial-statement">CONSTRUÍ<br />LO QUE <em>VIENE.</em></p>
+    <span class="footer-orbit" aria-hidden="true"><svg class="footer-orbit__ring" viewBox="0 0 160 160"><defs><path id="footer-orbit-path" d="M80,80 m-62,0 a62,62 0 1,1 124,0 a62,62 0 1,1 -124,0" /></defs><text><textPath href="#footer-orbit-path" textLength="389">REDMIX · HORMIGÓN EN MOVIMIENTO · </textPath></text></svg><img src={root + '/images/redmix-symbol.webp'} width="64" height="66" alt="" loading="lazy" /></span>
     <p class="footer-editorial-location">Longchamps · Buenos Aires</p>
   </div>
   <nav class="footer-editorial-nav" aria-label="Navegación del pie de página">

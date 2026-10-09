@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Portada from '../components/propuestas/Portada.astro';
-import '../styles/propuestas.css';
+import HomeHero from '../components/HomeHero.astro';
 import ImageReveal from '../components/ImageReveal.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import ProductCard from '../components/ProductCard.astro';
@@ -30,7 +29,7 @@ const products = [
 ---
 
 <BaseLayout title="REDMIX Hormigonera | Hormigón elaborado, acarreo y bombeo" description="Hormigón elaborado, acarreo de bomba y bombeo de hormigón para obras. Consultá a REDMIX Hormigonera en Longchamps.">
-  <Portada variante="camion"/>
+  <HomeHero />
 
   <main class="home-content">
 

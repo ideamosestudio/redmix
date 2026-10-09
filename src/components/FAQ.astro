@@ -13,7 +13,7 @@ const faqSchema = {
 };
 ---
 <section class="faq-section section-shell" aria-labelledby="faq-title">
-  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema).replace(/</g, '\\u003c')} />
   <div class="section-heading" data-reveal>
     <p class="section-code">FAQ / CONSULTAS</p>
     <h2 id="faq-title">PREGUNTAS <em>FRECUENTES.</em></h2>

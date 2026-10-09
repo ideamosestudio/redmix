@@ -15,7 +15,7 @@ const faq = [
   { question: '¿Qué información tengo que enviar para consultar?', answer: 'Podés enviarnos la ubicación y las características generales del trabajo para que podamos evaluar el servicio.' },
   { question: '¿El acarreo de bomba es lo mismo que el bombeo por m³?', answer: 'El acarreo corresponde al traslado y puesta a disposición del equipo, mientras que el servicio de bombeo está asociado al trabajo de bombeo del hormigón.' },
 ];
-const schema = { '@context': 'https://schema.org', '@type': 'Service', name: 'Acarreo de bomba para hormigón', provider: { '@type': 'Organization', name: 'REDMIX Hormigonera' } };
+const schema = { '@context': 'https://schema.org', '@type': 'Service', name: 'Acarreo de bomba para hormigón', provider: { '@id': new URL(import.meta.env.BASE_URL.replace(/\/$/, '') + '/#organization', Astro.site).href } };
 ---
 <BaseLayout title="Acarreo de bomba para hormigón | REDMIX" description="Servicio de acarreo de bomba para coordinar el traslado del equipo necesario hasta la obra. Consultá a REDMIX." {schema}>
   <main class="inner-page service-detail">

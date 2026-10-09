@@ -2,11 +2,11 @@
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
-import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/latin-300.css';
 import '@fontsource/roboto/latin-400.css';
 import '@fontsource/montserrat/latin-500.css';
-import '@fontsource/montserrat/600.css';
-import '@fontsource/montserrat/700.css';
+import '@fontsource/montserrat/latin-600.css';
+import '@fontsource/montserrat/latin-700.css';
 import '@fontsource/barlow-semi-condensed/latin-600.css';
 import '@fontsource/barlow-semi-condensed/latin-700.css';
 import '../styles.css';
@@ -19,13 +19,16 @@ interface Props {
 }
 
 const { title, description, schema, noindex = false } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const canonical = new URL(Astro.url.pathname.replace(/\/?$/, '/'), Astro.site);
 const root = import.meta.env.BASE_URL.replace(/\/$/, '');
-const socialImage = new URL(`${root}/images/redmix-logo.png`, Astro.site);
+const socialImage = new URL(`${root}/images/redmix-logo.webp`, Astro.site);
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': ['LocalBusiness', 'Organization'],
+  '@id': new URL(`${root}/#organization`, Astro.site).href,
   name: 'REDMIX Hormigonera',
+  logo: socialImage.href,
+  image: socialImage.href,
   url: new URL(import.meta.env.BASE_URL, Astro.site).href,
   email: ['info@redmix.com.ar', 'adm@redmix.com.ar'],
   telephone: ['+54 9 11 3824 5680', '+54 9 11 3358 3377'],
@@ -37,19 +40,27 @@ const organizationSchema = {
     addressCountry: 'AR',
   },
 };
-const schemas = [organizationSchema, ...(Array.isArray(schema) ? schema : schema ? [schema] : [])];
+const pageSchema = { '@context': 'https://schema.org', '@type': Astro.url.pathname.includes('contacto') ? 'ContactPage' : Astro.url.pathname.includes('quienes-somos') ? 'AboutPage' : 'WebPage', '@id': canonical.href + '#webpage', url: canonical.href, name: title, description, inLanguage: 'es-AR', about: { '@id': organizationSchema['@id'] } };
+const schemas = [organizationSchema, pageSchema, ...(Array.isArray(schema) ? schema : schema ? [schema] : [])];
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es-AR">
   <head>
     <meta charset="UTF-8" />
+    {Astro.url.pathname.replace(/\/$/, "") === root && <link rel="preload" as="image" href={`${root}/images/home-poster.webp`} fetchpriority="high" />}
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <link rel="alternate" type="text/plain" href={`${root}/llms.txt`} title="Información de REDMIX para asistentes" />
     <meta name="theme-color" content="#111214" />
     <link rel="canonical" href={canonical} />
-    <link rel="icon" type="image/svg+xml" href={`${root}/favicon.svg?v=redmix-1`} />
+    <link rel="icon" type="image/png" href={`${root}/favicon.png`} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_AR" />
     <meta property="og:site_name" content="REDMIX Hormigonera" />
@@ -59,7 +70,7 @@ const schemas = [organizationSchema, ...(Array.isArray(schema) ? schema : schema
     <meta property="og:image" content={socialImage} />
     <meta property="og:image:alt" content="REDMIX Hormigonera" />
     <title>{title}</title>
-    <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
+    <script type="application/ld+json" set:html={JSON.stringify(schemas).replace(/</g, '\\u003c')} />
   </head>
   <body id="page-top">
     <Navbar />

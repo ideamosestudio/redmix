@@ -1,0 +1,19 @@
+---
+import ArrowIcon from './ArrowIcon.astro';
+import WhatsAppCTA from './WhatsAppCTA.astro';
+import '../styles/home-hero.css';
+const root = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<div class="concept-page concept-page--camion">
+    <section class="concept-hero" aria-labelledby="concept-title" data-concept="camion">
+      <div class="truck-scene"><video data-concept-video muted loop playsinline preload="none" poster={root + '/images/home-poster.webp'} aria-label="Camión hormigonero estacionado en obra con el tambor girando"><source src={root + '/propuestas/camion-obra.mp4'} type="video/mp4"/></video><div class="truck-scene__shade"></div><span class="truck-wordmark" aria-hidden="true">REDMIX</span><div class="truck-callout"><span>HORMIGÓN EN MOVIMIENTO</span><i aria-hidden="true"></i></div></div>
+      <div class="concept-copy">
+        <p class="concept-eyebrow"><i></i>POTENCIA PARA LO QUE VIENE.</p>
+        <h1 id="concept-title"><span>HORMIGÓN ELABORADO<b class="hero-desktop-conjunction"> Y</b></span><span><b class="hero-mobile-conjunction">Y </b>ALQUILER DE BOMBA</span></h1>
+        <p class="concept-intro"><span class="hero-desktop-description">Hormigón elaborado y servicio de bombeo para tu obra. Contanos qué necesitás y solicitá tu presupuesto.</span><span class="hero-mobile-description">Hormigón y bombeo para tu obra. Coordiná tu próximo proyecto con REDMIX.</span></p>
+        <div class="concept-actions"><WhatsAppCTA label="SOLICITAR PRESUPUESTO"/><a class="technical-cta" href={root + '/quienes-somos'}><span>CONOCER REDMIX</span><ArrowIcon /></a></div>
+      </div>
+      <div class="concept-caption"><span class="concept-location">LONGCHAMPS · BUENOS AIRES</span><span class="truck-services">HORMIGÓN <b>/</b> ACARREO <b>/</b> BOMBEO</span><button type="button" data-motion-toggle aria-pressed="false">Pausar rotación</button></div>
+    </section>
+</div>
+<script>import '../home-video.js';</script>

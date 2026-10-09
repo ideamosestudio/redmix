@@ -3,3 +3,11 @@ dist/
 .astro/
 .DS_Store
 *.log
+
+# Local review attachments, credentials and reports
+.codex-remote-attachments/
+.env
+.env.*
+!.env.example
+coverage/
+reports/

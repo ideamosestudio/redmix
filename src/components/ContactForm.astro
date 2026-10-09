@@ -9,15 +9,15 @@ const { idPrefix = 'contact', compact = false } = Astro.props;
   </div>
   <div class="form-field">
     <label for={`${idPrefix}-name`}>Nombre</label>
-    <input id={`${idPrefix}-name`} name="name" type="text" autocomplete="name" required />
+    <input id={`${idPrefix}-name`} name="name" maxlength="100" type="text" autocomplete="name" required />
   </div>
   <div class="form-field">
     <label for={`${idPrefix}-phone`}>Teléfono</label>
-    <input id={`${idPrefix}-phone`} name="phone" type="tel" autocomplete="tel" required />
+    <input id={`${idPrefix}-phone`} name="phone" maxlength="40" type="tel" autocomplete="tel" required />
   </div>
   <div class="form-field">
     <label for={`${idPrefix}-message`}>Mensaje</label>
-    <textarea id={`${idPrefix}-message`} name="message" rows={compact ? 4 : 6} required></textarea>
+    <textarea id={`${idPrefix}-message`} name="message" maxlength="2000" rows={compact ? 4 : 6} required></textarea>
   </div>
   <button class="technical-cta contact-form__submit" type="submit"><span>ENVIAR CONSULTA</span><i class="tick tick--a"></i><i class="tick tick--b"></i><i class="tick tick--c"></i><i class="tick tick--d"></i></button>
   <p class="form-note">Al enviar, se abrirá tu aplicación de correo con el mensaje preparado.</p>

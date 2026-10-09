@@ -1,8 +1,8 @@
 ---
 import { Picture } from 'astro:assets';
-interface Props { label?: string; src: ImageMetadata; alt: string; class?: string; eager?: boolean; motion?: 'vertical' | 'horizontal' | 'flow'; }
-const { label = 'RMX / IMG', src, alt, class: className = '', eager = false, motion = 'vertical' } = Astro.props;
-const widths = [...new Set([640, 960, 1280, 1600, src.width].filter(width => width <= src.width))].sort((a, b) => a - b);
+interface Props { label?: string; src: ImageMetadata; alt: string; class?: string; eager?: boolean; fullBleed?: boolean; motion?: 'vertical' | 'horizontal' | 'flow'; }
+const { label = 'RMX / IMG', src, alt, class: className = '', eager = false, fullBleed = false, motion = 'vertical' } = Astro.props;
+const widths = [...new Set([640, 960, 1280, 1600, 1920, 2560, src.width].filter(width => width <= src.width))].sort((a, b) => a - b);
 // Include the pixels cropped by object-fit when choosing a responsive source.
 const coverScale = Math.max(1, (src.width / src.height) / (4 / 3));
 
@@ -12,8 +12,8 @@ const coverScale = Math.max(1, (src.width / src.height) / (4 / 3));
     src={src}
     formats={['avif']}
     fallbackFormat="webp"
-    widths={widths} quality={90}
-    sizes={`(max-width: 1023px) ${100 * coverScale}vw, ${50 * coverScale}vw`}
+    widths={widths} quality={fullBleed ? 90 : 78}
+    sizes={fullBleed ? "(max-width: 767px) 1100px, 100vw" : `(max-width: 1023px) ${100 * coverScale}vw, ${50 * coverScale}vw`}
     alt={alt}
     loading={eager ? 'eager' : 'lazy'}
     fetchpriority={eager ? 'high' : 'auto'}

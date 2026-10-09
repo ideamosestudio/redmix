@@ -15,7 +15,7 @@ const faq = [
   { question: '¿Cómo se cotiza el servicio?', answer: 'REDMIX ofrece el servicio de bombeo calculado por volumen de hormigón. Escribinos por WhatsApp para solicitar una cotización.' },
   { question: '¿Qué datos tengo que enviar?', answer: 'Podés contarnos dónde se encuentra la obra, el volumen aproximado y las características generales del trabajo.' },
 ];
-const schema = { '@context': 'https://schema.org', '@type': 'Service', name: 'Servicio de bombeo de hormigón por m³', provider: { '@type': 'Organization', name: 'REDMIX Hormigonera' } };
+const schema = { '@context': 'https://schema.org', '@type': 'Service', name: 'Servicio de bombeo de hormigón por m³', provider: { '@id': new URL(import.meta.env.BASE_URL.replace(/\/$/, '') + '/#organization', Astro.site).href } };
 ---
 <BaseLayout title="Servicio de bombeo de hormigón | REDMIX" description="Bombeo de hormigón por volumen para facilitar la descarga y colocación del material dentro de la obra. Consultá a REDMIX." {schema}>
   <main class="inner-page service-detail">

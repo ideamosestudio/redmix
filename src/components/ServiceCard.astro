@@ -10,8 +10,8 @@ const coverScale = Math.max(1, (image.width / image.height) / (4 / 3));
 
 ---
 <article class:list={["service-card", focus && "service-card--discharge"]} data-card>
-  <a class="service-card__image" href={href} aria-label={`Conocé ${title}`}>
-    <Picture src={image} formats={['avif']} fallbackFormat="webp" widths={widths} quality={90} sizes={`(max-width: 767px) ${100 * coverScale}vw, (max-width: 1199px) ${50 * coverScale}vw, ${34 * coverScale}vw`} alt={imageAlt} loading="lazy" />
+  <a class="service-card__image" href={href} aria-label={`Ver servicio: ${title}`}>
+    <Picture src={image} formats={['avif']} fallbackFormat="webp" widths={widths} quality={78} sizes={`(max-width: 767px) ${100 * coverScale}vw, (max-width: 1199px) ${50 * coverScale}vw, ${34 * coverScale}vw`} alt={imageAlt} loading="lazy" />
     <span class="service-card__explore" aria-hidden="true"><span class="service-card__explore-idle">VER SERVICIO<ArrowIcon direction="right" /></span><span class="service-card__explore-active">VER<br />SERVICIO<ArrowIcon /></span></span>
   </a>
   <div class="service-card__body">

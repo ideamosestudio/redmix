@@ -28,7 +28,7 @@ const faq = [
   { question: '¿Qué información tengo que enviar para cotizar?', answer: 'Podés indicar el tipo de hormigón requerido, volumen aproximado, ubicación de la obra y cualquier información relevante del proyecto.' },
   { question: '¿Puedo consultar qué hormigón necesito para mi obra?', answer: 'Sí. Escribinos con la información disponible de tu proyecto para consultar cuál de las alternativas corresponde a tu obra.' },
 ];
-const schema = { '@context': 'https://schema.org', '@type': 'Service', name: 'Hormigón elaborado', provider: { '@type': 'Organization', name: 'REDMIX Hormigonera' } };
+const schema = { '@context': 'https://schema.org', '@type': 'Service', name: 'Hormigón elaborado', provider: { '@id': new URL(import.meta.env.BASE_URL.replace(/\/$/, '') + '/#organization', Astro.site).href } };
 ---
 <BaseLayout title="Hormigón elaborado | REDMIX Hormigonera" description="Hormigón elaborado para obras y proyectos de construcción. Consultá alternativas disponibles y solicitá una cotización a REDMIX." {schema}>
   <main class="inner-page service-detail">
