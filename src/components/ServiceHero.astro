@@ -5,21 +5,23 @@ interface Props {
   eyebrow: string;
   title: string | string[];
   intro: string[];
+  mobileIntro?: string;
   image: ImageMetadata;
   imageAlt: string;
   ctaLabel: string;
   whatsappMessage: string;
   motion?: 'vertical' | 'horizontal' | 'flow';
 }
-const { eyebrow, title, intro, image, imageAlt, ctaLabel, whatsappMessage, motion = 'vertical' } = Astro.props;
+const { eyebrow, title, intro, mobileIntro, image, imageAlt, ctaLabel, whatsappMessage, motion = 'vertical' } = Astro.props;
 ---
 <section class:list={['page-hero', 'service-hero', `service-hero--${motion}`]}>
     <div class="page-hero__copy" data-reveal>
       <p class="eyebrow"><span></span>{eyebrow}</p>
       <h1>{Array.isArray(title) ? title.map((line, index) => <span class={index === 1 ? 'type-accent' : undefined}>{line}</span>) : title}</h1>
-      <div class="page-hero__intro">
+      <div class:list={["page-hero__intro", {"page-hero__intro--desktop": mobileIntro}]}>
         {intro.map((paragraph) => <p>{paragraph}</p>)}
       </div>
+      {mobileIntro && <div class="page-hero__intro page-hero__intro--mobile"><p>{mobileIntro}</p></div>}
       <WhatsAppCTA label={ctaLabel} message={whatsappMessage} />
     </div>
     <ImageReveal src={image} alt={imageAlt} eager {motion} class="page-hero__image" label={eyebrow} />
