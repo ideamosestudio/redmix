@@ -11,6 +11,8 @@ import '@fontsource/barlow-semi-condensed/latin-600.css';
 import '@fontsource/barlow-semi-condensed/latin-700.css';
 import displayFont from '@fontsource/barlow-semi-condensed/files/barlow-semi-condensed-latin-700-normal.woff2?url';
 import uiFont from '@fontsource/montserrat/files/montserrat-latin-600-normal.woff2?url';
+import bodyFont from '@fontsource/roboto/files/roboto-latin-300-normal.woff2?url';
+import labelFont from '@fontsource/montserrat/files/montserrat-latin-500-normal.woff2?url';
 import '../styles.css';
 
 interface Props {
@@ -54,6 +56,8 @@ const schemas = [organizationSchema, pageSchema, ...(Array.isArray(schema) ? sch
     <link rel="preload" as="font" type="font/woff2" href={displayFont} crossorigin="anonymous" />
     <link rel="preload" as="font" type="font/woff2" href={uiFont} crossorigin="anonymous" />
     {Astro.url.pathname.replace(/\/$/, "") === root && <link rel="preload" as="image" href={`${root}/images/home-poster-1280.webp`} fetchpriority="high" />}
+    <link rel="preload" as="font" type="font/woff2" href={bodyFont} crossorigin="anonymous" />
+    <link rel="preload" as="font" type="font/woff2" href={labelFont} crossorigin="anonymous" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, follow" />}

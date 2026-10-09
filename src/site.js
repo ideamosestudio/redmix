@@ -9,17 +9,24 @@ const menu = document.querySelector('[data-menu]');
 const floatingWhatsApp = document.querySelector('.floating-whatsapp');
 const protectedControls = [...document.querySelectorAll('.contact-form, .technical-cta, .contact-info, .final-contact-data, .site-footer')];
 
+// Batch geometry reads before style writes to avoid forcing a second layout.
+let scrollRange = 0;
+const measurePage = () => { scrollRange = Math.max(0, document.documentElement.scrollHeight - innerHeight); };
+new ResizeObserver(measurePage).observe(document.body);
+measurePage();
 function updateNavbar() {
-  navbar?.classList.toggle('is-scrolled', window.scrollY > 24);
-  const scrollRange = document.documentElement.scrollHeight - window.innerHeight;
-  navbar?.style.setProperty('--reading-progress', String(scrollRange > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollRange)) : 0));
-  if (!floatingWhatsApp) return;
-  const floating = floatingWhatsApp.getBoundingClientRect();
-  const overlaps = window.innerWidth < 768 && protectedControls.some((element) => {
-    const rect = element.getBoundingClientRect();
-    return rect.width && rect.bottom > floating.top - 12 && rect.top < floating.bottom + 12 && rect.right > floating.left - 12 && rect.left < floating.right;
-  });
-  floatingWhatsApp.classList.toggle('is-obstructing', overlaps);
+  const top = window.scrollY;
+  let overlaps = false;
+  if (floatingWhatsApp && innerWidth < 768) {
+    const floating = floatingWhatsApp.getBoundingClientRect();
+    overlaps = protectedControls.some(element => {
+      const rect = element.getBoundingClientRect();
+      return rect.width && rect.bottom > floating.top - 12 && rect.top < floating.bottom + 12 && rect.right > floating.left - 12 && rect.left < floating.right;
+    });
+  }
+  navbar?.classList.toggle('is-scrolled', top > 24);
+  navbar?.style.setProperty('--reading-progress', String(scrollRange > 0 ? Math.min(1, Math.max(0, top / scrollRange)) : 0));
+  floatingWhatsApp?.classList.toggle('is-obstructing', overlaps);
 }
 
 updateNavbar();
@@ -131,3 +138,16 @@ function syncLighting() {
 }
 lightMedia.addEventListener('change', syncLighting);
 syncLighting();
+
+// Keep decorative motion running only while it can be seen.
+const motionRegions = document.querySelectorAll('.service-marquee, .footer-orbit');
+const visibleRegions = new Set();
+function syncRegions() {
+  motionRegions.forEach(region => region.classList.toggle('motion-visible', !document.hidden && visibleRegions.has(region)));
+}
+const motionObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => entry.isIntersecting ? visibleRegions.add(entry.target) : visibleRegions.delete(entry.target));
+  syncRegions();
+}, { rootMargin: '120px' });
+motionRegions.forEach(region => motionObserver.observe(region));
+document.addEventListener('visibilitychange', syncRegions);

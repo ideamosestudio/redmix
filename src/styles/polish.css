@@ -707,3 +707,14 @@
 @media(prefers-reduced-motion:reduce) { .footer-orbit__ring { animation:none; } .site-footer--editorial .footer-item-arrow { transition:none; } }
 
 @media(min-width:1024px) and (max-height:760px) { .final-cta .contact-form { position:relative; top:auto; } }
+
+/* Scope layout invalidations without deferring content or changing its height. */
+.services-section,.products-section,.solutions-section { contain:layout style; }
+/* These surfaces are already opaque; background sampling adds no useful detail. */
+.nav-shell,.nav-dropdown__panel,.final-cta .contact-form { -webkit-backdrop-filter:none; backdrop-filter:none; }
+.nav-shell { background:#111214; }
+.service-marquee:not(.motion-visible) .service-marquee__track,
+.footer-orbit:not(.motion-visible) .footer-orbit__ring { animation-play-state:paused; }
+/* A changing reading-progress value belongs only to the navigation indicator. */
+@property --reading-progress { syntax:'<number>'; inherits:false; initial-value:0; }
+.nav-shell::after { --reading-progress:inherit; }
