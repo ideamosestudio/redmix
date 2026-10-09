@@ -1,4 +1,4 @@
-/* Isolated concept comparison pages; the approved hero remains unchanged. */
+/* Full-bleed home hero with a restrained photographic drift. */
 .concept-page { background: #0b0d10; }
 .concept-hero { position: relative; isolation: isolate; min-height: 620px; height: 100svh; padding: calc(var(--header-height) + 48px) var(--page-gutter) 100px; display: flex; align-items: center; overflow: clip; background: #090b0f; }
 .concept-copy { position: relative; z-index: 5; width: 66%; pointer-events: none; }
@@ -93,6 +93,11 @@
 .truck-callout > span { color: #fff; text-shadow: 0 1px 5px #000,0 0 12px #000; background: #101318b3; padding: 6px 8px; border-radius: 2px; }
 
 .truck-poster { position:absolute; inset:0; }
-.truck-poster img { display:block; width:100%; height:100%; object-fit:cover; object-position:center bottom; }
-.truck-scene video { position:relative; }
-@media(max-width:1023px) { .truck-poster img { object-position:right center; } }
+.truck-poster { overflow: hidden; }
+.truck-poster img { display:block; width:100%; height:100%; object-fit:cover; object-position:center; transform: scale(1.035); animation: truck-image-drift 20s ease-in-out infinite alternate; will-change: transform; }
+@media(max-width:1023px) { .truck-poster img { object-position:68% center; } }
+
+@keyframes truck-image-drift {
+ from { transform: scale(1.035) translate3d(0,0,0); }
+ to { transform: scale(1.085) translate3d(-.8%,.5%,0); }
+}
