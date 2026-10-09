@@ -91,3 +91,8 @@
 }
 
 .truck-callout > span { color: #fff; text-shadow: 0 1px 5px #000,0 0 12px #000; background: #101318b3; padding: 6px 8px; border-radius: 2px; }
+
+.truck-poster { position:absolute; inset:0; }
+.truck-poster img { display:block; width:100%; height:100%; object-fit:cover; object-position:center bottom; }
+.truck-scene video { position:relative; }
+@media(max-width:1023px) { .truck-poster img { object-position:right center; } }

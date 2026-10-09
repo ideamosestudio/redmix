@@ -32,6 +32,10 @@ try {
   await send('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<768});
   const loaded=new Promise(r=>loadedResolve=r);await send('Page.navigate',{url:base});await loaded;await new Promise(r=>setTimeout(r,1000));
   if(!await evaluate("document.querySelector('video') && document.querySelector('h1') && document.documentElement.scrollWidth<=innerWidth"))throw Error('Home layout');
+  if(!await evaluate("document.querySelector('.truck-poster img').complete && document.querySelector('.truck-poster img').naturalWidth > 0"))throw Error('Hero poster not loaded');
+  if(width===390 && !await evaluate("document.querySelector('.truck-poster img').currentSrc.includes('760.webp')"))throw Error('Mobile poster source');
+  const screenshot = await send('Page.captureScreenshot',{format:'png'});
+  writeFileSync(join(out,'home-'+width+'.png'),Buffer.from(screenshot.data,'base64'));
   if(width===390){await evaluate("document.querySelector('[data-menu-toggle]').click()");await new Promise(r=>setTimeout(r,500));if(!await evaluate("document.body.classList.contains('menu-open')"))throw Error('Menu');await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});await new Promise(r=>setTimeout(r,500));}
   await evaluate("document.querySelector('[data-quote-service]').click()");if(!await evaluate("document.querySelector('.quote-guide__cta').href.includes('hormig')"))throw Error('Quote');
   await evaluate("document.querySelector('.site-footer').scrollIntoView({behavior:'instant'})");await new Promise(r=>setTimeout(r,800));

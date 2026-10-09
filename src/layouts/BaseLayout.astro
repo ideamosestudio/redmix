@@ -55,7 +55,7 @@ const schemas = [organizationSchema, pageSchema, ...(Array.isArray(schema) ? sch
     <meta charset="UTF-8" />
     <link rel="preload" as="font" type="font/woff2" href={displayFont} crossorigin="anonymous" />
     <link rel="preload" as="font" type="font/woff2" href={uiFont} crossorigin="anonymous" />
-    {Astro.url.pathname.replace(/\/$/, "") === root && <link rel="preload" as="image" href={`${root}/images/home-poster-1280.webp`} fetchpriority="high" />}
+    {Astro.url.pathname.replace(/\/$/, "") === root && <><link rel="preload" as="image" href={`${root}/images/home-poster-760.webp`} media="(max-width: 767px)" fetchpriority="high" /><link rel="preload" as="image" href={`${root}/images/home-poster-1280.webp`} media="(min-width: 768px)" fetchpriority="high" /></>}
     <link rel="preload" as="font" type="font/woff2" href={bodyFont} crossorigin="anonymous" />
     <link rel="preload" as="font" type="font/woff2" href={labelFont} crossorigin="anonymous" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

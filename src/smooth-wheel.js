@@ -1,7 +1,7 @@
 // Smooth only desktop wheel input; other ways of navigating remain native.
 const finePointer = matchMedia('(pointer:fine)');
 const reducedMotion = matchMedia('(prefers-reduced-motion:reduce)');
-let frame = 0, target = scrollY, lastTime = 0, written = scrollY, direction = 0;
+let frame = 0, target = 0, lastTime = 0, written = 0, direction = 0;
 const limit = () => Math.max(0, document.documentElement.scrollHeight - innerHeight);
 const clamp = value => Math.max(0, Math.min(limit(), value));
 function stop() {

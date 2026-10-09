@@ -6,7 +6,7 @@ const root = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <div class="concept-page concept-page--camion">
     <section class="concept-hero" aria-labelledby="concept-title" data-concept="camion">
-      <div class="truck-scene"><video data-concept-video muted loop playsinline preload="none" poster={root + '/images/home-poster-1280.webp'} aria-label="Camión hormigonero estacionado en obra con el tambor girando"><source src={root + '/propuestas/camion-obra.mp4'} type="video/mp4"/></video><div class="truck-scene__shade"></div><span class="truck-wordmark" aria-hidden="true">REDMIX</span><div class="truck-callout"><span>HORMIGÓN EN MOVIMIENTO</span><i aria-hidden="true"></i></div></div>
+      <div class="truck-scene"><picture class="truck-poster"><source media="(max-width: 767px)" srcset={root + '/images/home-poster-760.webp'} /><img src={root + '/images/home-poster-1280.webp'} width="1280" height="720" alt="" fetchpriority="high" /></picture><video data-concept-video muted loop playsinline preload="none" aria-label="Camión hormigonero estacionado en obra con el tambor girando"><source src={root + '/propuestas/camion-obra.mp4'} type="video/mp4"/></video><div class="truck-scene__shade"></div><span class="truck-wordmark" aria-hidden="true">REDMIX</span><div class="truck-callout"><span>HORMIGÓN EN MOVIMIENTO</span><i aria-hidden="true"></i></div></div>
       <div class="concept-copy">
         <p class="concept-eyebrow"><i></i>POTENCIA PARA LO QUE VIENE.</p>
         <h1 id="concept-title"><span>HORMIGÓN ELABORADO<b class="hero-desktop-conjunction"> Y</b></span><span><b class="hero-mobile-conjunction">Y </b>ALQUILER DE BOMBA</span></h1>

@@ -12,8 +12,7 @@ const protectedControls = [...document.querySelectorAll('.contact-form, .technic
 // Batch geometry reads before style writes to avoid forcing a second layout.
 let scrollRange = 0;
 const measurePage = () => { scrollRange = Math.max(0, document.documentElement.scrollHeight - innerHeight); };
-new ResizeObserver(measurePage).observe(document.body);
-measurePage();
+new ResizeObserver(() => { measurePage(); updateNavbar(); }).observe(document.body);
 function updateNavbar() {
   const top = window.scrollY;
   let overlaps = false;
@@ -29,7 +28,6 @@ function updateNavbar() {
   floatingWhatsApp?.classList.toggle('is-obstructing', overlaps);
 }
 
-updateNavbar();
 let navbarFrame = 0;
 window.addEventListener('scroll', () => {
   if (navbarFrame) return;
