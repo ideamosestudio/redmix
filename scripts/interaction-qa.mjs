@@ -2,7 +2,7 @@
 // QA_OUT is outside the source tree; no form submission or external link is triggered.
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
-const base = process.env.QA_BASE || 'http://127.0.0.1:4321/redmix/';
+const base = process.env.QA_BASE || 'http://127.0.0.1:4321/';
 const out = process.env.QA_OUT;
 if (!out) throw new Error('Set QA_OUT to the screenshot/report directory.');
 mkdirSync(out, { recursive: true });

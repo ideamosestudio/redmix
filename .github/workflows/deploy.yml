@@ -22,6 +22,8 @@ jobs:
       - run: npm run check:security
       - run: npm run build
       - run: npm run check
+      - name: Stamp release
+        run: node -e "require('fs').writeFileSync('dist/deployment.json',JSON.stringify({commit:process.env.GITHUB_SHA}))"
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
         with:
           path: dist
@@ -39,3 +41,37 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5
+  backup-cpanel:
+    if: github.event_name != 'pull_request'
+    needs: [build, deploy]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Download the exact published artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download "$GITHUB_RUN_ID" --repo "$GITHUB_REPOSITORY" --name github-pages --dir pages-artifact
+          mkdir published
+          tar -xf pages-artifact/artifact.tar -C published
+          test -f published/index.html
+          test -f published/deployment.json
+      - name: Sync cPanel backup
+        env:
+          CPANEL_SSH_KEY: ${{ secrets.CPANEL_SSH_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$CPANEL_SSH_KEY"
+          install -m 700 -d "$HOME/.ssh"
+          printf '%s\n' "$CPANEL_SSH_KEY" > "$HOME/.ssh/redmix_deploy"
+          chmod 600 "$HOME/.ssh/redmix_deploy"
+          cp scripts/deploy/known_hosts "$HOME/.ssh/known_hosts"
+          trap 'rm -f "$HOME/.ssh/redmix_deploy"' EXIT
+          SSH="ssh -p 9022 -i $HOME/.ssh/redmix_deploy -o BatchMode=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=30"
+          $SSH redmixcom@buenosaires.servidoraweb.net 'test "$HOME" = /home3/redmixcom && test -d "$HOME/public_html" && mkdir -p "$HOME/redmix-backups" && tar -czf "$HOME/redmix-backups/previous-site.tar.gz" -C "$HOME/public_html" .'
+          rsync -az --delay-updates --delete-delay --exclude=/.htaccess --exclude=/.user.ini --exclude=/php.ini --exclude=/.well-known/ --exclude=/cgi-bin/ -e "$SSH" published/ redmixcom@buenosaires.servidoraweb.net:/home3/redmixcom/public_html/
+          $SSH redmixcom@buenosaires.servidoraweb.net 'cat /home3/redmixcom/public_html/deployment.json'

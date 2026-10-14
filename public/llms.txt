@@ -3,12 +3,12 @@
 > Empresa de hormigón elaborado, acarreo de bomba y bombeo de hormigón en Longchamps, Provincia de Buenos Aires, Argentina.
 
 ## Páginas oficiales
-- [Inicio](https://ideamosestudio.github.io/redmix/): presentación y servicios.
-- [Quiénes somos](https://ideamosestudio.github.io/redmix/quienes-somos/): información de la empresa.
-- [Hormigón elaborado](https://ideamosestudio.github.io/redmix/servicios/hormigon-elaborado/): alternativas H17, H21, H25, H30 y H30 proyectable; consultar disponibilidad.
-- [Acarreo de bomba](https://ideamosestudio.github.io/redmix/servicios/acarreo-bomba/): traslado y puesta a disposición del equipo de bombeo.
-- [Bombeo de hormigón](https://ideamosestudio.github.io/redmix/servicios/bombeo-hormigon/): descarga y colocación; servicio calculado por volumen.
-- [Contacto](https://ideamosestudio.github.io/redmix/contacto/): consulta de presupuesto por WhatsApp o correo.
+- [Inicio](https://redmix.com.ar/): presentación y servicios.
+- [Quiénes somos](https://redmix.com.ar/quienes-somos/): información de la empresa.
+- [Hormigón elaborado](https://redmix.com.ar/servicios/hormigon-elaborado/): alternativas H17, H21, H25, H30 y H30 proyectable; consultar disponibilidad.
+- [Acarreo de bomba](https://redmix.com.ar/servicios/acarreo-bomba/): traslado y puesta a disposición del equipo de bombeo.
+- [Bombeo de hormigón](https://redmix.com.ar/servicios/bombeo-hormigon/): descarga y colocación; servicio calculado por volumen.
+- [Contacto](https://redmix.com.ar/contacto/): consulta de presupuesto por WhatsApp o correo.
 
 ## Contacto verificado en el sitio
 - Dirección: Ruta Provincial 16 3297, Longchamps, Provincia de Buenos Aires, Argentina.

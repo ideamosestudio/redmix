@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ideamosestudio.github.io/redmix/sitemap.xml
+Sitemap: https://redmix.com.ar/sitemap.xml

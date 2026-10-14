@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://ideamosestudio.github.io',
-  base: '/redmix',
+  site: 'https://redmix.com.ar',
+  base: '/',
   output: 'static',
   trailingSlash: 'always',
   security: {

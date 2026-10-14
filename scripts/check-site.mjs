@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync,existsSync,readdirSync,statSync} from 'node:fs';
 import {resolve,join} from 'node:path';
-const base='https://ideamosestudio.github.io/redmix/';
+const base='https://redmix.com.ar/';
 const routes=['','quienes-somos/','contacto/','servicios/hormigon-elaborado/','servicios/acarreo-bomba/','servicios/bombeo-hormigon/'];
 const titles=new Set();
 for(const route of routes){
@@ -14,8 +14,8 @@ for(const route of routes){
  assert.ok(!html.includes('noindex'),route+': indexable');
  for(const [,raw] of html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>(.*?)<\/script>/gs)) JSON.parse(raw);
  for(const [,value] of html.matchAll(/(?:href|src)="([^"]+)"/g)){
-  if(!value.startsWith('/redmix/'))continue;
-  const pathname=decodeURIComponent(value.split(/[?#]/)[0].replace('/redmix/',''));
+  if(!value.startsWith('/') || value.startsWith('//'))continue;
+  const pathname=decodeURIComponent(value.split(/[?#]/)[0].replace(/^\//,''));
   const local=resolve('dist',pathname);assert.ok(local.startsWith(resolve('dist')),route+': local path');
   assert.ok(existsSync(local)||existsSync(local+'.html'),route+': missing '+value);
  }
