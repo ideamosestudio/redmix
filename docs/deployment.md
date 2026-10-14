@@ -7,3 +7,5 @@ Cada push a main valida y publica Pages. Después el job backup-cpanel descarga 
 La versión anterior del directorio se guarda en /home3/redmixcom/redmix-backups/previous-site.tar.gz, fuera de la web. Se conserva una versión anterior y la copia actual; esto no reemplaza el backup general del hosting. Se preservan .htaccess, .user.ini, php.ini, .well-known y cgi-bin. Un fallo del respaldo no revierte Pages: revisar el job y reejecutarlo. No editar la web a mano en cPanel: se sobrescribe en la siguiente publicación. deployment.json identifica el commit de ambas copias.
 
 El DNS web debe apuntar a Pages. mail.redmix.com.ar y el MX deben permanecer en el hosting (167.250.5.104), al igual que cpanel, webmail y servicios de correo. Conservar entrega local en cPanel.
+
+Git Version Control de cPanel: REDMIX - GitHub, en /home3/redmixcom/repositories/redmix, rama main y remoto HTTPS público. El job de respaldo actualiza este clon por fast-forward al commit publicado. No hay .cpanel.yml: el sitio Astro se compila en GitHub Actions y se copia el resultado; el código fuente no se expone en public_html.
