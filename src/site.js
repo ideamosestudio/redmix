@@ -12,7 +12,11 @@ const protectedControls = [...document.querySelectorAll('.contact-form, .technic
 // Batch geometry reads before style writes to avoid forcing a second layout.
 let scrollRange = 0;
 const measurePage = () => { scrollRange = Math.max(0, document.documentElement.scrollHeight - innerHeight); };
-new ResizeObserver(() => { measurePage(); updateNavbar(); }).observe(document.body);
+let resizeFrame = 0;
+new ResizeObserver(() => {
+  if (resizeFrame) return;
+  resizeFrame = requestAnimationFrame(() => { resizeFrame = 0; measurePage(); updateNavbar(); });
+}).observe(document.body);
 function updateNavbar() {
   const top = window.scrollY;
   let overlaps = false;
@@ -101,18 +105,40 @@ document.querySelectorAll('.faq-item').forEach(details => {
 });
 
 document.querySelectorAll('[data-email-form]').forEach((form) => {
-  form.addEventListener('submit', (event) => {
+  let started = Date.now(), pending = false;
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    if (!form.reportValidity()) return;
+    if (pending || !form.reportValidity()) return;
     const data = new FormData(form);
-    const clean = (value) => String(value ?? '').replace(/[<>]/g, '').trim();
-    const body = [
-      'Hola REDMIX, quisiera realizar una consulta desde el sitio web.', '',
-      `Nombre: ${clean(data.get('name'))}`,
-      `Teléfono: ${clean(data.get('phone'))}`,
-      `Mensaje: ${clean(data.get('message'))}`,
-    ].join('\n');
-    window.location.href = `mailto:info@redmix.com.ar?subject=${encodeURIComponent('Consulta desde el sitio REDMIX')}&body=${encodeURIComponent(body)}`;
+    const button = form.querySelector('button[type="submit"]');
+    const status = form.querySelector('[data-form-status]');
+    pending = true;
+    button.disabled = true;
+    status.dataset.state = 'pending';
+    status.textContent = 'Enviando tu consulta…';
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'omit',
+        signal: AbortSignal.timeout(25000),
+        body: JSON.stringify({ ...Object.fromEntries(data), started, page: location.pathname }),
+      });
+      const result = await response.json();
+      if (!response.ok || !result.ok) throw new Error(result.message || 'No pudimos enviar la consulta. Intentá nuevamente o contactanos por WhatsApp.');
+      form.reset();
+      started = Date.now();
+      status.dataset.state = 'success';
+      status.textContent = '¡Recibimos tu consulta! El equipo de REDMIX se va a comunicar con vos.';
+    } catch (error) {
+      status.dataset.state = 'error';
+      status.textContent = error.name === 'TimeoutError' || error instanceof TypeError
+        ? 'No pudimos confirmar el envío. Intentá nuevamente en unos minutos o contactanos por WhatsApp.'
+        : error.message;
+    } finally {
+      pending = false;
+      button.disabled = false;
+    }
   });
 });
 
@@ -138,7 +164,7 @@ lightMedia.addEventListener('change', syncLighting);
 syncLighting();
 
 // Keep decorative motion running only while it can be seen.
-const motionRegions = document.querySelectorAll('.service-marquee, .footer-orbit');
+const motionRegions = document.querySelectorAll('.service-marquee, .footer-orbit, .truck-scene');
 const visibleRegions = new Set();
 function syncRegions() {
   motionRegions.forEach(region => region.classList.toggle('motion-visible', !document.hidden && visibleRegions.has(region)));

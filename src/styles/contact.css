@@ -24,6 +24,9 @@
 .form-field input:focus,.form-field textarea:focus { border-color: #ff7265; box-shadow: 0 1px 0 #ff7265; }
 .contact-form .technical-cta { width: 100%; }
 .form-note { margin: var(--space-md) 0 0; color: rgba(255,255,255,.72); font-size: 14px; line-height: 1.6; }
+.form-trap { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.contact-form button:disabled { opacity: .65; cursor: wait; }
+.form-note[data-state="error"] { color: #ff998b; }
 
 /* Separate the full-bleed red surface from the content grid. */
 .final-cta { position: relative; isolation: isolate; background: radial-gradient(circle at 80% 25%,rgba(255,81,45,.2),transparent 35%),linear-gradient(125deg,#a20d09,#470302); border-top: 1px solid rgba(255,255,255,.12); }

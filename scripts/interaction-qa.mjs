@@ -31,7 +31,7 @@ try {
  for(const width of [390,1366]) {
   await send('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<768});
   const loaded=new Promise(r=>loadedResolve=r);await send('Page.navigate',{url:base});await loaded;await new Promise(r=>setTimeout(r,1000));
-  if(!await evaluate("document.querySelector('video') && document.querySelector('h1') && document.documentElement.scrollWidth<=innerWidth"))throw Error('Home layout');
+  if(!await evaluate("document.querySelector('.truck-poster img') && document.querySelector('h1') && document.documentElement.scrollWidth<=innerWidth"))throw Error('Home layout');
   if(!await evaluate("document.querySelector('.truck-poster img').complete && document.querySelector('.truck-poster img').naturalWidth > 0"))throw Error('Hero poster not loaded');
   if(width===390 && !await evaluate("document.querySelector('.truck-poster img').currentSrc.includes('760.webp')"))throw Error('Mobile poster source');
   const screenshot = await send('Page.captureScreenshot',{format:'png'});
@@ -47,7 +47,7 @@ try {
    if(!await evaluate(`getComputedStyle(document.querySelector('${selector}')).textDecorationLine==='none'`))throw Error('Hover underline');
   }
   await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});await new Promise(r=>setTimeout(r,300));
-  if(!await evaluate("document.querySelector('video').paused&&getComputedStyle(document.querySelector('.footer-orbit__ring')).animationName==='none'"))throw Error('Reduced motion');
+  if(!await evaluate("(!document.querySelector('video') || document.querySelector('video').paused)&&getComputedStyle(document.querySelector('.footer-orbit__ring')).animationName==='none'"))throw Error('Reduced motion');
   await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'no-preference'}]});
   if(errors.length)throw Error(errors.join('\n'));
   console.log('PASS home, menu, quote, hover, form, reduced motion and CSP '+width);

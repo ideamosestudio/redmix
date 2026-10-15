@@ -2,7 +2,11 @@
 interface Props { idPrefix?: string; compact?: boolean; }
 const { idPrefix = 'contact', compact = false } = Astro.props;
 ---
-<form class:list={['contact-form', { 'contact-form--compact': compact }]} data-email-form data-reveal>
+<form class:list={['contact-form', { 'contact-form--compact': compact }]} action="https://mail.redmix.com.ar/api/contact.php" method="post" data-email-form data-reveal>
+  <div class="form-trap" aria-hidden="true" inert>
+    <label for={`${idPrefix}-website`}>Sitio web</label>
+    <input id={`${idPrefix}-website`} name="website" type="text" tabindex="-1" autocomplete="off" />
+  </div>
   <div class="contact-form__heading">
     {!compact && <span>FORMULARIO / CONTACTO</span>}
     <strong>{compact ? 'Contanos sobre tu obra' : 'ENVIANOS TU CONSULTA'}</strong>
@@ -17,8 +21,8 @@ const { idPrefix = 'contact', compact = false } = Astro.props;
   </div>
   <div class="form-field">
     <label for={`${idPrefix}-message`}>Mensaje</label>
-    <textarea id={`${idPrefix}-message`} name="message" maxlength="2000" rows={compact ? 4 : 6} required></textarea>
+    <textarea id={`${idPrefix}-message`} name="message" minlength="5" maxlength="2000" rows={compact ? 4 : 6} required></textarea>
   </div>
   <button class="technical-cta contact-form__submit" type="submit"><span>ENVIAR CONSULTA</span><i class="tick tick--a"></i><i class="tick tick--b"></i><i class="tick tick--c"></i><i class="tick tick--d"></i></button>
-  <p class="form-note">Al enviar, se abrirá tu aplicación de correo con el mensaje preparado.</p>
+  <p class="form-note" role="status" aria-live="polite" data-form-status>Tu consulta llegará directamente al equipo de REDMIX.</p>
 </form>

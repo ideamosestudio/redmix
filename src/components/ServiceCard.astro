@@ -7,11 +7,12 @@ const { title, description, href, image, imageAlt, focus = false } = Astro.props
 const widths = [...new Set([480, 720, 960, 1280, 1600, image.width].filter(width => width <= image.width))].sort((a, b) => a - b);
 // Include the pixels cropped by object-fit when choosing a responsive source.
 const coverScale = Math.max(1, (image.width / image.height) / (4 / 3));
+const mobileCoverScale = Math.max(1, (image.width / image.height) / (3 / 2));
 
 ---
 <article class:list={["service-card", focus && "service-card--discharge"]} data-card>
   <a class="service-card__image" href={href} aria-label={`Ver servicio: ${title}`}>
-    <Picture src={image} formats={['avif']} fallbackFormat="webp" widths={widths} quality={78} sizes={`(max-width: 767px) ${100 * coverScale}vw, (max-width: 1199px) ${50 * coverScale}vw, ${34 * coverScale}vw`} alt={imageAlt} loading="lazy" fetchpriority="auto" />
+    <Picture src={image} formats={['avif']} fallbackFormat="webp" widths={widths} quality={70} sizes={`(max-width: 767px) calc((100vw - 48px) * ${mobileCoverScale}), (max-width: 1199px) ${50 * coverScale}vw, ${34 * coverScale}vw`} alt={imageAlt} loading="lazy" fetchpriority="auto" />
     <span class="service-card__explore" aria-hidden="true"><span class="service-card__explore-idle">VER SERVICIO<ArrowIcon direction="right" /></span><span class="service-card__explore-active">VER<br />SERVICIO<ArrowIcon /></span></span>
   </a>
   <div class="service-card__body">
