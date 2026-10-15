@@ -33,7 +33,8 @@ try {
   const loaded=new Promise(r=>loadedResolve=r);await send('Page.navigate',{url:base});await loaded;await new Promise(r=>setTimeout(r,1000));
   if(!await evaluate("document.querySelector('.truck-poster img') && document.querySelector('h1') && document.documentElement.scrollWidth<=innerWidth"))throw Error('Home layout');
   if(!await evaluate("document.querySelector('.truck-poster img').complete && document.querySelector('.truck-poster img').naturalWidth > 0"))throw Error('Hero poster not loaded');
-  if(width===390 && !await evaluate("document.querySelector('.truck-poster img').currentSrc.includes('760.webp')"))throw Error('Mobile poster source');
+  if(width===390 && !await evaluate("document.querySelector('.truck-poster img').currentSrc.includes('760.avif')"))throw Error('Mobile poster source');
+  if(width===390 && await evaluate("performance.getEntriesByType('resource').some(r=>/back-002-1920\\.(avif|webp)/.test(r.name))"))throw Error('Desktop hero downloaded on mobile');
   const screenshot = await send('Page.captureScreenshot',{format:'png'});
   writeFileSync(join(out,'home-'+width+'.png'),Buffer.from(screenshot.data,'base64'));
   if(width===390){await evaluate("document.querySelector('[data-menu-toggle]').click()");await new Promise(r=>setTimeout(r,500));if(!await evaluate("document.body.classList.contains('menu-open')"))throw Error('Menu');await send('Input.dispatchKeyEvent',{type:'keyDown',key:'Escape',code:'Escape',windowsVirtualKeyCode:27});await new Promise(r=>setTimeout(r,500));}

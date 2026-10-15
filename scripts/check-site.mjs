@@ -11,6 +11,7 @@ for(const route of routes){
  assert.ok(html.includes('name="description"'),route+': description');
  assert.ok(html.includes(`rel="canonical" href="${base+route}"`),route+': canonical');
  assert.ok(/content-security-policy/i.test(html),route+': CSP');
+ assert.ok(html.indexOf('name="viewport"') < html.indexOf('rel="preload"'),route+': viewport before responsive preloads');
  assert.ok(!html.includes('noindex'),route+': indexable');
  for(const [,raw] of html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>(.*?)<\/script>/gs)) JSON.parse(raw);
  for(const [,value] of html.matchAll(/(?:href|src)="([^"]+)"/g)){

@@ -52,10 +52,11 @@ const schemas = [organizationSchema, websiteSchema, { ...pageSchema, isPartOf: {
 <html lang="es-AR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="preload" as="font" type="font/woff2" href={displayFont} crossorigin="anonymous" />
-    {Astro.url.pathname.replace(/\/$/, "") === root && <><link rel="preload" as="image" href={`${root}/images/back-002-760.webp`} media="(max-width: 767px)" fetchpriority="high" /><link rel="preload" as="image" href={`${root}/images/back-002-1920.webp`} media="(min-width: 768px)" fetchpriority="high" /></>}
-    <link rel="preload" as="font" type="font/woff2" href={bodyFont} crossorigin="anonymous" />
+    <!-- The viewport must precede media-dependent preloads to avoid desktop downloads on phones. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preload" as="font" type="font/woff2" href={displayFont} crossorigin="anonymous" />
+    {Astro.url.pathname.replace(/\/$/, "") === root && <><link rel="preload" as="image" type="image/avif" href={`${root}/images/back-002-760.avif`} media="(max-width: 767px)" fetchpriority="high" /><link rel="preload" as="image" type="image/avif" href={`${root}/images/back-002-1920.avif`} media="(min-width: 768px)" fetchpriority="high" /></>}
+    <link rel="preload" as="font" type="font/woff2" href={bodyFont} crossorigin="anonymous" />
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, follow" />}
     <meta name="referrer" content="strict-origin-when-cross-origin" />
