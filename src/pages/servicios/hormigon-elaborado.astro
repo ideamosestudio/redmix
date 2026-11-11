@@ -23,14 +23,15 @@ const products = [
 ];
 const message = 'Hola Redmix, quisiera solicitar un presupuesto por hormigón elaborado.';
 const faq = [
+  { question: '¿Dónde está REDMIX y cómo consulto la cobertura?', answer: 'REDMIX está en Ruta Provincial 16 3297, Longchamps, Provincia de Buenos Aires. Envianos la ubicación de la obra para confirmar cobertura, disponibilidad y condiciones de entrega.' },
   { question: '¿Qué tipos de hormigón ofrece REDMIX?', answer: 'REDMIX dispone de Hormigón H17, H21, H25, H30 y H30 proyectable. Consultanos para conocer disponibilidad y definir la alternativa correspondiente a tu obra.' },
   { question: '¿Cómo solicito un presupuesto de hormigón?', answer: 'Podés solicitarlo directamente por WhatsApp. Contanos las características generales del proyecto y te responderemos para avanzar con la consulta.' },
   { question: '¿Qué información tengo que enviar para cotizar?', answer: 'Podés indicar el tipo de hormigón requerido, volumen aproximado, ubicación de la obra y cualquier información relevante del proyecto.' },
-  { question: '¿Puedo consultar qué hormigón necesito para mi obra?', answer: 'Sí. Escribinos con la información disponible de tu proyecto para consultar cuál de las alternativas corresponde a tu obra.' },
+  { question: '¿Puedo consultar qué hormigón necesito para mi obra?', answer: 'La clase de hormigón debe responder a la especificación del profesional responsable del proyecto. Si ya tenés esa indicación, envianos el tipo, el volumen aproximado y la ubicación para consultar disponibilidad y presupuesto.' },
 ];
-const schema = { '@context': 'https://schema.org', '@type': 'Service', name: 'Hormigón elaborado', provider: { '@id': new URL(import.meta.env.BASE_URL.replace(/\/$/, '') + '/#organization', Astro.site).href } };
+const schema = { '@context': 'https://schema.org', '@type': 'Service', '@id': new URL(Astro.url.pathname, Astro.site).href + '#service', url: new URL(Astro.url.pathname, Astro.site).href, mainEntityOfPage: { '@id': new URL(Astro.url.pathname, Astro.site).href + '#webpage' }, name: 'Hormigón elaborado', provider: { '@id': new URL(import.meta.env.BASE_URL.replace(/\/$/, '') + '/#organization', Astro.site).href } };
 ---
-<BaseLayout title="Hormigón elaborado | REDMIX Hormigonera" description="Hormigón elaborado para obras y proyectos de construcción. Consultá alternativas disponibles y solicitá una cotización a REDMIX." {schema}>
+<BaseLayout title="Hormigón elaborado H17, H21, H25 y H30 | REDMIX" description="Hormigón H17, H21, H25, H30 y H30 proyectable. REDMIX, hormigonera en Longchamps. Consultá disponibilidad y presupuesto para tu obra." {schema}>
   <main class="inner-page service-detail">
     <ServiceHero eyebrow="HORMIGÓN ELABORADO" title={["HORMIGÓN ELABORADO", "PARA TU OBRA"]} intro={['Hormigón elaborado para las necesidades de tu proyecto. Consultá las alternativas disponibles y coordiná el suministro para tu obra.']} {image} imageAlt="Hormigón fresco descargándose desde un camión mixer" ctaLabel="SOLICITAR PRESUPUESTO" whatsappMessage={message} />
     <ServiceNavigation current="hormigon-elaborado" />

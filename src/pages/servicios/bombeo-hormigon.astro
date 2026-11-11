@@ -15,9 +15,9 @@ const faq = [
   { question: '¿Cómo se cotiza el servicio?', answer: 'REDMIX ofrece el servicio de bombeo calculado por volumen de hormigón. Escribinos por WhatsApp para solicitar una cotización.' },
   { question: '¿Qué datos tengo que enviar?', answer: 'Podés contarnos dónde se encuentra la obra, el volumen aproximado y las características generales del trabajo.' },
 ];
-const schema = { '@context': 'https://schema.org', '@type': 'Service', name: 'Servicio de bombeo de hormigón por m³', provider: { '@id': new URL(import.meta.env.BASE_URL.replace(/\/$/, '') + '/#organization', Astro.site).href } };
+const schema = { '@context': 'https://schema.org', '@type': 'Service', '@id': new URL(Astro.url.pathname, Astro.site).href + '#service', url: new URL(Astro.url.pathname, Astro.site).href, mainEntityOfPage: { '@id': new URL(Astro.url.pathname, Astro.site).href + '#webpage' }, name: 'Servicio de bombeo de hormigón por m³', provider: { '@id': new URL(import.meta.env.BASE_URL.replace(/\/$/, '') + '/#organization', Astro.site).href } };
 ---
-<BaseLayout title="Servicio de bombeo de hormigón | REDMIX" description="Bombeo de hormigón por volumen para facilitar la descarga y colocación del material dentro de la obra. Consultá a REDMIX." {schema}>
+<BaseLayout title="Bombeo de hormigón por m³ | REDMIX Longchamps" description="Bombeo de hormigón por volumen para facilitar la descarga y colocación del material dentro de la obra. Consultá a REDMIX." {schema}>
   <main class="inner-page service-detail">
     <ServiceHero eyebrow="BOMBEO DE HORMIGÓN" title={["BOMBEO DE HORMIGÓN", "POR METRO CÚBICO"]} intro={['Llevá el hormigón desde la descarga hasta el punto de colocación. Servicio de bombeo calculado por volumen para las necesidades de tu obra.']} {image} imageAlt="Manguera descargando hormigón fresco en una obra" ctaLabel="SOLICITAR SERVICIO DE BOMBEO" whatsappMessage={message} motion="flow" />
     <ServiceNavigation current="bombeo-hormigon" />

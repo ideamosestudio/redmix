@@ -30,6 +30,8 @@ const organizationSchema = {
   '@type': ['LocalBusiness', 'Organization'],
   '@id': new URL(`${root}/#organization`, Astro.site).href,
   name: 'REDMIX Hormigonera',
+  alternateName: 'REDMIX',
+  description: 'Hormigonera en Longchamps: hormigón elaborado, acarreo de bomba y bombeo de hormigón. Consultá cobertura y disponibilidad para tu obra.',
   logo: brandLogo.href,
   image: socialImage.href,
   url: new URL(import.meta.env.BASE_URL, Astro.site).href,
@@ -45,7 +47,13 @@ const organizationSchema = {
 };
 const pageSchema = { '@context': 'https://schema.org', '@type': Astro.url.pathname.includes('contacto') ? 'ContactPage' : Astro.url.pathname.includes('quienes-somos') ? 'AboutPage' : 'WebPage', '@id': canonical.href + '#webpage', url: canonical.href, name: title, description, inLanguage: 'es-AR', about: { '@id': organizationSchema['@id'] } };
 const websiteSchema = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': new URL('/#website', Astro.site).href, url: Astro.site?.href, name: 'REDMIX Hormigonera', inLanguage: 'es-AR', publisher: { '@id': organizationSchema['@id'] } };
-const schemas = [organizationSchema, websiteSchema, { ...pageSchema, isPartOf: { '@id': websiteSchema['@id'] } }, ...(Array.isArray(schema) ? schema : schema ? [schema] : [])];
+const serviceNames: Record<string, string> = { 'hormigon-elaborado': 'Hormigón elaborado', 'acarreo-bomba': 'Acarreo de bomba', 'bombeo-hormigon': 'Bombeo de hormigón', contacto: 'Contacto', 'quienes-somos': 'Quiénes somos' };
+const pageName = serviceNames[Astro.url.pathname.split('/').filter(Boolean).at(-1) ?? ''];
+const breadcrumbs = pageName && !noindex ? [{ '@context': 'https://schema.org', '@type': 'BreadcrumbList', '@id': canonical.href + '#breadcrumb', itemListElement: [
+  { '@type': 'ListItem', position: 1, name: 'Inicio', item: new URL(import.meta.env.BASE_URL, Astro.site).href },
+  { '@type': 'ListItem', position: 2, name: pageName, item: canonical.href },
+] }] : [];
+const schemas = [organizationSchema, websiteSchema, { ...pageSchema, isPartOf: { '@id': websiteSchema['@id'] } }, ...breadcrumbs, ...(Array.isArray(schema) ? schema : schema ? [schema] : [])];
 ---
 
 <!doctype html>
@@ -58,7 +66,7 @@ const schemas = [organizationSchema, websiteSchema, { ...pageSchema, isPartOf: {
     {Astro.url.pathname.replace(/\/$/, "") === root && <><link rel="preload" as="image" type="image/avif" href={`${root}/images/back-002-760.avif`} media="(max-width: 767px)" fetchpriority="high" /><link rel="preload" as="image" type="image/avif" href={`${root}/images/back-002-1920.avif`} media="(min-width: 768px)" fetchpriority="high" /></>}
     <link rel="preload" as="font" type="font/woff2" href={bodyFont} crossorigin="anonymous" />
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
